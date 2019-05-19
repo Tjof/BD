@@ -1,0 +1,20 @@
+﻿<Window x:Class="BD.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BD"
+        mc:Ignorable="d"
+        Title="Авторизация" Height="172" Width="363"
+        WindowStartupLocation="CenterScreen">
+    <Grid Background="#FFECDBDB" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBox x:Name="tbLogin" HorizontalAlignment="Left" Height="27" Margin="107,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="233" BorderBrush="Black" FontFamily="Times New Roman" FontSize="20" Background="#FFDCD1D1"/>
+        <Label x:Name="label" Content="Логин" HorizontalAlignment="Left" Height="27" Margin="10,10,0,0" VerticalAlignment="Top" Width="66" FontFamily="Swis721 BlkEx BT" FontWeight="Bold" FontSize="16"/>
+        <Label x:Name="label1" Content="Пароль" HorizontalAlignment="Left" Height="27" Margin="10,50,0,0" VerticalAlignment="Top" Width="74" FontWeight="Bold" FontSize="16" FontFamily="Swis721 BlkEx BT"/>
+        <PasswordBox x:Name="passwordBox" HorizontalAlignment="Left" Height="27" Margin="107,50,0,0" VerticalAlignment="Top" Width="233" FontSize="16" PasswordChar="*" BorderBrush="Black" Background="#FFDCD1D1"/>
+        <Button IsDefault="True" x:Name="authorization" Content="Войти" HorizontalAlignment="Left" Height="42" Margin="211,84,0,0" VerticalAlignment="Top" Width="129" FontSize="20" FontFamily="Swis721 BlkEx BT" FontWeight="Bold" Background="#FFDCD1D1" BorderBrush="Black" Foreground="Black" Click="Authorization_Click"/>
+    </Grid>
+</Window>

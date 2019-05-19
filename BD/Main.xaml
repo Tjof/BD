@@ -1,0 +1,35 @@
+﻿<Window x:Class="BD.Main"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BD"
+        mc:Ignorable="d"
+        Title="Главная страница" Height="40" 
+        WindowStartupLocation="CenterScreen" Width="297.465" WindowStyle="None" Background="Transparent" BorderThickness="0" BorderBrush="Transparent" ResizeMode="NoResize">
+    
+        <Menu Height="40" VerticalAlignment="Top" Background="#FFEC4646" x:Name="menu">
+            <MenuItem Header="Разное" Height="40" Width="76" FontFamily="Showcard Gothic" FontSize="18">
+                <MenuItem Header="Поиск лекарства" Click="Poisk_Lekarstva"/>
+                <MenuItem Header="Смена пароля" Click="Smena_Pass"/>
+                <MenuItem Header="Выход"  FontFamily="Showcard Gothic" FontSize="18" Click="Exit_Click"/>
+            </MenuItem>
+            <MenuItem Header="Справочники" Height="40" Width="130" FontFamily="Showcard Gothic" FontSize="18">
+                <MenuItem Header="Аптеки" Click="Apteki" />
+                <MenuItem Header="Улицы" Click="Street"/>
+                <MenuItem Header="Ассортимент товара" Click="Assortiment"/>
+                <MenuItem Header="Остановки" Click="Ostanovki"/>
+                <MenuItem Header="Транспортные маршруты" Click="Marshruti"/>
+                <MenuItem Header="Лекарство" Click="Lekarstvo"/>
+                <MenuItem Header="Районы города" Click="Districts"/>
+                <MenuItem Header="Формы упаковки" Click="Formiupakovki"/>
+                <MenuItem Header="Виды транспорта" Click="TransportMode"/>
+            </MenuItem>
+            <MenuItem Header="Справка" Height="40" Width="90" FontFamily="Showcard Gothic" FontSize="18">
+                <MenuItem Header="Как работать со справкой" Click="Rabota"/>
+                <MenuItem Header="Содержание" Click="Soderzhanie"/>
+                <MenuItem Header="О программе" Click="O_programme"/>
+            </MenuItem>
+            
+        </Menu>
+</Window>

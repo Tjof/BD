@@ -1,0 +1,48 @@
+﻿<Window x:Class="BD.FindCure"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BD"
+        mc:Ignorable="d"
+        Title="FindCure" Height="450" Width="800">
+    <Grid Background="#FFEC4646">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="95*"/>
+            <RowDefinition Height="264*"/>
+            <RowDefinition Height="60*"/>
+        </Grid.RowDefinitions>
+        <Label x:Name="label" Content="Выберите лекарство:" HorizontalAlignment="Left" Height="32" Margin="10,10,0,0" VerticalAlignment="Top" Width="201" FontFamily="Times New Roman" FontSize="20" FontWeight="Bold"/>
+        <ComboBox x:Name="comboBox_drugs" HorizontalAlignment="Left" Margin="254,10,0,0" VerticalAlignment="Top" Width="315" Height="32" FontSize="16" FontFamily="Times New Roman">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="{Binding Название_лекарства}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <ComboBox x:Name="comboBox_street" HorizontalAlignment="Left" Margin="254,10,0,0" VerticalAlignment="Top" Width="315" Height="32" FontFamily="Times New Roman" FontSize="16" Grid.Row="1">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="{Binding Название_улицы}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <Label x:Name="label_Copy" Content="Выберите улицу:" HorizontalAlignment="Left" Height="32" Margin="10,10,0,0" VerticalAlignment="Top" Width="201" FontFamily="Times New Roman" FontSize="20" FontWeight="Bold" RenderTransformOrigin="0.513,1.275" Grid.Row="1"/>
+        <Label x:Name="label_Copy1" Content="Выберите остановку:" HorizontalAlignment="Left" Height="32" Margin="10,53,0,0" VerticalAlignment="Top" Width="201" FontFamily="Times New Roman" FontSize="20" FontWeight="Bold" RenderTransformOrigin="0.513,1.275"/>
+        <ComboBox x:Name="comboBox_stops" HorizontalAlignment="Left" Margin="254,53,0,0" VerticalAlignment="Top" Width="315" Height="32" FontFamily="Times New Roman" FontSize="16">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="{Binding Название_остановки}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <Button x:Name="button" Content="Найти" HorizontalAlignment="Left" Height="40" Margin="622,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="160" FontFamily="Times New Roman" FontSize="20" BorderBrush="Black"/>
+
+    </Grid>
+</Window>
