@@ -16,11 +16,11 @@
             </StackPanel>
         </DockPanel>
         <StackPanel Height="50" DockPanel.Dock="Bottom"/>
-        <DataGrid x:Name="DataGrid">
+        <DataGrid x:Name="DataGrid" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Название}" ClipboardContentBinding="{x:Null}" Header="Название Аптеки" Width="*"/>
-                <DataGridCheckBoxColumn Binding="{Binding Улицы.Название_улицы}" ClipboardContentBinding="{x:Null}" Header="Улица" Width="*"/>
-                <DataGridCheckBoxColumn Binding="{Binding Номер_дома}" ClipboardContentBinding="{x:Null}" Header="Номер дома" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Улицы.Название_улицы}" ClipboardContentBinding="{x:Null}" Header="Улица" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Номер_дома}" ClipboardContentBinding="{x:Null}" Header="Номер дома" Width="*"/>
                 <DataGridTextColumn Binding="{Binding Время_начала_работы}" ClipboardContentBinding="{x:Null}" Header="Время начала работы" Width="*"/>
                 <DataGridTextColumn Binding="{Binding Время_окончания_работы}" ClipboardContentBinding="{x:Null}" Header="Время окончания работы" Width="*"/>
             </DataGrid.Columns>

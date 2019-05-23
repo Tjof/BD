@@ -16,10 +16,10 @@
             </StackPanel>
         </DockPanel>
         <StackPanel Height="50" DockPanel.Dock="Bottom"/>
-        <DataGrid x:Name="DataGrid">
+        <DataGrid x:Name="DataGrid" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Номер_маршрута}" ClipboardContentBinding="{x:Null}" Header="Номер маршрута" Width="130"/>
-                <DataGridCheckBoxColumn Binding="{Binding Виды_Транспорта.Вид_транспорта}" ClipboardContentBinding="{x:Null}" Header="Вид транспорта" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Виды_Транспорта.Вид_транспорта}" ClipboardContentBinding="{x:Null}" Header="Вид транспорта" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
     </DockPanel>

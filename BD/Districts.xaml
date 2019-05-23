@@ -16,7 +16,7 @@
             </StackPanel>
         </DockPanel>
         <StackPanel Height="50" DockPanel.Dock="Bottom"/>
-        <DataGrid x:Name="DataGrid">
+        <DataGrid x:Name="DataGrid" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Название_района}" ClipboardContentBinding="{x:Null}" Header="Название района" Width="200"/>
             </DataGrid.Columns>

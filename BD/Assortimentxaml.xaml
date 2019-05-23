@@ -16,13 +16,13 @@
             </StackPanel>
         </DockPanel>
         <StackPanel Height="50" DockPanel.Dock="Bottom"/>
-        <DataGrid x:Name="DataGrid">
+        <DataGrid x:Name="DataGrid" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Лекарство.Название_лекарства}" ClipboardContentBinding="{x:Null}" Header="Лекарство" Width="*"/>
-                <DataGridCheckBoxColumn Binding="{Binding Аптеки.Название}" ClipboardContentBinding="{x:Null}" Header="Аптека" Width="*"/>
-                <DataGridCheckBoxColumn Binding="{Binding Количество}" ClipboardContentBinding="{x:Null}" Header="Количество" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Аптеки.Название}" ClipboardContentBinding="{x:Null}" Header="Аптека" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Количество}" ClipboardContentBinding="{x:Null}" Header="Количество" Width="*"/>
                 <DataGridTextColumn Binding="{Binding Формы_упаковки.Название_формы}" ClipboardContentBinding="{x:Null}" Header="Форма упаковки" Width="*"/>
-                <DataGridCheckBoxColumn Binding="{Binding Цена}" ClipboardContentBinding="{x:Null}" Header="Цена" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Цена}" ClipboardContentBinding="{x:Null}" Header="Цена" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
     </DockPanel>
