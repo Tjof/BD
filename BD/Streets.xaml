@@ -8,17 +8,17 @@
         Title="Улицы" Height="408" Width="809">
     <DockPanel>
         <DockPanel DockPanel.Dock="Top">
-            <Button Content="Закрыть" DockPanel.Dock="Right" FontSize="16" FontFamily="Times New Roman" FontWeight="Bold" />
+            <Button Content="Закрыть" DockPanel.Dock="Right" FontSize="16"/>
             <StackPanel Orientation="Horizontal">
-                <Button Content="Добавить" FontSize="16" FontFamily="Times New Roman" FontWeight="Bold"/>
-                <Button Content="Изменить" FontSize="16" FontFamily="Times New Roman" FontWeight="Bold" />
-                <Button Content="Удалить" FontSize="16" FontFamily="Times New Roman" FontWeight="Bold"/>
+                <Button Content="Добавить"/>
+                <Button Content="Изменить"/>
+                <Button Content="Удалить"/>
             </StackPanel>
         </DockPanel>
         <StackPanel Height="50" DockPanel.Dock="Bottom"/>
         <DataGrid x:Name="DataGrid" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Название_улицы}" ClipboardContentBinding="{x:Null}" Header="Название улицы" Width="150"/>
+                <DataGridTextColumn Binding="{Binding Название_улицы}" ClipboardContentBinding="{x:Null}" Header="Название улицы" Width="200"/>
             </DataGrid.Columns>
         </DataGrid>
     </DockPanel>

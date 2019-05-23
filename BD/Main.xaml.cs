@@ -32,30 +32,38 @@ namespace BD
 
         private void Poisk_Lekarstva(object sender, RoutedEventArgs e)
         {
-            
+            FindCure findCure = new FindCure
+            {
+                Owner = this
+            };
+            findCure.Show();
         }
 
         private void Smena_Pass(object sender, RoutedEventArgs e)
         {
-
+            Repass repass= new Repass
+            {
+                Owner = this
+            };
+            repass.Show();
         }
 
         private void Apteki(object sender, RoutedEventArgs e)
         {
-            Aptekas Apteki = new Aptekas
+            Aptekas apteki = new Aptekas
             {
                 Owner = this
             };
-            Apteki.Show();
+            apteki.Show();
         }
 
         private void Street(object sender, RoutedEventArgs e)
         {
-            Streets Streets = new Streets()
+            Streets streets = new Streets()
             {
                 Owner = this
             };
-            Streets.Show();
+            streets.Show();
         }
 
         private void Assortiment(object sender, RoutedEventArgs e)

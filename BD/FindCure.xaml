@@ -42,7 +42,7 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <Button x:Name="button" Content="Найти" HorizontalAlignment="Left" Height="40" Margin="622,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="160" FontFamily="Times New Roman" FontSize="20" BorderBrush="Black"/>
+        <Button x:Name="button" Content="Найти" HorizontalAlignment="Left" Height="40" Margin="622,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="160" FontSize="20" BorderBrush="Black"/>
 
     </Grid>
 </Window>

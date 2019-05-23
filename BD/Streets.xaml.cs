@@ -26,7 +26,7 @@ namespace BD
 
             using (TVOYABAZAEntities model = new TVOYABAZAEntities())
             {
-                DataGrid.ItemsSource = model.Аптеки.ToArray();
+                DataGrid.ItemsSource = model.Улицы.ToArray();
             }
         }
     }

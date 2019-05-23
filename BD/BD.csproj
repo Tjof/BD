@@ -163,6 +163,9 @@
     <Compile Include="Ostanovki.xaml.cs">
       <DependentUpon>Ostanovki.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Repass.xaml.cs">
+      <DependentUpon>Repass.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Streets.xaml.cs">
       <DependentUpon>Streets.xaml</DependentUpon>
     </Compile>
@@ -210,6 +213,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Ostanovki.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Repass.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

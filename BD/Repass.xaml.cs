@@ -1,5 +1,4 @@
-﻿using BD.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,18 +15,13 @@ using System.Windows.Shapes;
 namespace BD
 {
     /// <summary>
-    /// Логика взаимодействия для Districts.xaml
+    /// Логика взаимодействия для Repass.xaml
     /// </summary>
-    public partial class Districts : Window
+    public partial class Repass : Window
     {
-        public Districts()
+        public Repass()
         {
             InitializeComponent();
-
-            using (TVOYABAZAEntities model = new TVOYABAZAEntities())
-            {
-                DataGrid.ItemsSource = model.Районы_города.ToArray();
-            }
         }
     }
 }
