@@ -1,6 +1,7 @@
 ﻿using BD.Model;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,7 +27,8 @@ namespace BD
 
             using (TVOYABAZAEntities model = new TVOYABAZAEntities())
             {
-                DataGrid.ItemsSource = model.Аптеки.ToArray();
+                var a = model.Аптеки.Include("Улицы").ToArray();
+                DataGrid.ItemsSource = a;
             }
         }
     }

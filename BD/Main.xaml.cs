@@ -141,7 +141,11 @@ namespace BD
 
         private void O_programme(object sender, RoutedEventArgs e)
         {
-
+            AboutTheProgram aboutTheProgram = new AboutTheProgram()
+            {
+                Owner = this
+            };
+            aboutTheProgram.Show();
         }
     }
 }

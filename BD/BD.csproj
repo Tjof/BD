@@ -79,6 +79,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AboutTheProgram.xaml.cs">
+      <DependentUpon>AboutTheProgram.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Aptekas.xaml.cs">
       <DependentUpon>Aptekas.xaml</DependentUpon>
     </Compile>
@@ -172,6 +175,10 @@
     <Compile Include="TransportMode.xaml.cs">
       <DependentUpon>TransportMode.xaml</DependentUpon>
     </Compile>
+    <Page Include="AboutTheProgram.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Aptekas.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

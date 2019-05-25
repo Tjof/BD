@@ -1,5 +1,4 @@
-﻿using BD.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,19 +15,13 @@ using System.Windows.Shapes;
 namespace BD
 {
     /// <summary>
-    /// Логика взаимодействия для Ostanovki.xaml
+    /// Логика взаимодействия для AboutTheProgram.xaml
     /// </summary>
-    public partial class Ostanovki : Window
+    public partial class AboutTheProgram : Window
     {
-        public Ostanovki()
+        public AboutTheProgram()
         {
             InitializeComponent();
-
-            using (TVOYABAZAEntities model = new TVOYABAZAEntities())
-            {
-                var a = model.Остановки.Include("Улицы").ToArray();
-                DataGrid.ItemsSource = a;
-            }
         }
     }
 }

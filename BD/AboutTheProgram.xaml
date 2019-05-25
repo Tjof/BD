@@ -1,0 +1,15 @@
+﻿<Window x:Class="BD.AboutTheProgram"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BD"
+        mc:Ignorable="d"
+        Title="О программе" Height="200" Width="400" ResizeMode="NoResize">
+    <Grid Background="#FFEC4646">
+        <Label x:Name="label1" Content="Программу выполнил студент группы ПИБ-61" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,36" FontFamily="Times New Roman" FontSize="16" />
+        <Label x:Name="label2" Content="Тимченко Дмитрий" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" FontFamily="Times New Roman" FontSize="16"/>
+        <Label x:Name="label3" Content="Служба 067" Margin="0,0,0,30" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48" FontFamily="Times New Roman" />
+
+    </Grid>
+</Window>

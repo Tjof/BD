@@ -16,7 +16,7 @@
         <EntityTypeShape EntityType="TVOYABAZAModel.ПользовательОбъекты" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
         <EntityTypeShape EntityType="TVOYABAZAModel.Районы_города" Width="1.5" PointX="8.25" PointY="7.25" IsExpanded="true" />
         <EntityTypeShape EntityType="TVOYABAZAModel.Транспортные_маршруты" Width="1.5" PointX="10.5" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TVOYABAZAModel.Улицы" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TVOYABAZAModel.Улицы" Width="1.5" PointX="14.5" PointY="3.25" IsExpanded="true" />
         <EntityTypeShape EntityType="TVOYABAZAModel.Формы_упаковки" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
         <AssociationConnector Association="TVOYABAZAModel.FK_Аптеки_Улицы" ManuallyRouted="false" />
         <AssociationConnector Association="TVOYABAZAModel.FK_Ассортимент_товара_Аптеки" ManuallyRouted="false" />
