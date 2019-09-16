@@ -31,5 +31,10 @@ namespace BD
                 DataGrid.ItemsSource = a;
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

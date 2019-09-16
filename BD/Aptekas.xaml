@@ -8,7 +8,7 @@
         Title="Аптеки" Height="408" Width="809">
     <DockPanel>
         <DockPanel DockPanel.Dock="Top">
-            <Button Content="Закрыть" DockPanel.Dock="Right"/>
+            <Button Content="Закрыть" DockPanel.Dock="Right" Click="Button_Click"/>
             <StackPanel Orientation="Horizontal">
                 <Button Content="Добавить"/>
                 <Button Content="Изменить"/>

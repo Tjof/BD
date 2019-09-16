@@ -5,11 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BD"
         mc:Ignorable="d"
-        Title="FindCure" Height="450" Width="800">
-    <Grid Background="#FFEC4646">
+        Title="Поиск лекарства" Height="188" Width="585">
+    <Grid Background="#FFF8E7" Margin="0,0,2,3">
         <Grid.RowDefinitions>
             <RowDefinition Height="95*"/>
-            <RowDefinition Height="264*"/>
             <RowDefinition Height="60*"/>
         </Grid.RowDefinitions>
         <Label x:Name="label" Content="Выберите лекарство:" HorizontalAlignment="Left" Height="32" Margin="10,10,0,0" VerticalAlignment="Top" Width="201" FontFamily="Times New Roman" FontSize="20" FontWeight="Bold"/>
@@ -22,16 +21,6 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <ComboBox x:Name="comboBox_street" HorizontalAlignment="Left" Margin="254,10,0,0" VerticalAlignment="Top" Width="315" Height="32" FontFamily="Times New Roman" FontSize="16" Grid.Row="1">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Vertical">
-                        <TextBlock Text="{Binding Название_улицы}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
-        <Label x:Name="label_Copy" Content="Выберите улицу:" HorizontalAlignment="Left" Height="32" Margin="10,10,0,0" VerticalAlignment="Top" Width="201" FontFamily="Times New Roman" FontSize="20" FontWeight="Bold" RenderTransformOrigin="0.513,1.275" Grid.Row="1"/>
         <Label x:Name="label_Copy1" Content="Выберите остановку:" HorizontalAlignment="Left" Height="32" Margin="10,53,0,0" VerticalAlignment="Top" Width="201" FontFamily="Times New Roman" FontSize="20" FontWeight="Bold" RenderTransformOrigin="0.513,1.275"/>
         <ComboBox x:Name="comboBox_stops" HorizontalAlignment="Left" Margin="254,53,0,0" VerticalAlignment="Top" Width="315" Height="32" FontFamily="Times New Roman" FontSize="16">
             <ComboBox.ItemTemplate>
@@ -42,7 +31,7 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <Button x:Name="button" Content="Найти" HorizontalAlignment="Left" Height="40" Margin="622,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="160" FontSize="20" BorderBrush="Black"/>
+        <Button x:Name="button" Content="Найти" HorizontalAlignment="Left" Height="40" Margin="410,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="160" FontSize="20" BorderBrush="Black"/>
 
     </Grid>
 </Window>
