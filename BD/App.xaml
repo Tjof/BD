@@ -5,20 +5,20 @@
              StartupUri="Main.xaml">
     <Application.Resources>
         <Style TargetType="MenuItem">
-            <Setter Property="Background" Value="#FFEC4646"/>
+            <Setter Property="Background" Value="#FFF8E7"/>
         </Style>
         <Style TargetType="Button">
             <Setter Property="Width" Value="100"/>
             <Setter Property="Padding" Value="5"/>
             <Setter Property="Margin" Value="5"/>
             <Setter Property="Height" Value="35"/>
-            <Setter Property="Background" Value="#FFF1F0E6"/>
+            <Setter Property="Background" Value="#FFF8E7"/>
             <Setter Property="FontSize" Value="16"/>
             <Setter Property="FontFamily" Value="Times New Roman"/>
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>
         <Style TargetType="DockPanel">
-            <Setter Property="Background" Value="#FFEC4646"/>
+            <Setter Property="Background" Value="#FFF8E7"/>
         </Style>
     </Application.Resources>
 </Application>

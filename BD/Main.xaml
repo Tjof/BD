@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Title="Главная страница" Height="40" 
         WindowStartupLocation="CenterScreen" Width="297.465" WindowStyle="None" Background="Transparent" BorderThickness="0" BorderBrush="Transparent" ResizeMode="NoResize">
-    
-        <Menu Height="40" VerticalAlignment="Top" Background="#FFEC4646" x:Name="menu">
+
+    <Menu Height="40" VerticalAlignment="Top" Background="#FFF8E7" x:Name="menu">
             <MenuItem Header="Разное" Height="40" Width="76" FontFamily="Showcard Gothic" FontSize="18">
                 <MenuItem Header="Поиск лекарства" Click="Poisk_Lekarstva"/>
                 <MenuItem Header="Смена пароля" Click="Smena_Pass"/>
