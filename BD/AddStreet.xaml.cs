@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace BD
 {
     /// <summary>
-    /// Логика взаимодействия для AD.xaml
+    /// Логика взаимодействия для AddStreet.xaml
     /// </summary>
-    public partial class AD : Window
+    public partial class AddStreet : Window
     {
-        public AD()
+        public AddStreet()
         {
             InitializeComponent();
         }

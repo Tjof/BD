@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace BD
 {
     /// <summary>
-    /// Логика взаимодействия для AD.xaml
+    /// Логика взаимодействия для AddTransportMode.xaml
     /// </summary>
-    public partial class AD : Window
+    public partial class AddTransportMode : Window
     {
-        public AD()
+        public AddTransportMode()
         {
             InitializeComponent();
         }

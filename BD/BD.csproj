@@ -82,11 +82,23 @@
     <Compile Include="AboutTheProgram.xaml.cs">
       <DependentUpon>AboutTheProgram.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AD.xaml.cs">
-      <DependentUpon>AD.xaml</DependentUpon>
+    <Compile Include="AddDistricts.xaml.cs">
+      <DependentUpon>AddDistricts.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddDrug.xaml.cs">
+      <DependentUpon>AddDrug.xaml</DependentUpon>
     </Compile>
     <Compile Include="AddDrugstore.xaml.cs">
       <DependentUpon>AddDrugstore.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddPackingForm.xaml.cs">
+      <DependentUpon>AddPackingForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddStreet.xaml.cs">
+      <DependentUpon>AddStreet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddTransportMode.xaml.cs">
+      <DependentUpon>AddTransportMode.xaml</DependentUpon>
     </Compile>
     <Compile Include="Aptekas.xaml.cs">
       <DependentUpon>Aptekas.xaml</DependentUpon>
@@ -185,11 +197,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AD.xaml">
+    <Page Include="AddDistricts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddDrug.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddDrugstore.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddPackingForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddStreet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddTransportMode.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -310,6 +338,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Add\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -26,7 +26,8 @@ namespace BD
 
             using (TVOYABAZAEntities model = new TVOYABAZAEntities())
             {
-                DataGrid.ItemsSource = model.Лекарство.ToArray();
+                var a = model.Лекарство.Include("Лекарства_и_их_заменители").ToArray();
+                DataGrid.ItemsSource = a;
             }
         }
     }

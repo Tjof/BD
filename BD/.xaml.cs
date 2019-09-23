@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BD.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,13 +16,18 @@ using System.Windows.Shapes;
 namespace BD
 {
     /// <summary>
-    /// Логика взаимодействия для AD.xaml
+    /// Логика взаимодействия для Formi_upakovki.xaml
     /// </summary>
-    public partial class AD : Window
+    public partial class Formi_upakovki : Window
     {
-        public AD()
+        public Formi_upakovki()
         {
             InitializeComponent();
+
+            using (TVOYABAZAEntities model = new TVOYABAZAEntities())
+            {
+                DataGrid.ItemsSource = model.Формы_упаковки.ToArray();
+            }
         }
     }
 }

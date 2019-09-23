@@ -26,7 +26,7 @@ namespace BD
 
             using (TVOYABAZAEntities model = new TVOYABAZAEntities())
             {
-                var a = model.Транспортные_маршруты.Include("Виды_Транспорта").ToArray();
+                var a = model.Транспортные_маршруты.Include("Виды_Транспорта").Include("Остановки").ToArray();
                 DataGrid.ItemsSource = a;
             }
         }

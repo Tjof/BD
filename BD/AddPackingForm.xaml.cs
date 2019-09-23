@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace BD
 {
     /// <summary>
-    /// Логика взаимодействия для AD.xaml
+    /// Логика взаимодействия для AddPackingForm.xaml
     /// </summary>
-    public partial class AD : Window
+    public partial class AddPackingForm : Window
     {
-        public AD()
+        public AddPackingForm()
         {
             InitializeComponent();
         }

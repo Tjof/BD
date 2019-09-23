@@ -21,6 +21,16 @@
                 <DataGridTextColumn Binding="{Binding Номер_маршрута}" ClipboardContentBinding="{x:Null}" Header="Номер маршрута" Width="130"/>
                 <DataGridTextColumn Binding="{Binding Виды_Транспорта.Вид_транспорта}" ClipboardContentBinding="{x:Null}" Header="Вид транспорта" Width="*"/>
             </DataGrid.Columns>
+
+            <DataGrid.RowDetailsTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Остановки: "/>
+                        <ListBox ItemsSource="{Binding Остановки.Название_остановки}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </DataGrid.RowDetailsTemplate>
+
         </DataGrid>
     </DockPanel>
 </Window>
