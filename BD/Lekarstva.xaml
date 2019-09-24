@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BD"
         mc:Ignorable="d"
-        Title="Лекарства" Height="408" Width="809">
+        Title="Лекарства" Height="408" Width="808">
     <DockPanel>
         <DockPanel DockPanel.Dock="Top">
-            <Button Content="Закрыть" DockPanel.Dock="Right"/>
+            <Button Content="Закрыть" DockPanel.Dock="Right" Click="Button_Click"/>
             <StackPanel Orientation="Horizontal">
                 <Button Content="Добавить"/>
                 <Button Content="Изменить"/>
@@ -16,21 +16,19 @@
             </StackPanel>
         </DockPanel>
         <StackPanel Height="50" DockPanel.Dock="Bottom"/>
-        <DataGrid x:Name="DataGrid" AutoGenerateColumns="False" BorderBrush="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}">
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Название_лекарства}" ClipboardContentBinding="{x:Null}" Header="Название лекарства" Width="*"/>
-            </DataGrid.Columns>
+        <StackPanel Orientation="Horizontal">
+            <DataGrid x:Name="DataGrid" AutoGenerateColumns="False" BorderBrush="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Width="400">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Название_лекарства}" ClipboardContentBinding="{x:Null}" Header="Название лекарства" Width="*"/>
+                </DataGrid.Columns>
 
-            <DataGrid.RowDetailsTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Заменители: "/>
-                        <ListBox ItemsSource="{Binding Лекарства_и_их_заменители.id_заменителя}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </DataGrid.RowDetailsTemplate>
-            
-        </DataGrid>
+            </DataGrid>
+            <DataGrid Width="400" DataContext="fwew">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding x}" ClipboardContentBinding="{x:Null}" Header="Название лекарства заменителя" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
     </DockPanel>
 </Window>
 
