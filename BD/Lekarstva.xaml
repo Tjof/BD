@@ -8,7 +8,7 @@
         Title="Лекарства" Height="408" Width="808">
     <DockPanel>
         <DockPanel DockPanel.Dock="Top">
-            <Button Content="Закрыть" DockPanel.Dock="Right"/>
+            <Button Content="Закрыть" DockPanel.Dock="Right" Click="Button_Click"/>
             <StackPanel Orientation="Horizontal">
                 <Button Content="Добавить"/>
                 <Button Content="Изменить"/>
@@ -23,9 +23,9 @@
                 </DataGrid.Columns>
 
             </DataGrid>
-            <DataGrid Width="400">
+            <DataGrid Width="400" ItemsSource="{Binding ElementName=DataGrid, Path=SelectedItem.Лекарства_и_их_заменители}" AutoGenerateColumns="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding x}" ClipboardContentBinding="{x:Null}" Header="Название лекарства заменителя" Width="*"/>
+                    <DataGridTextColumn Binding="{Binding Лекарство.Название_лекарства}" ClipboardContentBinding="{x:Null}" Header="Название лекарства заменителя" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>

@@ -12,6 +12,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace BD
 {
@@ -29,6 +31,7 @@ namespace BD
                 var a = model.Лекарство.Include("Лекарства_и_их_заменители").ToArray();
                 DataGrid.ItemsSource = a;
             }
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
