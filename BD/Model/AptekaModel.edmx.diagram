@@ -4,19 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="96c2c1237a29448ebf06648ff49a968f" Name="Diagram1" ZoomLevel="74">
-        <EntityTypeShape EntityType="TVOYABAZAModel.Аптеки" Width="1.875" PointX="2.875" PointY="3.5" IsExpanded="true" />
+      <Diagram DiagramId="96c2c1237a29448ebf06648ff49a968f" Name="Diagram1" ZoomLevel="108">
+        <EntityTypeShape EntityType="TVOYABAZAModel.Аптеки" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="TVOYABAZAModel.Ассортимент_товара" Width="1.5" PointX="5.25" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="TVOYABAZAModel.Виды_Транспорта" Width="1.5" PointX="8.25" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="TVOYABAZAModel.Лекарства_и_их_заменители" Width="1.5" PointX="5.25" PointY="7" IsExpanded="true" />
-        <EntityTypeShape EntityType="TVOYABAZAModel.Лекарство" Width="2" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TVOYABAZAModel.Лекарства_и_их_заменители" Width="1.5" PointX="1" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TVOYABAZAModel.Лекарство" Width="2" PointX="3" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="TVOYABAZAModel.Объекты" Width="1.5" PointX="0.75" PointY="10.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TVOYABAZAModel.Остановки" Width="1.75" PointX="8" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TVOYABAZAModel.Остановки" Width="1.5" PointX="8.25" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TVOYABAZAModel.Пользователи" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
         <EntityTypeShape EntityType="TVOYABAZAModel.ПользовательОбъекты" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
         <EntityTypeShape EntityType="TVOYABAZAModel.Районы_города" Width="1.5" PointX="8.25" PointY="7.25" IsExpanded="true" />
         <EntityTypeShape EntityType="TVOYABAZAModel.Транспортные_маршруты" Width="1.5" PointX="10.5" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TVOYABAZAModel.Улицы" Width="1.5" PointX="14.5" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TVOYABAZAModel.Улицы" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="TVOYABAZAModel.Формы_упаковки" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
         <AssociationConnector Association="TVOYABAZAModel.FK_Аптеки_Улицы" ManuallyRouted="false" />
         <AssociationConnector Association="TVOYABAZAModel.FK_Ассортимент_товара_Аптеки" ManuallyRouted="false" />
