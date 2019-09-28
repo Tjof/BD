@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BD.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,32 @@ namespace BD
     /// </summary>
     public partial class AddDistricts : Window
     {
-        public AddDistricts()
+        BAZANOWEntities context;
+        private readonly ICollection<Районы_города> районы_Городаs;
+
+        public AddDistricts(BAZANOWEntities context, ICollection<Районы_города> районы_Городаs)
         {
             InitializeComponent();
+            this.context = context;
+            this.районы_Городаs = районы_Городаs;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            // Создать нового покупателя
+            Районы_города district = new Районы_города
+            {
+
+                Название_района = DistrictsBox.Text
+            };
+
+            // Добавить в DbSet
+            context.Районы_города.Local.Add(district);
+            районы_Городаs.Add(district);
+            // Сохранить изменения в базе данных
+            context.SaveChanges();
+            
+
         }
     }
 }

@@ -12,14 +12,14 @@ namespace BD.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class ПользовательОбъекты
+    public partial class ПользователиОбъекты
     {
         public int id_пользователя { get; set; }
         public int id_объекта { get; set; }
-        public Nullable<int> R { get; set; }
-        public Nullable<int> W { get; set; }
-        public Nullable<int> E { get; set; }
-        public Nullable<int> D { get; set; }
+        public bool R { get; set; }
+        public bool W { get; set; }
+        public bool E { get; set; }
+        public bool D { get; set; }
     
         public virtual Объекты Объекты { get; set; }
         public virtual Пользователи Пользователи { get; set; }

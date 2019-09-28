@@ -24,7 +24,7 @@ namespace BD
         {
             InitializeComponent();
 
-            using (TVOYABAZAEntities model = new TVOYABAZAEntities())
+            using (BAZANOWEntities model = new BAZANOWEntities())
             {
                 comboBox_drugs.ItemsSource = model.Лекарство.ToArray();
                 comboBox_stops.ItemsSource = model.Остановки.ToArray();

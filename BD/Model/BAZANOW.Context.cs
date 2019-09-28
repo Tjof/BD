@@ -13,10 +13,10 @@ namespace BD.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class TVOYABAZAEntities : DbContext
+    public partial class BAZANOWEntities : DbContext
     {
-        public TVOYABAZAEntities()
-            : base("name=TVOYABAZAEntities")
+        public BAZANOWEntities()
+            : base("name=BAZANOWEntities")
         {
         }
     
@@ -28,12 +28,11 @@ namespace BD.Model
         public virtual DbSet<Аптеки> Аптеки { get; set; }
         public virtual DbSet<Ассортимент_товара> Ассортимент_товара { get; set; }
         public virtual DbSet<Виды_Транспорта> Виды_Транспорта { get; set; }
-        public virtual DbSet<Лекарства_и_их_заменители> Лекарства_и_их_заменители { get; set; }
         public virtual DbSet<Лекарство> Лекарство { get; set; }
         public virtual DbSet<Объекты> Объекты { get; set; }
         public virtual DbSet<Остановки> Остановки { get; set; }
         public virtual DbSet<Пользователи> Пользователи { get; set; }
-        public virtual DbSet<ПользовательОбъекты> ПользовательОбъекты { get; set; }
+        public virtual DbSet<ПользователиОбъекты> ПользователиОбъекты { get; set; }
         public virtual DbSet<Районы_города> Районы_города { get; set; }
         public virtual DbSet<Транспортные_маршруты> Транспортные_маршруты { get; set; }
         public virtual DbSet<Улицы> Улицы { get; set; }

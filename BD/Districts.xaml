@@ -10,15 +10,15 @@
         <DockPanel DockPanel.Dock="Top">
             <Button Content="Закрыть" DockPanel.Dock="Right"/>
             <StackPanel Orientation="Horizontal">
-                <Button Content="Добавить"/>
+                <Button Content="Добавить" Click="Button_Click"/>
                 <Button Content="Изменить"/>
-                <Button Content="Удалить"/>
+                <Button Content="Удалить" Click="Button_Click_1"/>
             </StackPanel>
         </DockPanel>
         <StackPanel Height="50" DockPanel.Dock="Bottom"/>
         <DataGrid x:Name="DataGrid" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Название_района}" ClipboardContentBinding="{x:Null}" Header="Название района" Width="200"/>
+                <DataGridTextColumn Binding="{Binding Название_района}" ClipboardContentBinding="{x:Null}" Header="Название района" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
     </DockPanel>

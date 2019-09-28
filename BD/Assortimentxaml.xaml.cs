@@ -24,7 +24,7 @@ namespace BD
         {
             InitializeComponent();
 
-            using (TVOYABAZAEntities model = new TVOYABAZAEntities())
+            using (BAZANOWEntities model = new BAZANOWEntities())
             {
                 var a = model.Ассортимент_товара.Include("Лекарство").Include("Аптеки").Include("Формы_упаковки").ToArray();
                 DataGrid.ItemsSource = a;

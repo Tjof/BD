@@ -46,7 +46,7 @@ namespace BD
                 //while(reader.Read())
 
             }*/
-            using (TVOYABAZAEntities entities = new TVOYABAZAEntities())
+            using (BAZANOWEntities entities = new BAZANOWEntities())
             {
                 var res =  entities.Пользователи.FirstOrDefault(a => a.login == tbLogin.Text && a.pass == passwordBox.Password);
                 if(res == null)

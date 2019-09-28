@@ -24,9 +24,9 @@ namespace BD.Model
         public int id_аптеки { get; set; }
         public string Название { get; set; }
         public Nullable<int> id_улицы { get; set; }
-        public string Номер_дома { get; set; }
-        public Nullable<System.TimeSpan> Время_начала_работы { get; set; }
-        public Nullable<System.TimeSpan> Время_окончания_работы { get; set; }
+        public Nullable<int> Номер_дома { get; set; }
+        public Nullable<System.DateTime> Время_начала_работы { get; set; }
+        public Nullable<System.DateTime> Время_окончания_работы { get; set; }
     
         public virtual Улицы Улицы { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

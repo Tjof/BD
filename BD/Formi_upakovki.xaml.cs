@@ -24,7 +24,7 @@ namespace BD
         {
             InitializeComponent();
 
-            using (TVOYABAZAEntities model = new TVOYABAZAEntities())
+            using (BAZANOWEntities model = new BAZANOWEntities())
             {
                 DataGrid.ItemsSource = model.Формы_упаковки.ToArray();
             }

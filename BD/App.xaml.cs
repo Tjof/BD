@@ -14,6 +14,6 @@ namespace BD
     /// </summary>
     public partial class App : Application
     {
-        public static TVOYABAZAEntities DatabaseContext { get; } = new TVOYABAZAEntities();
+        public static BAZANOWEntities DatabaseContext { get; } = new BAZANOWEntities();
     }
 }

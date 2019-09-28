@@ -17,7 +17,7 @@ namespace BD.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Пользователи()
         {
-            this.ПользовательОбъекты = new HashSet<ПользовательОбъекты>();
+            this.ПользователиОбъекты = new HashSet<ПользователиОбъекты>();
         }
     
         public int id_пользователя { get; set; }
@@ -25,6 +25,6 @@ namespace BD.Model
         public string pass { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ПользовательОбъекты> ПользовательОбъекты { get; set; }
+        public virtual ICollection<ПользователиОбъекты> ПользователиОбъекты { get; set; }
     }
 }

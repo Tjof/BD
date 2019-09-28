@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Авторизация" Height="172" Width="363"
         WindowStartupLocation="CenterScreen">
-    <Grid Background="#FFEC4646" >
+    <Grid Background="#FFE8E9" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>

@@ -17,13 +17,13 @@ namespace BD.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Объекты()
         {
-            this.ПользовательОбъекты = new HashSet<ПользовательОбъекты>();
+            this.ПользователиОбъекты = new HashSet<ПользователиОбъекты>();
         }
     
         public int id_объекта { get; set; }
         public string Имя_объекта { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ПользовательОбъекты> ПользовательОбъекты { get; set; }
+        public virtual ICollection<ПользователиОбъекты> ПользователиОбъекты { get; set; }
     }
 }

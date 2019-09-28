@@ -24,7 +24,7 @@ namespace BD
         {
             InitializeComponent();
 
-            using (TVOYABAZAEntities model = new TVOYABAZAEntities())
+            using (BAZANOWEntities model = new BAZANOWEntities())
             {
                 var a = model.Транспортные_маршруты.Include("Виды_Транспорта").Include("Остановки").ToArray();
                 DataGrid.ItemsSource = a;

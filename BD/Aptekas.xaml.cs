@@ -25,7 +25,7 @@ namespace BD
         {
             InitializeComponent();
 
-            using (TVOYABAZAEntities model = new TVOYABAZAEntities())
+            using (BAZANOWEntities model = new BAZANOWEntities())
             {
                 var a = model.Аптеки.Include("Улицы").ToArray();
                 DataGrid.ItemsSource = a;
@@ -35,6 +35,11 @@ namespace BD
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -8,7 +8,7 @@
         Title="AddDistricts" Height="150" Width="530" Background="#FFF8E9">
     <Grid>
         <Label Content="Название района:" HorizontalAlignment="Left" Margin="30,15,0,0" VerticalAlignment="Top" Width="180" Height="35" FontFamily="Times New Roman" FontSize="20"/>
-        <TextBox Height="35" Margin="230,15,30,0" VerticalAlignment="Top" FontSize="20"/>
-        <Button Content="Добавить" Margin="0,0,30,16" Height="Auto" Width="Auto" FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="DistrictsBox" Height="35" Margin="230,15,30,0" VerticalAlignment="Top" FontSize="20"/>
+        <Button Content="Добавить" Margin="0,0,30,16" Height="Auto" Width="Auto" FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="Button_Click"/>
     </Grid>
 </Window>

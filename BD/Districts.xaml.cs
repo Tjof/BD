@@ -1,6 +1,7 @@
 ﻿using BD.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,14 +21,28 @@ namespace BD
     /// </summary>
     public partial class Districts : Window
     {
+        BAZANOWEntities model;
         public Districts()
         {
             InitializeComponent();
+            model = new BAZANOWEntities();
+            DataGrid.ItemsSource = new ObservableCollection<Районы_города>( model.Районы_города.ToArray());
+            
+        }
 
-            using (TVOYABAZAEntities model = new TVOYABAZAEntities())
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            AddDistricts addDistricts = new AddDistricts(model, (ICollection<Районы_города>) DataGrid.ItemsSource)
             {
-                DataGrid.ItemsSource = model.Районы_города.ToArray();
-            }
+                Owner = this
+                
+            };
+            addDistricts.Show();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

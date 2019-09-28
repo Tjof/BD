@@ -127,59 +127,56 @@
     <Compile Include="Marshruti.xaml.cs">
       <DependentUpon>Marshruti.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\AptekaModel.Context.cs">
+    <Compile Include="Model\BAZANOW.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AptekaModel.Context.tt</DependentUpon>
+      <DependentUpon>BAZANOW.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\AptekaModel.cs">
+    <Compile Include="Model\BAZANOW.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AptekaModel.tt</DependentUpon>
+      <DependentUpon>BAZANOW.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\AptekaModel.Designer.cs">
+    <Compile Include="Model\BAZANOW.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AptekaModel.edmx</DependentUpon>
+      <DependentUpon>BAZANOW.edmx</DependentUpon>
     </Compile>
     <Compile Include="Model\Аптеки.cs">
-      <DependentUpon>AptekaModel.tt</DependentUpon>
+      <DependentUpon>BAZANOW.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Ассортимент_товара.cs">
-      <DependentUpon>AptekaModel.tt</DependentUpon>
+      <DependentUpon>BAZANOW.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Виды_Транспорта.cs">
-      <DependentUpon>AptekaModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Лекарства_и_их_заменители.cs">
-      <DependentUpon>AptekaModel.tt</DependentUpon>
+      <DependentUpon>BAZANOW.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Лекарство.cs">
-      <DependentUpon>AptekaModel.tt</DependentUpon>
+      <DependentUpon>BAZANOW.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Объекты.cs">
-      <DependentUpon>AptekaModel.tt</DependentUpon>
+      <DependentUpon>BAZANOW.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Остановки.cs">
-      <DependentUpon>AptekaModel.tt</DependentUpon>
+      <DependentUpon>BAZANOW.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Пользователи.cs">
-      <DependentUpon>AptekaModel.tt</DependentUpon>
+      <DependentUpon>BAZANOW.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\ПользовательОбъекты.cs">
-      <DependentUpon>AptekaModel.tt</DependentUpon>
+    <Compile Include="Model\ПользователиОбъекты.cs">
+      <DependentUpon>BAZANOW.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Районы_города.cs">
-      <DependentUpon>AptekaModel.tt</DependentUpon>
+      <DependentUpon>BAZANOW.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Транспортные_маршруты.cs">
-      <DependentUpon>AptekaModel.tt</DependentUpon>
+      <DependentUpon>BAZANOW.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Улицы.cs">
-      <DependentUpon>AptekaModel.tt</DependentUpon>
+      <DependentUpon>BAZANOW.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Формы_упаковки.cs">
-      <DependentUpon>AptekaModel.tt</DependentUpon>
+      <DependentUpon>BAZANOW.tt</DependentUpon>
     </Compile>
     <Compile Include="Ostanovki.xaml.cs">
       <DependentUpon>Ostanovki.xaml</DependentUpon>
@@ -296,12 +293,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Model\AptekaModel.edmx">
+    <EntityDeploy Include="Model\BAZANOW.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>AptekaModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>BAZANOW.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model\AptekaModel.edmx.diagram">
-      <DependentUpon>AptekaModel.edmx</DependentUpon>
+    <None Include="Model\BAZANOW.edmx.diagram">
+      <DependentUpon>BAZANOW.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -325,15 +322,15 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model\AptekaModel.Context.tt">
+    <Content Include="Model\BAZANOW.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>AptekaModel.Context.cs</LastGenOutput>
-      <DependentUpon>AptekaModel.edmx</DependentUpon>
+      <DependentUpon>BAZANOW.edmx</DependentUpon>
+      <LastGenOutput>BAZANOW.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Model\AptekaModel.tt">
+    <Content Include="Model\BAZANOW.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AptekaModel.edmx</DependentUpon>
-      <LastGenOutput>AptekaModel.cs</LastGenOutput>
+      <DependentUpon>BAZANOW.edmx</DependentUpon>
+      <LastGenOutput>BAZANOW.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>

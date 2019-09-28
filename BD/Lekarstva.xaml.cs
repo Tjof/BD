@@ -13,7 +13,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Collections;
-using System.Collections.Generic;
 
 namespace BD
 {
@@ -22,21 +21,23 @@ namespace BD
     /// </summary>
     public partial class Lekarstva : Window
     {
+        BAZANOWEntities model;
         public Lekarstva()
         {
             InitializeComponent();
-
-            using (TVOYABAZAEntities model = new TVOYABAZAEntities())
-            {
-                var a = model.Лекарство.Include("Лекарства_и_их_заменители").ToArray();
-                DataGrid.ItemsSource = a;
-            }
-
+            model = new BAZANOWEntities();
+            var a = model.Лекарство.ToArray();
+            DataGrid.ItemsSource = a;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            model.Dispose();
         }
     }
 }
