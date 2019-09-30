@@ -35,17 +35,22 @@ namespace BD
             // Создать нового покупателя
             Районы_города district = new Районы_города
             {
-
                 Название_района = DistrictsBox.Text
             };
 
             // Добавить в DbSet
-            context.Районы_города.Local.Add(district);
-            районы_Городаs.Add(district);
             // Сохранить изменения в базе данных
-            context.SaveChanges();
-            
-
+            var res = context.Районы_города.FirstOrDefault(a => a.Название_района == DistrictsBox.Text);
+            if (res != null)
+            {
+                MessageBox.Show("Ошибка");
+            }
+            else
+            {
+                context.Районы_города.Local.Add(district);
+                районы_Городаs.Add(district);
+                context.SaveChanges();
+            }
         }
     }
 }

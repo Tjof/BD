@@ -8,15 +8,15 @@
         Title="Улицы" Height="408" Width="809">
     <DockPanel>
         <DockPanel DockPanel.Dock="Top">
-            <Button Content="Закрыть" DockPanel.Dock="Right"/>
+            <Button Content="Закрыть" DockPanel.Dock="Right" Click="ButtonClose"/>
             <StackPanel Orientation="Horizontal">
-                <Button Content="Добавить" Click="Button_Click"/>
+                <Button Content="Добавить" Click="ButtonAdd"/>
                 <Button Content="Изменить"/>
-                <Button Content="Удалить" Click="Button_Click_1"/>
+                <Button Content="Удалить" Click="ButtonDelete"/>
             </StackPanel>
         </DockPanel>
         <StackPanel Height="50" DockPanel.Dock="Bottom"/>
-        <DataGrid x:Name="DataGrid" AutoGenerateColumns="False">
+        <DataGrid x:Name="DataGrid" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Название_района}" ClipboardContentBinding="{x:Null}" Header="Название района" Width="*"/>
             </DataGrid.Columns>
