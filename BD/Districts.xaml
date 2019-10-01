@@ -19,7 +19,7 @@
             <TextBox x:Name="DistrictNameEdit" HorizontalAlignment="Left" Height="35" Margin="40,7,0,0" TextWrapping="Wrap" Width="250" TextChanged="DistrictNameEdit_TextChanged"/>
             <Button x:Name="SaveEdit" Content="Сохранить" Margin="60,0,0,0" d:LayoutOverrides="Height" Click="ButtonSaveEdit"/>
         </StackPanel>
-        <DataGrid x:Name="DataGrid" AutoGenerateColumns="False" IsReadOnly="True">
+        <DataGrid x:Name="DataGrid" ItemsSource="{Binding ProcessesList}" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="DataGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Название_района}" ClipboardContentBinding="{x:Null}" Header="Название района" Width="*"/>
             </DataGrid.Columns>

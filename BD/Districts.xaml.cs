@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -19,10 +21,12 @@ namespace BD
     /// <summary>
     /// Логика взаимодействия для Districts.xaml
     /// </summary>
-    public partial class Districts : Window
+    public partial class Districts : Window, INotifyPropertyChanged
     {
-        private readonly ICollection<Районы_города> районы_Городаss;
         BAZANOWEntities model;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public Districts()
         {
             InitializeComponent();
@@ -46,6 +50,7 @@ namespace BD
                 model.Районы_города.Local.Remove(DataGrid.SelectedItem as Районы_города);
                 //районы_Городаss.Remove(DataGrid.SelectedItem as Районы_города);
                 model.SaveChanges();
+                DataGrid.ItemsSource = new ObservableCollection<Районы_города>(model.Районы_города.ToArray());
             }
             catch (System.Data.Entity.Infrastructure.DbUpdateException)
             {
@@ -66,7 +71,7 @@ namespace BD
 
         private void DistrictNameEdit_TextChanged(object sender, TextChangedEventArgs e)
         {
-            DistrictNameEdit.Text = DataGrid.SelectedItem.ToString();
+
         }
 
         private void ButtonSaveEdit(object sender, RoutedEventArgs e)
@@ -81,15 +86,47 @@ namespace BD
                 //model.Районы_города.Local.Add(district);
                 //районы_Городаs.Add(district);
                 // ключ по которому будем менять данные 
-                int key = model.Районы_города.id_района;
-                
+                string rayon = (DataGrid.SelectedItem as Районы_города).Название_района;
+                int key = model.Районы_города.FirstOrDefault(a => a.Название_района == rayon).id_района;
                 var item = model.Районы_города.Find(key);
                 if (item != null)
                 {
-                    model.Районы_города.название_района = DistrictNameEdit.Text.ToString();
+                    item.Название_района = DistrictNameEdit.Text.ToString();
                     model.SaveChanges();
+                    DataGrid.ItemsSource = new ObservableCollection<Районы_города>(model.Районы_города.ToArray());
+                    //OnPropertyChanged();
+                    //ProcRefresh();
                 }
             }
+        }
+
+        //private object[] _processesList;
+
+        //public object[] ProcessesList
+        //{
+        //    get => _processesList;
+        //    set
+        //    {
+        //        _processesList = value;
+        //        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ProcessesList"));
+        //    }
+        //}
+
+        //void ProcRefresh()
+        //{
+        //    ProcessesList = model.Районы_города.Select()
+        //        .Select(pi => new {  })
+        //        .ToArray();
+        //}
+
+        //void OnPropertyChanged([CallerMemberName] string prop = "")
+        //{
+        //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+        //}
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DistrictNameEdit.Text = (DataGrid.SelectedItem as Районы_города).Название_района;
         }
     }
 }
