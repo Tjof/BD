@@ -35,7 +35,6 @@ namespace BD
             AddDistricts addDistricts = new AddDistricts(model, (ICollection<Районы_города>)DataGrid.ItemsSource)
             {
                 Owner = this
-
             };
             addDistricts.Show();
         }
@@ -55,9 +54,42 @@ namespace BD
 
         }
 
+        private void ButtonEdit(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         private void ButtonClose(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void DistrictNameEdit_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            DistrictNameEdit.Text = DataGrid.SelectedItem.ToString();
+        }
+
+        private void ButtonSaveEdit(object sender, RoutedEventArgs e)
+        {
+            var res = model.Районы_города.FirstOrDefault(a => a.Название_района == DistrictNameEdit.Text);
+            if (res != null)
+            {
+                MessageBox.Show("Такой район уже существует");
+            }
+            else
+            {
+                //model.Районы_города.Local.Add(district);
+                //районы_Городаs.Add(district);
+                // ключ по которому будем менять данные 
+                int key = model.Районы_города.id_района;
+                
+                var item = model.Районы_города.Find(key);
+                if (item != null)
+                {
+                    model.Районы_города.название_района = DistrictNameEdit.Text.ToString();
+                    model.SaveChanges();
+                }
+            }
         }
     }
 }
