@@ -32,6 +32,7 @@ namespace BD
             InitializeComponent();
             model = new BAZANOWEntities();
             DataGrid.ItemsSource = new ObservableCollection<Районы_города>(model.Районы_города.ToArray());
+
         }
 
         private void ButtonAdd(object sender, RoutedEventArgs e)
@@ -61,17 +62,13 @@ namespace BD
 
         private void ButtonEdit(object sender, RoutedEventArgs e)
         {
-
+            SaveEdit.IsEnabled = true;
+            DistrictNameEdit.IsReadOnly = false;
         }
 
         private void ButtonClose(object sender, RoutedEventArgs e)
         {
             Close();
-        }
-
-        private void DistrictNameEdit_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
         }
 
         private void ButtonSaveEdit(object sender, RoutedEventArgs e)
@@ -96,6 +93,9 @@ namespace BD
                     DataGrid.ItemsSource = new ObservableCollection<Районы_города>(model.Районы_города.ToArray());
                     //OnPropertyChanged();
                     //ProcRefresh();
+
+                    SaveEdit.IsEnabled = false;
+                    DistrictNameEdit.IsReadOnly = true;
                 }
             }
         }
