@@ -32,7 +32,16 @@ namespace BD
             InitializeComponent();
             model = new BAZANOWEntities();
             DataGrid.ItemsSource = new ObservableCollection<Районы_города>(model.Районы_города.ToArray());
-
+            if (DataGrid.SelectedItem == null)
+            {
+                Edit.IsEnabled = false;
+                Delete.IsEnabled = false;
+            }
+            else
+            {
+                Edit.IsEnabled = true;
+                Delete.IsEnabled = true;
+            }
         }
 
         private void ButtonAdd(object sender, RoutedEventArgs e)

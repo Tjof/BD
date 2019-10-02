@@ -11,14 +11,14 @@
             <Button Content="Закрыть" DockPanel.Dock="Right"/>
             <StackPanel Orientation="Horizontal">
                 <Button Content="Добавить"/>
-                <Button Content="Изменить"/>
-                <Button Content="Удалить"/>
+                <Button x:Name="Edit" Content="Изменить"/>
+                <Button x:Name="Delete" Content="Удалить"/>
             </StackPanel>
         </DockPanel>
         <StackPanel Height="50" DockPanel.Dock="Bottom"/>
         <DataGrid x:Name="DataGrid" AutoGenerateColumns="False" >
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Вид_транспорта}" ClipboardContentBinding="{x:Null}" Header="Вид транспорта" Width="150"/>
+                <DataGridTextColumn Binding="{Binding Вид_транспорта}" ClipboardContentBinding="{x:Null}" Header="Вид транспорта" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
     </DockPanel>
