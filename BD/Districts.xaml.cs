@@ -25,18 +25,25 @@ namespace BD
     {
         BAZANOWEntities model;
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        private ObservableCollection<Районы_города> _districts;
 
         public Districts()
         {
             InitializeComponent();
             model = new BAZANOWEntities();
-            DataGrid.ItemsSource = new ObservableCollection<Районы_города>(model.Районы_города.ToArray());
-            DistrictsCommand = new RelayCommand((param) => { },
-                (param) => param != null);
+            Districtss = new ObservableCollection<Районы_города>(model.Районы_города.ToArray());
+            DataGrid.ItemsSource = Districtss;
         }
 
-        public RelayCommand DistrictsCommand { get; private set; }
+        public ObservableCollection<Районы_города> Districtss
+        {
+            get => _districts;
+            set
+            {
+                _districts = value;
+                OnPropertyChanged();
+            }
+        }
 
         private void ButtonAdd(object sender, RoutedEventArgs e)
         {
@@ -52,7 +59,6 @@ namespace BD
             try
             {
                 model.Районы_города.Local.Remove(DataGrid.SelectedItem as Районы_города);
-                //районы_Городаss.Remove(DataGrid.SelectedItem as Районы_города);
                 model.SaveChanges();
                 DataGrid.ItemsSource = new ObservableCollection<Районы_города>(model.Районы_города.ToArray());
             }
@@ -83,8 +89,6 @@ namespace BD
             }
             else
             {
-                //model.Районы_города.Local.Add(district);
-                //районы_Городаs.Add(district);
                 // ключ по которому будем менять данные 
                 string rayon = (DataGrid.SelectedItem as Районы_города).Название_района;
                 int key = model.Районы_города.FirstOrDefault(a => a.Название_района == rayon).id_района;
@@ -93,43 +97,35 @@ namespace BD
                 {
                     item.Название_района = DistrictNameEdit.Text.ToString();
                     model.SaveChanges();
-                    DataGrid.ItemsSource = new ObservableCollection<Районы_города>(model.Районы_города.ToArray());
                     //OnPropertyChanged();
-                    //ProcRefresh();
 
-                    SaveEdit.IsEnabled = false;
-                    DistrictNameEdit.IsReadOnly = true;
+                    DataGrid.ItemsSource = new ObservableCollection<Районы_города>(model.Районы_города.ToArray());
                 }
             }
+        }        
+
+        void OnPropertyChanged([CallerMemberName] string prop = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
-
-        //private object[] _processesList;
-
-        //public object[] ProcessesList
-        //{
-        //    get => _processesList;
-        //    set
-        //    {
-        //        _processesList = value;
-        //        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ProcessesList"));
-        //    }
-        //}
-
-        //void ProcRefresh()
-        //{
-        //    ProcessesList = model.Районы_города.Select()
-        //        .Select(pi => new {  })
-        //        .ToArray();
-        //}
-
-        //void OnPropertyChanged([CallerMemberName] string prop = "")
-        //{
-        //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
-        //}
+        public event PropertyChangedEventHandler PropertyChanged;
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            DistrictNameEdit.Text = (DataGrid.SelectedItem as Районы_города).Название_района;
+            if(DataGrid.SelectedItem != null)
+            {
+                Edit.IsEnabled = true;
+                Delete.IsEnabled = true;
+            }
+
+            if (DataGrid.SelectedItem  == null)
+            {
+                DistrictNameEdit.Text = "";
+            }
+            else
+            {
+                DistrictNameEdit.Text = (DataGrid.SelectedItem as Районы_города).Название_района;
+            }
         }
     }
 }

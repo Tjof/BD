@@ -5,21 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BD"
         mc:Ignorable="d"
-        Title="Улицы" Height="408" Width="809">
+        Title="Районы" Height="408" Width="809">
     <DockPanel>
         <DockPanel DockPanel.Dock="Top">
             <Button Content="Закрыть" DockPanel.Dock="Right" Click="ButtonClose"/>
             <StackPanel Orientation="Horizontal">
                 <Button Content="Добавить" Click="ButtonAdd"/>
-                <Button x:Name="Edit" Content="Изменить" Click="ButtonEdit" Command="{Binding DistrictsCommand}" CommandParameter="{Binding ElementName=DataGrid, Path=SelectedItem}"/>
-                <Button x:Name="Delete" Content="Удалить" Click="ButtonDelete"/>
+                <Button x:Name="Edit" Content="Изменить" Click="ButtonEdit" IsEnabled="False"/>
+                <Button x:Name="Delete" Content="Удалить" Click="ButtonDelete" IsEnabled="False"/>
             </StackPanel>
         </DockPanel>
         <StackPanel Height="50" DockPanel.Dock="Bottom" Orientation="Horizontal">
             <TextBox x:Name="DistrictNameEdit" HorizontalAlignment="Left" Height="35" Margin="40,7,0,8" TextWrapping="Wrap" Width="250" IsReadOnly="True"/>
             <Button x:Name="SaveEdit" Content="Сохранить" Margin="20,7,0,8" Click="ButtonSaveEdit" IsEnabled="False"/>
         </StackPanel>
-        <DataGrid x:Name="DataGrid" ItemsSource="{Binding ProcessesList}"  AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="DataGrid_SelectionChanged">
+        <DataGrid x:Name="DataGrid" ItemsSource="{Binding Districtss}"  AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="DataGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Название_района}" ClipboardContentBinding="{x:Null}" Header="Название района" Width="*"/>
             </DataGrid.Columns>
