@@ -11,7 +11,7 @@
             <Button Content="Закрыть" DockPanel.Dock="Right" Click="ButtonClose"/>
             <StackPanel Orientation="Horizontal">
                 <Button Content="Добавить" Click="ButtonAdd"/>
-                <Button x:Name="Edit" Content="Изменить" Click="ButtonEdit"/>
+                <Button x:Name="Edit" Content="Изменить" Click="ButtonEdit" Command="{Binding DistrictsCommand}" CommandParameter="{Binding ElementName=DataGrid, Path=SelectedItem}"/>
                 <Button x:Name="Delete" Content="Удалить" Click="ButtonDelete"/>
             </StackPanel>
         </DockPanel>
@@ -19,7 +19,7 @@
             <TextBox x:Name="DistrictNameEdit" HorizontalAlignment="Left" Height="35" Margin="40,7,0,8" TextWrapping="Wrap" Width="250" IsReadOnly="True"/>
             <Button x:Name="SaveEdit" Content="Сохранить" Margin="20,7,0,8" Click="ButtonSaveEdit" IsEnabled="False"/>
         </StackPanel>
-        <DataGrid x:Name="DataGrid" ItemsSource="{Binding ProcessesList}" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="DataGrid_SelectionChanged">
+        <DataGrid x:Name="DataGrid" ItemsSource="{Binding ProcessesList}"  AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="DataGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Название_района}" ClipboardContentBinding="{x:Null}" Header="Название района" Width="*"/>
             </DataGrid.Columns>
