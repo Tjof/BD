@@ -24,7 +24,6 @@ namespace BD
     public partial class Districts : Window, INotifyPropertyChanged
     {
         BAZANOWEntities model;
-
         private ObservableCollection<Районы_города> _districts;
 
         public Districts()
@@ -47,11 +46,42 @@ namespace BD
 
         private void ButtonAdd(object sender, RoutedEventArgs e)
         {
-            AddDistricts addDistricts = new AddDistricts(model, (ICollection<Районы_города>)DataGrid.ItemsSource)
+            //AddDistricts addDistricts = new AddDistricts(model, (ICollection<Районы_города>)DataGrid.ItemsSource)
+            //{
+            //    Owner = this
+            //};
+            //addDistricts.Show();
+
+            DistrictNameEdit.Text = "";
+            DistrictNameEdit.IsReadOnly = false;
+            AddDistrict.IsEnabled = true;
+        }
+
+        private void ButtonAddDistrict(object sender, RoutedEventArgs e)
+        {
+            // Создать нового покупателя
+            Районы_города district = new Районы_города
             {
-                Owner = this
+                Название_района = DistrictNameEdit.Text
             };
-            addDistricts.Show();
+
+            // Добавить в DbSet
+            // Сохранить изменения в базе данных
+            var res = model.Районы_города.FirstOrDefault(a => a.Название_района == DistrictNameEdit.Text);
+            if (res != null)
+            {
+                MessageBox.Show("Ошибка");
+            }
+            else
+            {
+                model.Районы_города.Local.Add(district);
+                model.Районы_города.Add(district);
+                model.SaveChanges();
+                DataGrid.ItemsSource = new ObservableCollection<Районы_города>(model.Районы_города.ToArray());
+                DistrictNameEdit.Text = "";
+                DistrictNameEdit.IsReadOnly = true;
+                AddDistrict.IsEnabled = false;
+            }
         }
 
         private void ButtonDelete(object sender, RoutedEventArgs e)
@@ -98,8 +128,10 @@ namespace BD
                     item.Название_района = DistrictNameEdit.Text.ToString();
                     model.SaveChanges();
                     //OnPropertyChanged();
-
                     DataGrid.ItemsSource = new ObservableCollection<Районы_города>(model.Районы_города.ToArray());
+                    DistrictNameEdit.Text = "";
+                    DistrictNameEdit.IsReadOnly = true;
+                    SaveEdit.IsEnabled = false;
                 }
             }
         }        
@@ -127,5 +159,7 @@ namespace BD
                 DistrictNameEdit.Text = (DataGrid.SelectedItem as Районы_города).Название_района;
             }
         }
+
+        
     }
 }

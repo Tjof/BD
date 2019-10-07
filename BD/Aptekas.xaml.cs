@@ -1,8 +1,10 @@
 ﻿using BD.Model;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -21,25 +23,45 @@ namespace BD
     /// </summary>
     public partial class Aptekas : Window
     {
+        BAZANOWEntities model;
+        private ObservableCollection<Аптеки> _drugs;
+
         public Aptekas()
         {
             InitializeComponent();
+            model = new BAZANOWEntities();
+            Drugs = new ObservableCollection<Аптеки>(model.Аптеки.Include("Улицы").ToArray());
+            DataGrid.ItemsSource = Drugs;
+        }
 
-            using (BAZANOWEntities model = new BAZANOWEntities())
+        public ObservableCollection<Аптеки> Drugs
+        {
+            get => _drugs;
+            set
             {
-                var a = model.Аптеки.Include("Улицы").ToArray();
-                DataGrid.ItemsSource = a;
+                _drugs = value;
+                OnPropertyChanged();
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ButtonClose(object sender, RoutedEventArgs e)
         {
             Close();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void ButtonAddDrugstore(object sender, RoutedEventArgs e)
         {
-
+            AddDrugstore addDrugstore= new AddDrugstore(model, (ICollection<Аптеки>)DataGrid.ItemsSource)
+            {
+                Owner = this
+            };
+            addDrugstore.Show();
         }
+
+        void OnPropertyChanged([CallerMemberName] string prop = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BD.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,9 +18,9 @@ namespace BD
     /// <summary>
     /// Логика взаимодействия для AD.xaml
     /// </summary>
-    public partial class AD : Window
+    public partial class AddDrugstore : Window
     {
-        public AD()
+        public AddDrugstore(BAZANOWEntities model, ICollection<Аптеки> drugstore)
         {
             InitializeComponent();
         }

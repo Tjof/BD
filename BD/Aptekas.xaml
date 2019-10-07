@@ -8,15 +8,15 @@
         Title="Аптеки" Height="408" Width="809">
     <DockPanel>
         <DockPanel DockPanel.Dock="Top">
-            <Button Content="Закрыть" DockPanel.Dock="Right" Click="Button_Click"/>
+            <Button Content="Закрыть" DockPanel.Dock="Right" Click="ButtonClose"/>
             <StackPanel Orientation="Horizontal">
-                <Button Content="Добавить"/>
+                <Button Content="Добавить" Click="ButtonAddDrugstore"/>
                 <Button Content="Изменить"/>
                 <Button Content="Удалить"/>
             </StackPanel>
         </DockPanel>
         <StackPanel Height="50" DockPanel.Dock="Bottom"/>
-        <DataGrid x:Name="DataGrid" AutoGenerateColumns="False">
+        <DataGrid x:Name="DataGrid" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Название}" ClipboardContentBinding="{x:Null}" Header="Название Аптеки" Width="*"/>
                 <DataGridTextColumn Binding="{Binding Улицы.Название_улицы}" ClipboardContentBinding="{x:Null}" Header="Улица" Width="*"/>
