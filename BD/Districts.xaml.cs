@@ -96,7 +96,6 @@ namespace BD
             {
                 MessageBox.Show("Ашибка! Запись связана!!!");
             }
-
         }
 
         private void ButtonEdit(object sender, RoutedEventArgs e)

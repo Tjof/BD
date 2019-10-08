@@ -23,5 +23,10 @@
         <Style TargetType="DataGridTextColumn">
             <Setter Property="FontSize" Value="16"/>
         </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="10"/>
+        </Style>
     </Application.Resources>
 </Application>
