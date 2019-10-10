@@ -63,5 +63,19 @@ namespace BD
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
         public event PropertyChangedEventHandler PropertyChanged;
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                model.Аптеки.Local.Remove(DataGrid.SelectedItem as Аптеки);
+                model.SaveChanges();
+                DataGrid.ItemsSource = new ObservableCollection<Аптеки>(model.Аптеки.ToArray());
+            }
+            catch (System.Data.Entity.Infrastructure.DbUpdateException)
+            {
+                MessageBox.Show("Ашибка! Запись связана!!!");
+            }
+        }
     }
 }

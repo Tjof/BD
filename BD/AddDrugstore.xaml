@@ -9,7 +9,9 @@
         Title="Добавить аптеку" Height="370" Width="650" Background="#FFF8E9">
 
     <DockPanel>
-        <StackPanel Height="50" DockPanel.Dock="Bottom"/>
+        <StackPanel Height="50" DockPanel.Dock="Bottom">
+            <Button Content="Добавить" Margin="0,8,20,0" HorizontalAlignment="Right" Click="Button_Click"/>
+        </StackPanel>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="183" />
@@ -22,16 +24,24 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Column="0" Grid.Row="0" Text="Название аптеки"/>
-            <TextBox Grid.Column="1" Grid.Row="0" Margin="10"/>
-            <TextBlock Grid.Column="0" Grid.Row="1" Text="Улица"/>
-            <TextBox Grid.Column="1" Grid.Row="1" Margin="10"/>
-            <TextBlock Grid.Column="0" Grid.Row="2" Text="Номер дома"/>
-            <TextBox Grid.Column="1" Grid.Row="2" Margin="10"/>
-            <TextBlock Grid.Column="0" Grid.Row="3" Text="Время начала работы"/>
-            <xctk:MaskedTextBox Grid.Column="1" Grid.Row="3" Margin="10" Mask="00:00"/>
-            <TextBlock Grid.Column="0" Grid.Row="4" Text="Время окончания работы"/>
-            <xctk:MaskedTextBox Grid.Column="1" Grid.Row="4" Margin="10" Mask="00:00"/>
+            <TextBlock Grid.Column="0" Grid.Row="0" Text="Название аптеки" Margin="10" VerticalAlignment="Center" FontSize="16"/>
+            <TextBox x:Name="DrugstoreName" Grid.Column="1" Grid.Row="0" Margin="10"/>
+            <TextBlock Grid.Column="0" Grid.Row="1" Text="Улица" Margin="10" VerticalAlignment="Center" FontSize="16"/>
+            <ComboBox x:Name="ComboBox_street" Grid.Column="1" Grid.Row="1" Margin="10" Height="32" FontSize="16" FontFamily="Times New Roman" Background="White" BorderBrush="{x:Null}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="{Binding Название_улицы}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <TextBlock Grid.Column="0" Grid.Row="2" Text="Номер дома" Margin="10" VerticalAlignment="Center" FontSize="16"/>
+            <TextBox x:Name="HouseNumber" Grid.Column="1" Grid.Row="2" Margin="10"/>
+            <TextBlock Grid.Column="0" Grid.Row="3" Text="Время начала работы" Margin="10" VerticalAlignment="Center" FontSize="16"/>
+            <xctk:MaskedTextBox x:Name="WorkStartTime" Padding="5" Grid.Column="1" Grid.Row="3" Margin="10" Mask="00:00" FontSize="16"/>
+            <TextBlock Grid.Column="0" Grid.Row="4" Text="Время окончания" Margin="10" VerticalAlignment="Center" FontSize="16"/>
+            <xctk:MaskedTextBox x:Name="WorkEndingTime" Padding="5" Grid.Column="1" Grid.Row="4" Margin="10" Mask="00:00" FontSize="16"/>
         </Grid>
     </DockPanel>
 </Window>

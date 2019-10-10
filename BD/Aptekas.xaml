@@ -12,7 +12,7 @@
             <StackPanel Orientation="Horizontal">
                 <Button Content="Добавить" Click="ButtonAddDrugstore"/>
                 <Button Content="Изменить"/>
-                <Button Content="Удалить"/>
+                <Button x:Name="Delete" Content="Удалить" Click="Delete_Click"/>
             </StackPanel>
         </DockPanel>
         <StackPanel Height="50" DockPanel.Dock="Bottom"/>

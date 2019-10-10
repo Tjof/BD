@@ -59,7 +59,7 @@ namespace BD
 
         private void ButtonAddDistrict(object sender, RoutedEventArgs e)
         {
-            // Создать нового покупателя
+            
             Районы_города district = new Районы_города
             {
                 Название_района = DistrictNameEdit.Text
