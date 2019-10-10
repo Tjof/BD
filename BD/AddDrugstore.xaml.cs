@@ -41,8 +41,7 @@ namespace BD
             Аптеки drugstore = new Аптеки
             {
                 Название = DrugstoreName.Text,
-                //id_улицы = Convert.ToInt32(ComboBox_street.SelectedValue),
-                //id_улицы = int.Parse(ComboBox_street.SelectedItem.ToString()),
+                id_улицы = Convert.ToInt32(ComboBox_street.SelectedValue),
                 Номер_дома = Convert.ToInt32(HouseNumber.Text),
                 Время_начала_работы = Convert.ToDateTime(WorkStartTime.Text),
                 Время_окончания_работы = Convert.ToDateTime(WorkEndingTime.Text)
@@ -50,11 +49,12 @@ namespace BD
 
             // Добавить в DbSet
             // Сохранить изменения в базе данных
-            var res = model.Аптеки.FirstOrDefault(a => a.Название == DrugstoreName.Text && a.Номер_дома == Convert.ToInt32(HouseNumber.Text));
+            var res = model.Аптеки.FirstOrDefault(a => a.Название == DrugstoreName.Text);
             //СДЕЛАТЬ ЕЩЁ ПРОВЕРКУ НА СООТВЕТСТВИЕ УЛИЦЫ!!!!!!!!!!!!!!!!!! ДОБАВИТЬ && !!!!!!!!!!!!
+            //и ещё вот это  && a.Номер_дома == Convert.ToInt32(HouseNumber.Text)
             if (res != null)
             {
-                System.Windows.MessageBox.Show("Ошибка");
+                System.Windows.MessageBox.Show("Ашибка!! Такая аптека есть уже! Подумай ещё раз, друг!");
             }
             else
             {

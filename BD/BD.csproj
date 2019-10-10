@@ -60,6 +60,7 @@
     </Reference>
     <Reference Include="PresentationFramework.Aero" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
@@ -121,6 +122,9 @@
     </Compile>
     <Compile Include="Districts.xaml.cs">
       <DependentUpon>Districts.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditDrugstore.xaml.cs">
+      <DependentUpon>EditDrugstore.xaml</DependentUpon>
     </Compile>
     <Compile Include="FindCure.xaml.cs">
       <DependentUpon>FindCure.xaml</DependentUpon>
@@ -236,6 +240,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Districts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditDrugstore.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

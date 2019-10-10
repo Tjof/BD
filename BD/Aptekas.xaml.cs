@@ -77,5 +77,14 @@ namespace BD
                 MessageBox.Show("Ашибка! Запись связана!!!");
             }
         }
+
+        private void Edit_Click(object sender, RoutedEventArgs e)
+        {
+            EditDrugstore editDrugstore = new EditDrugstore(model, (ICollection<Аптеки>)DataGrid.ItemsSource)
+            {
+                Owner = this
+            };
+            editDrugstore.Show();
+        }
     }
 }
