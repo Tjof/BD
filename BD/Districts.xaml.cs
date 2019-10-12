@@ -158,7 +158,6 @@ namespace BD
                 DistrictNameEdit.Text = (DataGrid.SelectedItem as Районы_города).Название_района;
             }
         }
-
         
     }
 }

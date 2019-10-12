@@ -17,12 +17,12 @@ using System.Collections;
 namespace BD
 {
     /// <summary>
-    /// Логика взаимодействия для Lekarstva.xaml
+    /// Логика взаимодействия для Drugs.xaml
     /// </summary>
-    public partial class Lekarstva : Window
+    public partial class Drugs : Window
     {
         BAZANOWEntities model;
-        public Lekarstva()
+        public Drugs()
         {
             InitializeComponent();
             model = new BAZANOWEntities();

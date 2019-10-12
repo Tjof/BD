@@ -95,7 +95,7 @@ namespace BD
 
         private void Lekarstvo(object sender, RoutedEventArgs e)
         {
-            Lekarstva lekarstva = new Lekarstva()
+            Drugs lekarstva = new Drugs()
             {
                 Owner = this
             };

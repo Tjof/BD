@@ -21,7 +21,7 @@ namespace BD
     /// <summary>
     /// Логика взаимодействия для Aptekas.xaml
     /// </summary>
-    public partial class Aptekas : Window
+    public partial class Aptekas : Window, INotifyPropertyChanged
     {
         BAZANOWEntities model;
         private ObservableCollection<Аптеки> _drugs;
@@ -51,11 +51,9 @@ namespace BD
 
         private void ButtonAddDrugstore(object sender, RoutedEventArgs e)
         {
-            AddDrugstore addDrugstore= new AddDrugstore(model, (ICollection<Аптеки>)DataGrid.ItemsSource)
-            {
-                Owner = this
-            };
-            addDrugstore.Show();
+            Аптеки a = new Аптеки();
+            AddDrugstore addDrugstore = new AddDrugstore(model, a);
+            addDrugstore.ShowDialog();
         }
 
         void OnPropertyChanged([CallerMemberName] string prop = "")
@@ -70,7 +68,7 @@ namespace BD
             {
                 model.Аптеки.Local.Remove(DataGrid.SelectedItem as Аптеки);
                 model.SaveChanges();
-                DataGrid.ItemsSource = new ObservableCollection<Аптеки>(model.Аптеки.ToArray());
+                OnPropertyChanged();
             }
             catch (System.Data.Entity.Infrastructure.DbUpdateException)
             {
@@ -80,11 +78,20 @@ namespace BD
 
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
-            EditDrugstore editDrugstore = new EditDrugstore(model, (ICollection<Аптеки>)DataGrid.ItemsSource)
+            AddDrugstore editDrugstore = new AddDrugstore(model, DataGrid.SelectedItem as Аптеки)
             {
                 Owner = this
             };
-            editDrugstore.Show();
+            editDrugstore.ShowDialog();
+        }
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (DataGrid.SelectedItem != null)
+            {
+                Edit.IsEnabled = true;
+                Delete.IsEnabled = true;
+            }
         }
     }
 }

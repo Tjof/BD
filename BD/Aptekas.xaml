@@ -10,15 +10,15 @@
         <DockPanel DockPanel.Dock="Top">
             <Button Content="Закрыть" DockPanel.Dock="Right" Click="ButtonClose"/>
             <StackPanel Orientation="Horizontal">
-                <Button Content="Добавить" Click="ButtonAddDrugstore"/>
-                <Button x:Name="Edit" Content="Изменить" Click="Edit_Click"/>
-                <Button x:Name="Delete" Content="Удалить" Click="Delete_Click"/>
+                <Button x:Name="udali" Content="Добавить" Click="ButtonAddDrugstore"/>
+                <Button x:Name="Edit" Content="Изменить" IsEnabled="False" Click="Edit_Click"/>
+                <Button x:Name="Delete" Content="Удалить" IsEnabled="False" Click="Delete_Click"/>
             </StackPanel>
         </DockPanel>
         <StackPanel Height="50" DockPanel.Dock="Bottom"/>
-        <DataGrid x:Name="DataGrid" AutoGenerateColumns="False" IsReadOnly="True">
+        <DataGrid x:Name="DataGrid" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="DataGrid_SelectionChanged" SelectedItem="{Binding Drugstores}">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Название}" ClipboardContentBinding="{x:Null}" Header="Название Аптеки" Width="*"/>
+                <DataGridTextColumn x:Name="DrugstoreName" Binding="{Binding Название}" ClipboardContentBinding="{x:Null}" Header="Название Аптеки" Width="*"/>
                 <DataGridTextColumn Binding="{Binding Улицы.Название_улицы}" ClipboardContentBinding="{x:Null}" Header="Улица" Width="*"/>
                 <DataGridTextColumn Binding="{Binding Номер_дома}" ClipboardContentBinding="{x:Null}" Header="Номер дома" Width="*"/>
                 <DataGridTextColumn Binding="{Binding Время_начала_работы, StringFormat=HH:mm}" ClipboardContentBinding="{x:Null}" Header="Время начала работы" Width="*"/>

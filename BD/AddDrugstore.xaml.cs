@@ -22,48 +22,52 @@ namespace BD
     /// <summary>
     /// Логика взаимодействия для AD.xaml
     /// </summary>
-    public partial class AddDrugstore : Window
+    public partial class AddDrugstore : Window, INotifyPropertyChanged
     {
         BAZANOWEntities model;
+        Аптеки drugstore;
 
-        public AddDrugstore(BAZANOWEntities model, ICollection<Аптеки> drugstore)
+        public AddDrugstore(BAZANOWEntities model, Аптеки drugstore)
         {
             InitializeComponent();
+            this.drugstore = drugstore;
+            DataContext = drugstore;
             this.model = model;
-            model = new BAZANOWEntities();
             ComboBox_street.ItemsSource = model.Улицы.ToArray();
-        }
-
-
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Аптеки drugstore = new Аптеки
+            if (model.Entry(drugstore).State == System.Data.Entity.EntityState.Detached)
             {
-                Название = DrugstoreName.Text,
-                id_улицы = Convert.ToInt32(ComboBox_street.SelectedValue),
-                Номер_дома = Convert.ToInt32(HouseNumber.Text),
-                Время_начала_работы = Convert.ToDateTime(WorkStartTime.Text),
-                Время_окончания_работы = Convert.ToDateTime(WorkEndingTime.Text)
-            };
-
-            // Добавить в DbSet
-            // Сохранить изменения в базе данных
-            var res = model.Аптеки.FirstOrDefault(a => a.Название == DrugstoreName.Text);
-            //СДЕЛАТЬ ЕЩЁ ПРОВЕРКУ НА СООТВЕТСТВИЕ УЛИЦЫ!!!!!!!!!!!!!!!!!! ДОБАВИТЬ && !!!!!!!!!!!!
-            //и ещё вот это  && a.Номер_дома == Convert.ToInt32(HouseNumber.Text)
-            if (res != null)
-            {
-                System.Windows.MessageBox.Show("Ашибка!! Такая аптека есть уже! Подумай ещё раз, друг!");
+                Title = "Добавление аптеки";
+                AddEdit.Content = "Добавить";
             }
             else
             {
-                model.Аптеки.Local.Add(drugstore);
-                model.Аптеки.Add(drugstore);
-                model.SaveChanges();
+                Title = "Редактирование аптеки";
+                AddEdit.Content = "Изменить";
             }
         }
 
+        private void AddEditClick(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (model.Entry(drugstore).State == System.Data.Entity.EntityState.Detached)
+                {
+                    model.Аптеки.Local.Add(drugstore);
+                }
+                model.SaveChanges();
+                OnPropertyChanged();
+            }
+            catch (System.Data.Entity.Infrastructure.DbUpdateException)
+            {
+                System.Windows.MessageBox.Show("Такая аптека уже существует");
+            }
+            DialogResult = true;
+        }
 
+        void OnPropertyChanged([CallerMemberName] string prop = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

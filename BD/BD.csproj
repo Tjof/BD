@@ -123,17 +123,14 @@
     <Compile Include="Districts.xaml.cs">
       <DependentUpon>Districts.xaml</DependentUpon>
     </Compile>
-    <Compile Include="EditDrugstore.xaml.cs">
-      <DependentUpon>EditDrugstore.xaml</DependentUpon>
-    </Compile>
     <Compile Include="FindCure.xaml.cs">
       <DependentUpon>FindCure.xaml</DependentUpon>
     </Compile>
     <Compile Include="Formi_upakovki.xaml.cs">
       <DependentUpon>Formi_upakovki.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Lekarstva.xaml.cs">
-      <DependentUpon>Lekarstva.xaml</DependentUpon>
+    <Compile Include="Drugs.xaml.cs">
+      <DependentUpon>Drugs.xaml</DependentUpon>
     </Compile>
     <Compile Include="Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>
@@ -243,10 +240,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="EditDrugstore.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="FindCure.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -255,7 +248,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Lekarstva.xaml">
+    <Page Include="Drugs.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

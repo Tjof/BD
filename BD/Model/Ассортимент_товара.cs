@@ -16,12 +16,12 @@ namespace BD.Model
     {
         public int id_лекарство { get; set; }
         public int id_аптеки { get; set; }
-        public Nullable<int> Количество { get; set; }
+        public int Количество { get; set; }
         public int id_ФормыУпаковки { get; set; }
-        public Nullable<double> Цена { get; set; }
+        public double Цена { get; set; }
     
-        public virtual Аптеки Аптеки { get; set; }
         public virtual Лекарство Лекарство { get; set; }
         public virtual Формы_упаковки Формы_упаковки { get; set; }
+        public virtual Аптеки Аптеки { get; set; }
     }
 }

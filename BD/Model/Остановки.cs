@@ -17,18 +17,18 @@ namespace BD.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Остановки()
         {
-            this.Транспортные_маршруты = new HashSet<Транспортные_маршруты>();
             this.Аптеки = new HashSet<Аптеки>();
+            this.Транспортные_маршруты = new HashSet<Транспортные_маршруты>();
         }
     
         public int id_остановки { get; set; }
-        public Nullable<int> id_улицы { get; set; }
+        public int id_улицы { get; set; }
         public string Название_остановки { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Аптеки> Аптеки { get; set; }
         public virtual Улицы Улицы { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Транспортные_маршруты> Транспортные_маршруты { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Аптеки> Аптеки { get; set; }
     }
 }
