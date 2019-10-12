@@ -22,8 +22,8 @@ namespace BD.Model
         }
     
         public int id_маршрута { get; set; }
-        public Nullable<int> Номер_маршрута { get; set; }
-        public Nullable<int> id_ВидаТранспорта { get; set; }
+        public string Номер_маршрута { get; set; }
+        public int id_ВидаТранспорта { get; set; }
     
         public virtual Виды_Транспорта Виды_Транспорта { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
