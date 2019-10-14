@@ -50,16 +50,16 @@ namespace BD
 
         private void AddEditClick(object sender, RoutedEventArgs e)
         {
-            if(System.Windows.MessageBox.Show("Внести изменения в базу данных?", "Подтвердите действие", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No) == MessageBoxResult.Yes)
+            if(MessageBox.Show("Подтверждение", "Вы уверены, что хотите внести изменения в базу данных?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 try
                 {
-                    if (model.Entry(drugstore).State == System.Data.Entity.EntityState.Detached && RegexClass.RegexCheck(DrugstoreName.Text))
+                    if (model.Entry(drugstore).State == System.Data.Entity.EntityState.Detached && RegexClass.RegexDrugstore(DrugstoreName.Text, WorkStartTime.Text, WorkEndingTime.Text))
                     {
                         model.Аптеки.Local.Add(drugstore);
-                    }else if(RegexClass.RegexCheck(DrugstoreName.Text) == false)
+                    }else if(RegexClass.RegexDrugstore(DrugstoreName.Text, WorkStartTime.Text, WorkEndingTime.Text) == false)
                     {
-                        System.Windows.MessageBox.Show("Атятя такаим быть!");
+                        MessageBox.Show("Ошибка","Проверьте правильность вводимых данных", MessageBoxButton.OK);
                     }
                     model.SaveChanges();
                     OnPropertyChanged();

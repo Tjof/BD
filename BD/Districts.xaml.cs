@@ -65,7 +65,7 @@ namespace BD
             // Добавить в DbSet
             // Сохранить изменения в базе данных
             var res = model.Районы_города.FirstOrDefault(a => a.Название_района == DistrictNameEdit.Text);
-            if (res == null && DistrictNameEdit.Text != string.Empty && RegexClass.RegexCheck(DistrictNameEdit.Text))
+            if (res == null && RegexClass.RegexDistrict(DistrictNameEdit.Text))
             {
                 model.Районы_города.Local.Add(district);
                 model.Районы_города.Add(district);
@@ -76,7 +76,7 @@ namespace BD
             }
             else
             {
-                MessageBox.Show("Ошибка");
+                MessageBox.Show("Ошибка", "Проверьте правильность вводимых данных", MessageBoxButton.OK);
             }
         }
 
@@ -89,7 +89,7 @@ namespace BD
             }
             catch (System.Data.Entity.Infrastructure.DbUpdateException)
             {
-                MessageBox.Show("Ашибка! Запись связана!!!");
+                System.Windows.MessageBox.Show("Ашибка! Запись связана!!!");
             }
         }
 
@@ -97,7 +97,9 @@ namespace BD
         {
             SaveEdit.IsEnabled = true;
             DistrictNameEdit.IsEnabled = true;
+            DistrictNameEdit.IsReadOnly = false;
             DistrictNameEdit.Focus();
+            DistrictNameEdit.SelectionStart = DistrictNameEdit.Text.Length;
         }
 
         private void ButtonClose(object sender, RoutedEventArgs e)
@@ -110,7 +112,7 @@ namespace BD
             var res = model.Районы_города.FirstOrDefault(a => a.Название_района == DistrictNameEdit.Text);
             if (res != null)
             {
-                MessageBox.Show("Такой район уже существует");
+                System.Windows.MessageBox.Show("Такой район уже существует");
             }
             else
             {

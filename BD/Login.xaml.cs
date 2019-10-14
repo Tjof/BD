@@ -51,7 +51,7 @@ namespace BD
                 var res =  entities.Пользователи.FirstOrDefault(a => a.login == tbLogin.Text && a.pass == passwordBox.Password);
                 if(res == null)
                 {
-                    MessageBox.Show("Неверный логин или пароль", "Ошибочка ;(", MessageBoxButton.OK, MessageBoxImage.Hand);
+                    System.Windows.MessageBox.Show("Неверный логин или пароль", "Ошибочка ;(", MessageBoxButton.OK, MessageBoxImage.Hand);
                 }
                 else
                 {

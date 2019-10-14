@@ -72,7 +72,7 @@ namespace BD
             }
             catch (System.Data.Entity.Infrastructure.DbUpdateException)
             {
-                MessageBox.Show("Ашибка! Запись связана!!!");
+                System.Windows.MessageBox.Show("Ашибка! Запись связана!!!");
             }
         }
 
