@@ -114,11 +114,12 @@
     <Compile Include="AddTransportMode.xaml.cs">
       <DependentUpon>AddTransportMode.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Aptekas.xaml.cs">
-      <DependentUpon>Aptekas.xaml</DependentUpon>
+    <Compile Include="Class\RegexClass.cs" />
+    <Compile Include="Drugstore.xaml.cs">
+      <DependentUpon>Drugstore.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Assortimentxaml.xaml.cs">
-      <DependentUpon>Assortimentxaml.xaml</DependentUpon>
+    <Compile Include="Assortment.xaml.cs">
+      <DependentUpon>Assortment.xaml</DependentUpon>
     </Compile>
     <Compile Include="Districts.xaml.cs">
       <DependentUpon>Districts.xaml</DependentUpon>
@@ -126,8 +127,8 @@
     <Compile Include="FindCure.xaml.cs">
       <DependentUpon>FindCure.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Formi_upakovki.xaml.cs">
-      <DependentUpon>Formi_upakovki.xaml</DependentUpon>
+    <Compile Include="PackingForm.xaml.cs">
+      <DependentUpon>PackingForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Drugs.xaml.cs">
       <DependentUpon>Drugs.xaml</DependentUpon>
@@ -138,8 +139,8 @@
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Marshruti.xaml.cs">
-      <DependentUpon>Marshruti.xaml</DependentUpon>
+    <Compile Include="Routes.xaml.cs">
+      <DependentUpon>Routes.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\BAZANOW.Context.cs">
       <AutoGen>True</AutoGen>
@@ -192,8 +193,8 @@
     <Compile Include="Model\Формы_упаковки.cs">
       <DependentUpon>BAZANOW.tt</DependentUpon>
     </Compile>
-    <Compile Include="Ostanovki.xaml.cs">
-      <DependentUpon>Ostanovki.xaml</DependentUpon>
+    <Compile Include="Stops.xaml.cs">
+      <DependentUpon>Stops.xaml</DependentUpon>
     </Compile>
     <Compile Include="Repass.xaml.cs">
       <DependentUpon>Repass.xaml</DependentUpon>
@@ -228,11 +229,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Aptekas.xaml">
+    <Page Include="Drugstore.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Assortimentxaml.xaml">
+    <Page Include="Assortment.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -244,7 +245,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Formi_upakovki.xaml">
+    <Page Include="PackingForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -264,11 +265,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Marshruti.xaml">
+    <Page Include="Routes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Ostanovki.xaml">
+    <Page Include="Stops.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -346,8 +347,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Add\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

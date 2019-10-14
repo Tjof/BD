@@ -19,14 +19,14 @@ using System.Windows.Shapes;
 namespace BD
 {
     /// <summary>
-    /// Логика взаимодействия для Aptekas.xaml
+    /// Логика взаимодействия для Drugstore.xaml
     /// </summary>
-    public partial class Aptekas : Window, INotifyPropertyChanged
+    public partial class Drugstore : Window, INotifyPropertyChanged
     {
         BAZANOWEntities model;
         private ObservableCollection<Аптеки> _drugs;
 
-        public Aptekas()
+        public Drugstore()
         {
             InitializeComponent();
             model = new BAZANOWEntities();

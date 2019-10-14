@@ -16,17 +16,17 @@ using System.Windows.Shapes;
 namespace BD
 {
     /// <summary>
-    /// Логика взаимодействия для Marshruti.xaml
+    /// Логика взаимодействия для Assortment.xaml
     /// </summary>
-    public partial class Marshruti : Window
+    public partial class Assortment : Window
     {
-        public Marshruti()
+        public Assortment()
         {
             InitializeComponent();
 
             using (BAZANOWEntities model = new BAZANOWEntities())
             {
-                var a = model.Транспортные_маршруты.Include("Виды_Транспорта").Include("Остановки").ToArray();
+                var a = model.Ассортимент_товара.Include("Лекарство").Include("Аптеки").Include("Формы_упаковки").ToArray();
                 DataGrid.ItemsSource = a;
             }
         }

@@ -16,17 +16,17 @@ using System.Windows.Shapes;
 namespace BD
 {
     /// <summary>
-    /// Логика взаимодействия для Assortimentxaml.xaml
+    /// Логика взаимодействия для Stops.xaml
     /// </summary>
-    public partial class Assortimentxaml : Window
+    public partial class Stops : Window
     {
-        public Assortimentxaml()
+        public Stops()
         {
             InitializeComponent();
 
             using (BAZANOWEntities model = new BAZANOWEntities())
             {
-                var a = model.Ассортимент_товара.Include("Лекарство").Include("Аптеки").Include("Формы_упаковки").ToArray();
+                var a = model.Остановки.Include("Улицы").ToArray();
                 DataGrid.ItemsSource = a;
             }
         }

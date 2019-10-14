@@ -9,9 +9,8 @@
         Height="370" Width="650" Background="#FFF8E9">
 
     <DockPanel>
-        <StackPanel Height="50" DockPanel.Dock="Bottom" Orientation="Horizontal">
-            <Button x:Name="AddEdit" Content="Добавить" Margin="20,8,20,0" HorizontalAlignment="Right" Click="AddEditClick" />
-            <Button Content="Отменить" Margin="0,8,0,0" HorizontalAlignment="Right"/>
+        <StackPanel Height="50" DockPanel.Dock="Bottom">
+            <Button x:Name="AddEdit" HorizontalAlignment="Right" Click="AddEditClick"/>
         </StackPanel>
         <Grid>
             <Grid.ColumnDefinitions>

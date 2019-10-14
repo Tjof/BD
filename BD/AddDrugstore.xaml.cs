@@ -1,4 +1,5 @@
 ﻿using BD.Model;
+using BD.Class;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -44,24 +45,32 @@ namespace BD
                 Title = "Редактирование аптеки";
                 AddEdit.Content = "Изменить";
             }
+            
         }
 
         private void AddEditClick(object sender, RoutedEventArgs e)
         {
-            try
+            if(System.Windows.MessageBox.Show("Внести изменения в базу данных?", "Подтвердите действие", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No) == MessageBoxResult.Yes)
             {
-                if (model.Entry(drugstore).State == System.Data.Entity.EntityState.Detached)
+                try
                 {
-                    model.Аптеки.Local.Add(drugstore);
+                    if (model.Entry(drugstore).State == System.Data.Entity.EntityState.Detached && RegexClass.RegexCheck(DrugstoreName.Text))
+                    {
+                        model.Аптеки.Local.Add(drugstore);
+                    }else if(RegexClass.RegexCheck(DrugstoreName.Text) == false)
+                    {
+                        System.Windows.MessageBox.Show("Атятя такаим быть!");
+                    }
+                    model.SaveChanges();
+                    OnPropertyChanged();
                 }
-                model.SaveChanges();
-                OnPropertyChanged();
+                catch (System.Data.Entity.Infrastructure.DbUpdateException)
+                {
+                    System.Windows.MessageBox.Show("Такая аптека уже существует");
+                }
             }
-            catch (System.Data.Entity.Infrastructure.DbUpdateException)
-            {
-                System.Windows.MessageBox.Show("Такая аптека уже существует");
-            }
-            DialogResult = true;
+            
+            
         }
 
         void OnPropertyChanged([CallerMemberName] string prop = "")

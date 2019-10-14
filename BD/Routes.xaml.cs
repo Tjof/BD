@@ -16,17 +16,17 @@ using System.Windows.Shapes;
 namespace BD
 {
     /// <summary>
-    /// Логика взаимодействия для Ostanovki.xaml
+    /// Логика взаимодействия для Routes.xaml
     /// </summary>
-    public partial class Ostanovki : Window
+    public partial class Routes : Window
     {
-        public Ostanovki()
+        public Routes()
         {
             InitializeComponent();
 
             using (BAZANOWEntities model = new BAZANOWEntities())
             {
-                var a = model.Остановки.Include("Улицы").ToArray();
+                var a = model.Транспортные_маршруты.Include("Виды_Транспорта").Include("Остановки").ToArray();
                 DataGrid.ItemsSource = a;
             }
         }

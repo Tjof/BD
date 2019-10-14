@@ -1,4 +1,5 @@
-﻿using BD.Model;
+﻿using BD.Class;
+using BD.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -6,6 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -46,20 +48,15 @@ namespace BD
 
         private void ButtonAdd(object sender, RoutedEventArgs e)
         {
-            //AddDistricts addDistricts = new AddDistricts(model, (ICollection<Районы_города>)DataGrid.ItemsSource)
-            //{
-            //    Owner = this
-            //};
-            //addDistricts.Show();
-
             DistrictNameEdit.Text = "";
             DistrictNameEdit.IsReadOnly = false;
             AddDistrict.IsEnabled = true;
+            DistrictNameEdit.IsEnabled = true;
+            DistrictNameEdit.Focus();
         }
 
         private void ButtonAddDistrict(object sender, RoutedEventArgs e)
         {
-            
             Районы_города district = new Районы_города
             {
                 Название_района = DistrictNameEdit.Text
@@ -68,19 +65,18 @@ namespace BD
             // Добавить в DbSet
             // Сохранить изменения в базе данных
             var res = model.Районы_города.FirstOrDefault(a => a.Название_района == DistrictNameEdit.Text);
-            if (res != null)
-            {
-                MessageBox.Show("Ошибка");
-            }
-            else
+            if (res == null && DistrictNameEdit.Text != string.Empty && RegexClass.RegexCheck(DistrictNameEdit.Text))
             {
                 model.Районы_города.Local.Add(district);
                 model.Районы_города.Add(district);
                 model.SaveChanges();
-                DataGrid.ItemsSource = new ObservableCollection<Районы_города>(model.Районы_города.ToArray());
                 DistrictNameEdit.Text = "";
                 DistrictNameEdit.IsReadOnly = true;
                 AddDistrict.IsEnabled = false;
+            }
+            else
+            {
+                MessageBox.Show("Ошибка");
             }
         }
 
@@ -90,7 +86,6 @@ namespace BD
             {
                 model.Районы_города.Local.Remove(DataGrid.SelectedItem as Районы_города);
                 model.SaveChanges();
-                DataGrid.ItemsSource = new ObservableCollection<Районы_города>(model.Районы_города.ToArray());
             }
             catch (System.Data.Entity.Infrastructure.DbUpdateException)
             {
@@ -101,7 +96,8 @@ namespace BD
         private void ButtonEdit(object sender, RoutedEventArgs e)
         {
             SaveEdit.IsEnabled = true;
-            DistrictNameEdit.IsReadOnly = false;
+            DistrictNameEdit.IsEnabled = true;
+            DistrictNameEdit.Focus();
         }
 
         private void ButtonClose(object sender, RoutedEventArgs e)
@@ -133,7 +129,7 @@ namespace BD
                     SaveEdit.IsEnabled = false;
                 }
             }
-        }        
+        }
 
         void OnPropertyChanged([CallerMemberName] string prop = "")
         {
@@ -143,13 +139,14 @@ namespace BD
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(DataGrid.SelectedItem != null)
+            if (DataGrid.SelectedItem != null)
             {
                 Edit.IsEnabled = true;
                 Delete.IsEnabled = true;
+                DistrictNameEdit.IsEnabled = false;
             }
 
-            if (DataGrid.SelectedItem  == null)
+            if (DataGrid.SelectedItem == null)
             {
                 DistrictNameEdit.Text = "";
             }
@@ -158,6 +155,6 @@ namespace BD
                 DistrictNameEdit.Text = (DataGrid.SelectedItem as Районы_города).Название_района;
             }
         }
-        
+
     }
 }

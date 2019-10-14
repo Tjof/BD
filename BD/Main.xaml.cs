@@ -50,7 +50,7 @@ namespace BD
 
         private void Apteki(object sender, RoutedEventArgs e)
         {
-            Aptekas apteki = new Aptekas
+            Drugstore apteki = new Drugstore
             {
                 Owner = this
             };
@@ -68,7 +68,7 @@ namespace BD
 
         private void Assortiment(object sender, RoutedEventArgs e)
         {
-            Assortimentxaml Assortiment = new Assortimentxaml()
+            Assortment Assortiment = new Assortment()
             {
                 Owner = this
             };
@@ -77,7 +77,7 @@ namespace BD
 
         private void Ostanovki(object sender, RoutedEventArgs e)
         {
-            Ostanovki ostanovki = new Ostanovki()
+            Stops ostanovki = new Stops()
             {
                 Owner = this
             };
@@ -86,7 +86,7 @@ namespace BD
 
         private void Marshruti(object sender, RoutedEventArgs e)
         {
-            Marshruti marshruti = new Marshruti()
+            Routes marshruti = new Routes()
             {
                 Owner = this
             };
@@ -113,7 +113,7 @@ namespace BD
 
         private void Formiupakovki(object sender, RoutedEventArgs e)
         {
-            Formi_upakovki formi_Upakovki = new Formi_upakovki()
+            PackingForm formi_Upakovki = new PackingForm()
             {
                 Owner = this
             };

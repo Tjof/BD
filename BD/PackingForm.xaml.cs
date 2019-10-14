@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace BD
 {
     /// <summary>
-    /// Логика взаимодействия для Formi_upakovki.xaml
+    /// Логика взаимодействия для PackingForm.xaml
     /// </summary>
-    public partial class Formi_upakovki : Window
+    public partial class PackingForm : Window
     {
-        public Formi_upakovki()
+        public PackingForm()
         {
             InitializeComponent();
 
