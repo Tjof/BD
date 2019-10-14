@@ -39,13 +39,13 @@ namespace BD
             {
                 Title = "Добавление аптеки";
                 AddEdit.Content = "Добавить";
+                DrugstoreName.Focus();
             }
             else
             {
                 Title = "Редактирование аптеки";
                 AddEdit.Content = "Изменить";
             }
-            
         }
 
         private void AddEditClick(object sender, RoutedEventArgs e)
