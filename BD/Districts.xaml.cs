@@ -109,26 +109,28 @@ namespace BD
 
         private void ButtonSaveEdit(object sender, RoutedEventArgs e)
         {
-            var res = model.Районы_города.FirstOrDefault(a => a.Название_района == DistrictNameEdit.Text);
-            if (res != null)
+            if (MessageBox.Show("Подтверждение", "Вы уверены, что хотите внести изменения в базу данных?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                System.Windows.MessageBox.Show("Такой район уже существует");
-            }
-            else
-            {
-                // ключ по которому будем менять данные 
-                string rayon = (DataGrid.SelectedItem as Районы_города).Название_района;
-                int key = model.Районы_города.FirstOrDefault(a => a.Название_района == rayon).id_района;
-                var item = model.Районы_города.Find(key);
-                if (item != null)
+                try
                 {
-                    item.Название_района = DistrictNameEdit.Text.ToString();
-                    model.SaveChanges();
-                    //OnPropertyChanged();
-                    DataGrid.ItemsSource = new ObservableCollection<Районы_города>(model.Районы_города.ToArray());
-                    DistrictNameEdit.Text = "";
-                    DistrictNameEdit.IsReadOnly = true;
-                    SaveEdit.IsEnabled = false;
+                    // ключ по которому будем менять данные 
+                    string rayon = (DataGrid.SelectedItem as Районы_города).Название_района;
+                    int key = model.Районы_города.FirstOrDefault(a => a.Название_района == rayon).id_района;
+                    var item = model.Районы_города.Find(key);
+                    if (item != null)
+                    {
+                        item.Название_района = DistrictNameEdit.Text.ToString();
+                        model.SaveChanges();
+                        //OnPropertyChanged();
+                        DataGrid.ItemsSource = new ObservableCollection<Районы_города>(model.Районы_города.ToArray());
+                        DistrictNameEdit.Text = "";
+                        DistrictNameEdit.IsReadOnly = true;
+                        SaveEdit.IsEnabled = false;
+                    }
+                }
+                catch (System.Data.Entity.Infrastructure.DbUpdateException)
+                {
+                    MessageBox.Show("Ошибка", "Проверьте правильность вводимых данных", MessageBoxButton.OK);
                 }
             }
         }

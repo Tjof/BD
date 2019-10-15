@@ -26,5 +26,11 @@
         <Style TargetType="TextBox">
             <Setter Property="FontSize" Value="16"/>
         </Style>
+        <Style TargetType="DataGrid">
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="SelectionMode" Value="Single"/>
+            <Setter Property="RowDetailsVisibilityMode" Value="VisibleWhenSelected"/>
+        </Style>
     </Application.Resources>
 </Application>

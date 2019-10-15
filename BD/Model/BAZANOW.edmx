@@ -94,8 +94,8 @@
             <PropertyRef Name="id_пользователя" />
           </Key>
           <Property Name="id_пользователя" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="login" Type="nvarchar" MaxLength="255" />
-          <Property Name="pass" Type="nvarchar" MaxLength="255" />
+          <Property Name="login" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="pass" Type="nvarchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <EntityType Name="ПользователиОбъекты">
           <Key>
@@ -535,8 +535,8 @@
             <PropertyRef Name="id_пользователя" />
           </Key>
           <Property Name="id_пользователя" Type="Int32" Nullable="false" />
-          <Property Name="login" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="pass" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="login" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="pass" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="ПользователиОбъекты" Relationship="BAZANOWModel.FK_ПользователиОбъекты_Пользователи" FromRole="Пользователи" ToRole="ПользователиОбъекты" />
         </EntityType>
         <EntityType Name="ПользователиОбъекты">

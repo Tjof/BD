@@ -23,6 +23,7 @@ namespace BD
     {
         BAZANOWEntities model;
         private ObservableCollection<Транспортные_маршруты> _routes;
+        Транспортные_маршруты routes;
 
         public Routes()
         {
@@ -30,6 +31,7 @@ namespace BD
             model = new BAZANOWEntities();
             Route = new ObservableCollection<Транспортные_маршруты>(model.Транспортные_маршруты.Include("Виды_Транспорта").Include("Остановки").ToArray());
             DataGrid.ItemsSource = Route;
+            DataContext = routes;
         }
 
         public ObservableCollection<Транспортные_маршруты> Route
@@ -69,7 +71,7 @@ namespace BD
 
         private void ButtonAddRoute(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void ButtonSaveEdit(object sender, RoutedEventArgs e)

@@ -21,7 +21,7 @@
             <Button x:Name="AddRoute" Content="Добавить" IsEnabled="False" Click="ButtonAddRoute"/>
             <Button x:Name="SaveEdit" Content="Сохранить" IsEnabled="False" Click="ButtonSaveEdit"/>
         </StackPanel>
-        <DataGrid x:Name="DataGrid" AutoGenerateColumns="False" SelectionChanged="DataGrid_SelectionChanged">
+        <DataGrid x:Name="DataGrid" SelectionChanged="DataGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Номер_маршрута}" ClipboardContentBinding="{x:Null}" Header="Номер маршрута" Width="130"/>
                 <DataGridTextColumn Binding="{Binding Виды_Транспорта.Вид_транспорта}" ClipboardContentBinding="{x:Null}" Header="Вид транспорта" Width="*"/>
