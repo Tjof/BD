@@ -27,6 +27,7 @@ namespace BD
     {
         BAZANOWEntities model;
         private ObservableCollection<Районы_города> _districts;
+        private Районы_города _dist;
 
         public Districts()
         {
@@ -34,6 +35,7 @@ namespace BD
             model = new BAZANOWEntities();
             Districtss = new ObservableCollection<Районы_города>(model.Районы_города.ToArray());
             DataGrid.ItemsSource = Districtss;
+
         }
 
         public ObservableCollection<Районы_города> Districtss
@@ -42,7 +44,16 @@ namespace BD
             set
             {
                 _districts = value;
-                OnPropertyChanged();
+            }
+        }
+
+        public Районы_города SelectedDistrict
+        {
+            get => _dist;
+            set
+            {
+                _dist = value;
+                OnPropertyChanged("SelectedDistrict");
             }
         }
 
@@ -62,34 +73,36 @@ namespace BD
                 Название_района = DistrictNameEdit.Text
             };
 
-            // Добавить в DbSet
-            // Сохранить изменения в базе данных
-            var res = model.Районы_города.FirstOrDefault(a => a.Название_района == DistrictNameEdit.Text);
-            if (res == null && RegexClass.RegexDistrict(DistrictNameEdit.Text))
+            if (MessageBox.Show("Подтверждение", "Вы уверены, что хотите внести изменения в базу данных?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                model.Районы_города.Local.Add(district);
-                model.Районы_города.Add(district);
-                model.SaveChanges();
-                DistrictNameEdit.Text = "";
-                DistrictNameEdit.IsReadOnly = true;
-                AddDistrict.IsEnabled = false;
-            }
-            else
-            {
-                MessageBox.Show("Ошибка", "Проверьте правильность вводимых данных", MessageBoxButton.OK);
+                try
+                {
+                    model.Районы_города.Add(district);
+                    model.SaveChanges();
+                    DistrictNameEdit.Text = "";
+                    DistrictNameEdit.IsReadOnly = true;
+                    AddDistrict.IsEnabled = false;
+                }
+                catch (System.Data.Entity.Infrastructure.DbUpdateException)
+                {
+                    MessageBox.Show("Ошибка", "Проверьте правильность вводимых данных", MessageBoxButton.OK);
+                }
             }
         }
 
         private void ButtonDelete(object sender, RoutedEventArgs e)
         {
-            try
+            if (MessageBox.Show("Подтверждение", "Вы уверены, что хотите внести изменения в базу данных?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                model.Районы_города.Local.Remove(DataGrid.SelectedItem as Районы_города);
-                model.SaveChanges();
-            }
-            catch (System.Data.Entity.Infrastructure.DbUpdateException)
-            {
-                System.Windows.MessageBox.Show("Ашибка! Запись связана!!!");
+                try
+                {
+                    model.Районы_города.Remove(DataGrid.SelectedItem as Районы_города);
+                    model.SaveChanges();
+                }
+                catch (System.Data.Entity.Infrastructure.DbUpdateException)
+                {
+                    MessageBox.Show("Ошибка", "Удаляемые данные связаны!", MessageBoxButton.OK);
+                }
             }
         }
 
@@ -113,16 +126,15 @@ namespace BD
             {
                 try
                 {
-                    // ключ по которому будем менять данные 
-                    string rayon = (DataGrid.SelectedItem as Районы_города).Название_района;
-                    int key = model.Районы_города.FirstOrDefault(a => a.Название_района == rayon).id_района;
-                    var item = model.Районы_города.Find(key);
-                    if (item != null)
+                    if (SelectedDistrict != null)
                     {
-                        item.Название_района = DistrictNameEdit.Text.ToString();
+                        MessageBox.Show("Ошибка", "Проверьте правильность вводимых данных", MessageBoxButton.OK);
+                    }
+                    else
+                    {
+                        (DataGrid.SelectedItem as Районы_города).Название_района = DistrictNameEdit.Text.ToString();
                         model.SaveChanges();
-                        //OnPropertyChanged();
-                        DataGrid.ItemsSource = new ObservableCollection<Районы_города>(model.Районы_города.ToArray());
+                        //DataGrid.ItemsSource = new ObservableCollection<Районы_города>(model.Районы_города.ToArray());
                         DistrictNameEdit.Text = "";
                         DistrictNameEdit.IsReadOnly = true;
                         SaveEdit.IsEnabled = false;
@@ -135,11 +147,14 @@ namespace BD
             }
         }
 
-        void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
-        }
         public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
+        }
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

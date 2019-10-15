@@ -23,7 +23,6 @@ namespace BD
     {
         BAZANOWEntities model;
         private ObservableCollection<Транспортные_маршруты> _routes;
-        Транспортные_маршруты routes;
 
         public Routes()
         {
@@ -31,7 +30,6 @@ namespace BD
             model = new BAZANOWEntities();
             Route = new ObservableCollection<Транспортные_маршруты>(model.Транспортные_маршруты.Include("Виды_Транспорта").Include("Остановки").ToArray());
             DataGrid.ItemsSource = Route;
-            DataContext = routes;
         }
 
         public ObservableCollection<Транспортные_маршруты> Route
@@ -71,7 +69,28 @@ namespace BD
 
         private void ButtonAddRoute(object sender, RoutedEventArgs e)
         {
-            
+            Транспортные_маршруты route = new Транспортные_маршруты
+            {
+                Номер_маршрута = RouteNumber.Text
+            };
+
+            if (MessageBox.Show("Подтверждение", "Вы уверены, что хотите внести изменения в базу данных?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    model.Транспортные_маршруты.Add(route);
+                    model.SaveChanges();
+                    RouteNumber.Text = "";
+                    TransportMode.Text = "";
+                    RouteNumber.IsReadOnly = true;
+                    TransportMode.IsReadOnly = true;
+                    AddRoute.IsEnabled = false;
+                }
+                catch (System.Data.Entity.Infrastructure.DbUpdateException)
+                {
+                    MessageBox.Show("Ошибка", "Проверьте правильность вводимых данных", MessageBoxButton.OK);
+                }
+            }
         }
 
         private void ButtonSaveEdit(object sender, RoutedEventArgs e)

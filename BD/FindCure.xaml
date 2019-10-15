@@ -12,7 +12,7 @@
             <RowDefinition Height="60*"/>
         </Grid.RowDefinitions>
         <Label x:Name="label" Content="Выберите лекарство:" HorizontalAlignment="Left" Height="32" Margin="10,10,0,0" VerticalAlignment="Top" Width="201" FontFamily="Times New Roman" FontSize="20" FontWeight="Bold"/>
-        <ComboBox x:Name="comboBox_drugs" HorizontalAlignment="Left" Margin="254,10,0,0" VerticalAlignment="Top" Width="315" Height="32" FontSize="16" FontFamily="Times New Roman">
+        <ComboBox x:Name="comboBox_drugs" HorizontalAlignment="Left" Margin="254,10,0,0" VerticalAlignment="Top" Width="315" Height="32">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Vertical">
@@ -22,7 +22,7 @@
             </ComboBox.ItemTemplate>
         </ComboBox>
         <Label x:Name="label_Copy1" Content="Выберите остановку:" HorizontalAlignment="Left" Height="32" Margin="10,53,0,0" VerticalAlignment="Top" Width="201" FontFamily="Times New Roman" FontSize="20" FontWeight="Bold" RenderTransformOrigin="0.513,1.275"/>
-        <ComboBox x:Name="comboBox_stops" HorizontalAlignment="Left" Margin="254,53,0,0" VerticalAlignment="Top" Width="315" Height="32" FontFamily="Times New Roman" FontSize="16">
+        <ComboBox x:Name="comboBox_stops" HorizontalAlignment="Left" Margin="254,53,0,0" VerticalAlignment="Top" Width="315" Height="32">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Vertical">
