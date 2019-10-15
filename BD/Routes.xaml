@@ -8,29 +8,24 @@
         Title="Маршруты" Height="408" Width="809">
     <DockPanel>
         <DockPanel DockPanel.Dock="Top">
-            <Button Content="Закрыть" DockPanel.Dock="Right"/>
+            <Button Content="Закрыть" DockPanel.Dock="Right" Click="Button_Click"/>
             <StackPanel Orientation="Horizontal">
-                <Button Content="Добавить"/>
-                <Button Content="Изменить"/>
-                <Button Content="Удалить"/>
+                <Button x:Name="Add" Content="Добавить" Click="ButtonAdd"/>
+                <Button x:Name="Edit" Content="Изменить" IsEnabled="False" Click="ButtonEdit"/>
+                <Button x:Name="Delete" Content="Удалить" IsEnabled="False" Click="ButtonDelete"/>
             </StackPanel>
         </DockPanel>
-        <StackPanel Height="50" DockPanel.Dock="Bottom"/>
-        <DataGrid x:Name="DataGrid" AutoGenerateColumns="False">
+        <StackPanel Height="50" DockPanel.Dock="Bottom" Orientation="Horizontal">
+            <TextBox x:Name="RouteNumber" Width="100" Margin="10" IsReadOnly="True"/>
+            <TextBox x:Name="TransportMode" Width="160" Margin="10" IsReadOnly="True"/>
+            <Button x:Name="AddRoute" Content="Добавить" IsEnabled="False" Click="ButtonAddRoute"/>
+            <Button x:Name="SaveEdit" Content="Сохранить" IsEnabled="False" Click="ButtonSaveEdit"/>
+        </StackPanel>
+        <DataGrid x:Name="DataGrid" AutoGenerateColumns="False" SelectionChanged="DataGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Номер_маршрута}" ClipboardContentBinding="{x:Null}" Header="Номер маршрута" Width="130"/>
                 <DataGridTextColumn Binding="{Binding Виды_Транспорта.Вид_транспорта}" ClipboardContentBinding="{x:Null}" Header="Вид транспорта" Width="*"/>
             </DataGrid.Columns>
-
-            <DataGrid.RowDetailsTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Остановки: "/>
-                        <ListBox ItemsSource="{Binding Остановки.Название_остановки}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </DataGrid.RowDetailsTemplate>
-
         </DataGrid>
     </DockPanel>
 </Window>

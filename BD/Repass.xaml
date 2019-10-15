@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:BD"
         mc:Ignorable="d"
         Title="Смена пароля" Height="238.238" Width="412.351">
-    <Grid Background="#FFEC4646">
+    <Grid Background="#FFE8C9">
         <Grid.RowDefinitions>
             <RowDefinition Height="25*"/>
             <RowDefinition Height="25*"/>

@@ -146,6 +146,8 @@ namespace BD
                 Edit.IsEnabled = true;
                 Delete.IsEnabled = true;
                 DistrictNameEdit.IsEnabled = false;
+                AddDistrict.IsEnabled = false;
+                SaveEdit.IsEnabled = false;
             }
 
             if (DataGrid.SelectedItem == null)
