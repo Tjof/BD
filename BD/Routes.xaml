@@ -8,18 +8,14 @@
         Title="Транспортные Маршруты" Height="408" Width="809">
     <DockPanel>
         <DockPanel DockPanel.Dock="Top">
-            <Button Content="Закрыть" DockPanel.Dock="Right" Click="Button_Click"/>
+            <Button Content="Закрыть" DockPanel.Dock="Right" Click="ButtonClose"/>
             <StackPanel Orientation="Horizontal">
                 <Button x:Name="Add" Content="Добавить" Click="ButtonAdd"/>
                 <Button x:Name="Edit" Content="Изменить" IsEnabled="False" Click="ButtonEdit"/>
                 <Button x:Name="Delete" Content="Удалить" IsEnabled="False" Click="ButtonDelete"/>
             </StackPanel>
         </DockPanel>
-        <StackPanel Height="50" DockPanel.Dock="Bottom" Orientation="Horizontal">
-            <TextBox x:Name="RouteNumber" Width="100" Margin="10" IsReadOnly="True"/>
-            <TextBox x:Name="TransportMode" Width="160" Margin="10" IsReadOnly="True"/>
-            <Button x:Name="AddRoute" Content="Добавить" IsEnabled="False" Click="ButtonAddRoute"/>
-            <Button x:Name="SaveEdit" Content="Сохранить" IsEnabled="False" Click="ButtonSaveEdit"/>
+        <StackPanel Height="50" DockPanel.Dock="Bottom">
         </StackPanel>
         <DataGrid x:Name="DataGrid" SelectionChanged="DataGrid_SelectionChanged">
             <DataGrid.Columns>

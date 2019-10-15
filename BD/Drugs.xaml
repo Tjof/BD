@@ -22,7 +22,6 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding Название_лекарства}" ClipboardContentBinding="{x:Null}" Header="Название лекарства" Width="*"/>
                 </DataGrid.Columns>
-
             </DataGrid>
             <DataGrid Width="400" ItemsSource="{Binding ElementName=DataGrid, Path=SelectedItem.Лекарство1}" AutoGenerateColumns="False">
                 <DataGrid.Columns>

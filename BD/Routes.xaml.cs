@@ -22,35 +22,20 @@ namespace BD
     public partial class Routes : Window
     {
         BAZANOWEntities model;
-        private ObservableCollection<Транспортные_маршруты> _routes;
 
         public Routes()
         {
             InitializeComponent();
-            model = new BAZANOWEntities();
-            Route = new ObservableCollection<Транспортные_маршруты>(model.Транспортные_маршруты.Include("Виды_Транспорта").Include("Остановки").ToArray());
-            DataGrid.ItemsSource = Route;
-        }
-
-        public ObservableCollection<Транспортные_маршруты> Route
-        {
-            get => _routes;
-            set
-            {
-                _routes = value;
-            }
         }
 
         private void ButtonAdd(object sender, RoutedEventArgs e)
         {
-            RouteNumber.Text = "";
-            TransportMode.Text = "";
-            RouteNumber.IsReadOnly = false;
-            TransportMode.IsReadOnly = false;
-            AddRoute.IsEnabled = true;
-            RouteNumber.IsEnabled = true;
-            TransportMode.IsEnabled = true;
-            RouteNumber.Focus();
+
+        }
+
+        private void ButtonEdit(object sender, RoutedEventArgs e)
+        {
+
         }
 
         private void ButtonDelete(object sender, RoutedEventArgs e)
@@ -58,73 +43,9 @@ namespace BD
 
         }
 
-        private void ButtonEdit(object sender, RoutedEventArgs e)
-        {
-            SaveEdit.IsEnabled = true;
-            RouteNumber.IsEnabled = true;
-            TransportMode.IsEnabled = true;
-            RouteNumber.IsReadOnly = false;
-            TransportMode.IsReadOnly = false;
-        }
-
-        private void ButtonAddRoute(object sender, RoutedEventArgs e)
-        {
-            Транспортные_маршруты route = new Транспортные_маршруты
-            {
-                Номер_маршрута = RouteNumber.Text
-            };
-
-            if (MessageBox.Show("Подтверждение", "Вы уверены, что хотите внести изменения в базу данных?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-            {
-                try
-                {
-                    model.Транспортные_маршруты.Add(route);
-                    model.SaveChanges();
-                    RouteNumber.Text = "";
-                    TransportMode.Text = "";
-                    RouteNumber.IsReadOnly = true;
-                    TransportMode.IsReadOnly = true;
-                    AddRoute.IsEnabled = false;
-                }
-                catch (System.Data.Entity.Infrastructure.DbUpdateException)
-                {
-                    MessageBox.Show("Ошибка", "Проверьте правильность вводимых данных", MessageBoxButton.OK);
-                }
-            }
-        }
-
-        private void ButtonSaveEdit(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ButtonClose(object sender, RoutedEventArgs e)
         {
             Close();
-        }
-
-        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (DataGrid.SelectedItem != null)
-            {
-                Edit.IsEnabled = true;
-                Delete.IsEnabled = true;
-                RouteNumber.IsEnabled = false;
-                TransportMode.IsEnabled = false;
-                AddRoute.IsEnabled = false;
-                SaveEdit.IsEnabled = false;
-            }
-
-            if (DataGrid.SelectedItem == null)
-            {
-                RouteNumber.Text = "";
-                TransportMode.Text = "";
-            }
-            else
-            {
-                RouteNumber.Text = (DataGrid.SelectedItem as Транспортные_маршруты).Номер_маршрута;
-                TransportMode.Text = (DataGrid.SelectedItem as Транспортные_маршруты).Виды_Транспорта.Вид_транспорта;
-            }
         }
     }
 }
