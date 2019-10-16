@@ -27,7 +27,6 @@ namespace BD
     {
         BAZANOWEntities model;
         private ObservableCollection<Районы_города> _districts;
-        private Районы_города _dist;
 
         public Districts()
         {
@@ -47,23 +46,14 @@ namespace BD
             }
         }
 
-        public Районы_города SelectedDistrict
-        {
-            get => _dist;
-            set
-            {
-                _dist = value;
-                OnPropertyChanged("SelectedDistrict");
-            }
-        }
-
         private void ButtonAdd(object sender, RoutedEventArgs e)
         {
             DistrictNameEdit.Text = "";
             DistrictNameEdit.IsReadOnly = false;
-            SaveEdit.IsEnabled = true;
+            AddEditDistrict.IsEnabled = true;
             DistrictNameEdit.IsEnabled = true;
             DistrictNameEdit.Focus();
+            DataGrid.SelectedItem = null;
         }
 
         private void ButtonDelete(object sender, RoutedEventArgs e)
@@ -84,7 +74,7 @@ namespace BD
 
         private void ButtonEdit(object sender, RoutedEventArgs e)
         {
-            SaveEdit.IsEnabled = true;
+            AddEditDistrict.IsEnabled = true;
             DistrictNameEdit.IsEnabled = true;
             DistrictNameEdit.IsReadOnly = false;
             DistrictNameEdit.Focus();
@@ -100,17 +90,17 @@ namespace BD
         {
             if (MessageBox.Show("Подтверждение", "Вы уверены, что хотите внести изменения в базу данных?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                if (SelectedDistrict != null)
+                if (DataGrid.SelectedItem != null)
                 {
                     if (DistrictNameEdit != null)
                     {
                         try
                         {
-                            SelectedDistrict.Название_района = DistrictNameEdit.Text;
+                            (DataGrid.SelectedItem as Районы_города).Название_района = DistrictNameEdit.Text;
                             model.SaveChanges();
                             DistrictNameEdit.Text = "";
                             DistrictNameEdit.IsReadOnly = true;
-                            SaveEdit.IsEnabled = false;
+                            AddEditDistrict.IsEnabled = false;
                         }
                         catch (System.Data.Entity.Infrastructure.DbUpdateException)
                         {
@@ -130,7 +120,7 @@ namespace BD
                             model.SaveChanges();
                             DistrictNameEdit.Text = "";
                             DistrictNameEdit.IsReadOnly = true;
-                            SaveEdit.IsEnabled = false;
+                            AddEditDistrict.IsEnabled = false;
                         }
                         catch (System.Data.Entity.Infrastructure.DbUpdateException)
                         {
@@ -157,7 +147,7 @@ namespace BD
                 Edit.IsEnabled = true;
                 Delete.IsEnabled = true;
                 DistrictNameEdit.IsEnabled = false;
-                SaveEdit.IsEnabled = false;
+                AddEditDistrict.IsEnabled = false;
             }
 
             if (DataGrid.SelectedItem == null)
