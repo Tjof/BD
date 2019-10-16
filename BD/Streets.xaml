@@ -10,7 +10,7 @@
         <DockPanel DockPanel.Dock="Top">
             <Button Content="Закрыть" DockPanel.Dock="Right" Click="ButtonClose"/>
             <StackPanel Orientation="Horizontal">
-                <Button Content="Добавить" Click="ButtonAdd"/>
+                <Button x:Name="Add" Content="Добавить" Click="ButtonAdd"/>
                 <Button x:Name="Edit" Content="Изменить" Click="ButtonEdit" IsEnabled="False"/>
                 <Button x:Name="Delete" Content="Удалить" Click="ButtonDelete" IsEnabled="False"/>
             </StackPanel>

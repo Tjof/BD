@@ -10,18 +10,18 @@
         <DockPanel DockPanel.Dock="Top">
             <Button Content="Закрыть" DockPanel.Dock="Right" Click="ButtonClose"/>
             <StackPanel Orientation="Horizontal">
-                <Button Content="Добавить" Click="ButtonAdd"/>
+                <Button x:Name="Add" Content="Добавить" Click="ButtonAdd"/>
                 <Button x:Name="Edit" Content="Изменить" Click="ButtonEdit" IsEnabled="False"/>
                 <Button x:Name="Delete" Content="Удалить" Click="ButtonDelete" IsEnabled="False"/>
             </StackPanel>
         </DockPanel>
         <StackPanel Height="50" DockPanel.Dock="Bottom" Orientation="Horizontal">
-            <TextBox x:Name="StreetNameEdit" HorizontalAlignment="Left" IsEnabled="False" Height="35" Margin="40,7,0,8" TextWrapping="Wrap" Width="250" IsReadOnly="True"/>
-            <Button x:Name="AddEditStreet" Content="Сохранить" Margin="20,7,0,8" Click="ButtonSaveEdit" IsEnabled="False"/>
+            <TextBox x:Name="PackingFormNameEdit" HorizontalAlignment="Left" IsEnabled="False" Height="35" Margin="40,7,0,8" TextWrapping="Wrap" Width="250" IsReadOnly="True"/>
+            <Button x:Name="AddEditPackingform" Content="Сохранить" Margin="20,7,0,8" Click="ButtonSaveEdit" IsEnabled="False"/>
         </StackPanel>
-        <DataGrid x:Name="DataGrid" AutoGenerateColumns="False">
+        <DataGrid x:Name="DataGrid" AutoGenerateColumns="False" SelectionChanged="DataGrid_SelectionChanged">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Название_формы}" ClipboardContentBinding="{x:Null}" Header="Название формы" Width="200"/>
+                <DataGridTextColumn Binding="{Binding Название_формы}" ClipboardContentBinding="{x:Null}" Header="Название формы" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
     </DockPanel>

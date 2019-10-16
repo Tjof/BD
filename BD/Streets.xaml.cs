@@ -27,7 +27,6 @@ namespace BD
     {
         BAZANOWEntities model;
         private ObservableCollection<Улицы> _streetss;
-        private Улицы _streets;
 
         public Streets()
         {
@@ -44,16 +43,6 @@ namespace BD
             set
             {
                 _streetss = value;
-            }
-        }
-
-        public Улицы SelectedStreet
-        {
-            get => _streets;
-            set
-            {
-                _streets = value;
-                OnPropertyChanged("SelectedStreet");
             }
         }
 

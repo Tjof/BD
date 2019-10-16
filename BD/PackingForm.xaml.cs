@@ -26,44 +26,33 @@ namespace BD
     public partial class PackingForm : Window, INotifyPropertyChanged
     {
         BAZANOWEntities model;
-        private ObservableCollection<Улицы> _streetss;
-        private Улицы _streets;
+        private ObservableCollection<Формы_упаковки> _packingformss;
 
         public PackingForm()
         {
             InitializeComponent();
             model = new BAZANOWEntities();
-            Streetss = new ObservableCollection<Улицы>(model.Улицы.ToArray());
-            DataGrid.ItemsSource = Streetss;
+            PackingForms = new ObservableCollection<Формы_упаковки>(model.Формы_упаковки.ToArray());
+            DataGrid.ItemsSource = PackingForms;
 
         }
 
-        public ObservableCollection<Улицы> Streetss
+        public ObservableCollection<Формы_упаковки> PackingForms
         {
-            get => _streetss;
+            get => _packingformss;
             set
             {
-                _streetss = value;
-            }
-        }
-
-        public Улицы SelectedStreet
-        {
-            get => _streets;
-            set
-            {
-                _streets = value;
-                OnPropertyChanged("SelectedStreet");
+                _packingformss = value;
             }
         }
 
         private void ButtonAdd(object sender, RoutedEventArgs e)
         {
-            StreetNameEdit.Text = "";
-            StreetNameEdit.IsReadOnly = false;
-            AddEditStreet.IsEnabled = true;
-            StreetNameEdit.IsEnabled = true;
-            StreetNameEdit.Focus();
+            PackingFormNameEdit.Text = "";
+            PackingFormNameEdit.IsReadOnly = false;
+            AddEditPackingform.IsEnabled = true;
+            PackingFormNameEdit.IsEnabled = true;
+            PackingFormNameEdit.Focus();
             DataGrid.SelectedItem = null;
         }
 
@@ -73,7 +62,7 @@ namespace BD
             {
                 try
                 {
-                    model.Улицы.Remove(DataGrid.SelectedItem as Улицы);
+                    model.Формы_упаковки.Remove(DataGrid.SelectedItem as Формы_упаковки);
                     model.SaveChanges();
                 }
                 catch (System.Data.Entity.Infrastructure.DbUpdateException)
@@ -85,11 +74,11 @@ namespace BD
 
         private void ButtonEdit(object sender, RoutedEventArgs e)
         {
-            AddEditStreet.IsEnabled = true;
-            StreetNameEdit.IsEnabled = true;
-            StreetNameEdit.IsReadOnly = false;
-            StreetNameEdit.Focus();
-            StreetNameEdit.SelectionStart = StreetNameEdit.Text.Length;
+            AddEditPackingform.IsEnabled = true;
+            PackingFormNameEdit.IsEnabled = true;
+            PackingFormNameEdit.IsReadOnly = false;
+            PackingFormNameEdit.Focus();
+            PackingFormNameEdit.SelectionStart = PackingFormNameEdit.Text.Length;
         }
 
         private void ButtonClose(object sender, RoutedEventArgs e)
@@ -103,15 +92,15 @@ namespace BD
             {
                 if (DataGrid.SelectedItem != null)
                 {
-                    if (StreetNameEdit != null)
+                    if (PackingFormNameEdit != null)
                     {
                         try
                         {
-                            (DataGrid.SelectedItem as Улицы).Название_улицы = StreetNameEdit.Text;
+                            (DataGrid.SelectedItem as Формы_упаковки).Название_формы = PackingFormNameEdit.Text;
                             model.SaveChanges();
-                            StreetNameEdit.Text = "";
-                            StreetNameEdit.IsReadOnly = true;
-                            AddEditStreet.IsEnabled = false;
+                            PackingFormNameEdit.Text = "";
+                            PackingFormNameEdit.IsReadOnly = true;
+                            AddEditPackingform.IsEnabled = false;
                         }
                         catch (System.Data.Entity.Infrastructure.DbUpdateException)
                         {
@@ -121,17 +110,17 @@ namespace BD
                 }
                 else
                 {
-                    if (StreetNameEdit != null)
+                    if (PackingFormNameEdit != null)
                     {
-                        Улицы street = new Улицы();
+                        Формы_упаковки packingform = new Формы_упаковки();
                         try
                         {
-                            street.Название_улицы = StreetNameEdit.Text;
-                            model.Улицы.Add(street);
+                            packingform.Название_формы = PackingFormNameEdit.Text;
+                            model.Формы_упаковки.Add(packingform);
                             model.SaveChanges();
-                            StreetNameEdit.Text = "";
-                            StreetNameEdit.IsReadOnly = true;
-                            AddEditStreet.IsEnabled = false;
+                            PackingFormNameEdit.Text = "";
+                            PackingFormNameEdit.IsReadOnly = true;
+                            AddEditPackingform.IsEnabled = false;
                         }
                         catch (System.Data.Entity.Infrastructure.DbUpdateException)
                         {
@@ -157,17 +146,17 @@ namespace BD
             {
                 Edit.IsEnabled = true;
                 Delete.IsEnabled = true;
-                StreetNameEdit.IsEnabled = false;
-                AddEditStreet.IsEnabled = false;
+                PackingFormNameEdit.IsEnabled = false;
+                AddEditPackingform.IsEnabled = false;
             }
 
             if (DataGrid.SelectedItem == null)
             {
-                StreetNameEdit.Text = "";
+                PackingFormNameEdit.Text = "";
             }
             else
             {
-                StreetNameEdit.Text = (DataGrid.SelectedItem as Улицы).Название_улицы;
+                PackingFormNameEdit.Text = (DataGrid.SelectedItem as Формы_упаковки).Название_формы;
             }
         }
     }
