@@ -24,13 +24,13 @@ namespace BD
     public partial class Drugstore : Window, INotifyPropertyChanged
     {
         BAZANOWEntities model;
-        private ObservableCollection<Аптеки> _drugs;
+        ObservableCollection<Аптеки> _drugs;
 
         public Drugstore()
         {
             InitializeComponent();
             model = new BAZANOWEntities();
-            Drugs = new ObservableCollection<Аптеки>(model.Аптеки.Include("Улицы").ToArray());
+            Drugs = new ObservableCollection<Аптеки>(model.Аптеки.Include("Улицы").Include("Остановки").ToArray());
             DataGrid.ItemsSource = Drugs;
         }
 
@@ -64,15 +64,18 @@ namespace BD
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (MessageBox.Show("Подтверждение", "Вы уверены, что хотите внести изменения в базу данных?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                model.Аптеки.Local.Remove(DataGrid.SelectedItem as Аптеки);
-                model.SaveChanges();
-                OnPropertyChanged();
-            }
-            catch (System.Data.Entity.Infrastructure.DbUpdateException)
-            {
-                System.Windows.MessageBox.Show("Ашибка! Запись связана!!!");
+                try
+                {
+                    model.Аптеки.Local.Remove(DataGrid.SelectedItem as Аптеки);
+                    model.SaveChanges();
+                    OnPropertyChanged();
+                }
+                catch (System.Data.Entity.Infrastructure.DbUpdateException)
+                {
+                    System.Windows.MessageBox.Show("Ашибка! Запись связана!!!");
+                }
             }
         }
 

@@ -109,15 +109,6 @@
     <Compile Include="AddDrugstore.xaml.cs">
       <DependentUpon>AddDrugstore.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AddPackingForm.xaml.cs">
-      <DependentUpon>AddPackingForm.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="AddStreet.xaml.cs">
-      <DependentUpon>AddStreet.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="AddTransportMode.xaml.cs">
-      <DependentUpon>AddTransportMode.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Class\RegexClass.cs" />
     <Compile Include="Drugstore.xaml.cs">
       <DependentUpon>Drugstore.xaml</DependentUpon>
@@ -221,18 +212,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddDrugstore.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="AddPackingForm.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="AddStreet.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="AddTransportMode.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

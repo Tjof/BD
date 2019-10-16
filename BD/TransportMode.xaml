@@ -8,15 +8,18 @@
         Title="Виды транспорта" Height="408" Width="809">
     <DockPanel>
         <DockPanel DockPanel.Dock="Top">
-            <Button Content="Закрыть" DockPanel.Dock="Right"/>
+            <Button Content="Закрыть" DockPanel.Dock="Right" Click="ButtonClose"/>
             <StackPanel Orientation="Horizontal">
-                <Button Content="Добавить"/>
-                <Button x:Name="Edit" Content="Изменить"/>
-                <Button x:Name="Delete" Content="Удалить"/>
+                <Button x:Name="Add" Content="Добавить" Click="ButtonAdd"/>
+                <Button x:Name="Edit" Content="Изменить" Click="ButtonEdit" IsEnabled="False"/>
+                <Button x:Name="Delete" Content="Удалить" Click="ButtonDelete" IsEnabled="False"/>
             </StackPanel>
         </DockPanel>
-        <StackPanel Height="50" DockPanel.Dock="Bottom"/>
-        <DataGrid x:Name="DataGrid" AutoGenerateColumns="False" >
+        <StackPanel Height="50" DockPanel.Dock="Bottom" Orientation="Horizontal">
+            <TextBox x:Name="TransportModeNameEdit" HorizontalAlignment="Left" IsEnabled="False" Height="35" Margin="40,7,0,8" TextWrapping="Wrap" Width="250" IsReadOnly="True"/>
+            <Button x:Name="AddEditTransportMode" Content="Сохранить" Margin="20,7,0,8" Click="ButtonSaveEdit" IsEnabled="False"/>
+        </StackPanel>
+        <DataGrid x:Name="DataGrid" AutoGenerateColumns="False" SelectionChanged="DataGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Вид_транспорта}" ClipboardContentBinding="{x:Null}" Header="Вид транспорта" Width="*"/>
             </DataGrid.Columns>
