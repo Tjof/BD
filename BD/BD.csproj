@@ -115,6 +115,9 @@
     <Compile Include="AddEditStop.xaml.cs">
       <DependentUpon>AddEditStop.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddRoute.xaml.cs">
+      <DependentUpon>AddRoute.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Class\RegexClass.cs" />
     <Compile Include="Drugstore.xaml.cs">
       <DependentUpon>Drugstore.xaml</DependentUpon>
@@ -226,6 +229,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddEditStop.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddRoute.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

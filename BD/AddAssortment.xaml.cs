@@ -46,6 +46,9 @@ namespace BD
             {
                 Title = "Редактирование ассортимента";
                 AddEdit.Content = "Изменить";
+                DrugName.IsEnabled = false;
+                DrugstoreName.IsEnabled = false;
+                PackingFormName.IsEnabled = false;
             }
         }
 

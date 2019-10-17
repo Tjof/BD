@@ -10,13 +10,12 @@
         <DockPanel DockPanel.Dock="Top">
             <Button Content="Закрыть" DockPanel.Dock="Right" Click="ButtonClose"/>
             <StackPanel Orientation="Horizontal">
-                <Button x:Name="Add" Content="Добавить" Click="ButtonAdd"/>
-                <Button x:Name="Edit" Content="Изменить" IsEnabled="False" Click="ButtonEdit"/>
-                <Button x:Name="Delete" Content="Удалить" IsEnabled="False" Click="ButtonDelete"/>
+                <Button x:Name="Add" Content="Добавить" Click="ButtonAddRoute"/>
+                <Button x:Name="Edit" Content="Изменить" IsEnabled="False" Click="Edit_Click"/>
+                <Button x:Name="Delete" Content="Удалить" IsEnabled="False" Click="Delete_Click"/>
             </StackPanel>
         </DockPanel>
-        <StackPanel Height="50" DockPanel.Dock="Bottom">
-        </StackPanel>
+        <StackPanel Height="50" DockPanel.Dock="Bottom"/>
         <DataGrid x:Name="DataGrid" SelectionChanged="DataGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Номер_маршрута}" ClipboardContentBinding="{x:Null}" Header="Номер маршрута" Width="130"/>

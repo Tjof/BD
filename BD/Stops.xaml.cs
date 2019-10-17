@@ -74,7 +74,7 @@ namespace BD
                 }
                 catch (System.Data.Entity.Infrastructure.DbUpdateException)
                 {
-                    System.Windows.MessageBox.Show("Ашибка! Запись связана!!!");
+                    MessageBox.Show("Ошибка", "Удаляемые данные связаны!", MessageBoxButton.OK);
                 }
             }
         }

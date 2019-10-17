@@ -58,7 +58,6 @@ namespace BD
                     {
                         model.Остановки.Add(stop);
                     }
-                    
                     model.SaveChanges();
                     OnPropertyChanged();
                 }

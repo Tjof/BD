@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -19,28 +21,27 @@ namespace BD
     /// <summary>
     /// Логика взаимодействия для Routes.xaml
     /// </summary>
-    public partial class Routes : Window
+    public partial class Routes : Window, INotifyPropertyChanged
     {
         BAZANOWEntities model;
+        ObservableCollection<Транспортные_маршруты> _routes;
 
         public Routes()
         {
             InitializeComponent();
+            model = new BAZANOWEntities();
+            Routess = new ObservableCollection<Транспортные_маршруты>(model.Транспортные_маршруты.Include("Виды_Транспорта").ToArray());
+            DataGrid.ItemsSource = Routess;
         }
 
-        private void ButtonAdd(object sender, RoutedEventArgs e)
+        public ObservableCollection<Транспортные_маршруты> Routess
         {
-
-        }
-
-        private void ButtonEdit(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void ButtonDelete(object sender, RoutedEventArgs e)
-        {
-
+            get => _routes;
+            set
+            {
+                _routes = value;
+                OnPropertyChanged();
+            }
         }
 
         private void ButtonClose(object sender, RoutedEventArgs e)
@@ -48,9 +49,52 @@ namespace BD
             Close();
         }
 
+        private void ButtonAddRoute(object sender, RoutedEventArgs e)
+        {
+            Транспортные_маршруты a = new Транспортные_маршруты();
+            AddRoute addRoute = new AddRoute(model, a);
+            addRoute.ShowDialog();
+        }
+
+        void OnPropertyChanged([CallerMemberName] string prop = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Подтверждение", "Вы уверены, что хотите внести изменения в базу данных?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    model.Транспортные_маршруты.Remove(DataGrid.SelectedItem as Транспортные_маршруты);
+                    model.SaveChanges();
+                    OnPropertyChanged();
+                }
+                catch (System.Data.Entity.Infrastructure.DbUpdateException)
+                {
+                    MessageBox.Show("Ошибка", "Удаляемые данные связаны!", MessageBoxButton.OK);
+                }
+            }
+        }
+
+        private void Edit_Click(object sender, RoutedEventArgs e)
+        {
+            AddRoute editStop = new AddRoute(model, DataGrid.SelectedItem as Транспортные_маршруты)
+            {
+                Owner = this
+            };
+            editStop.ShowDialog();
+        }
+
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if (DataGrid.SelectedItem != null)
+            {
+                Edit.IsEnabled = true;
+                Delete.IsEnabled = true;
+            }
         }
     }
 }
