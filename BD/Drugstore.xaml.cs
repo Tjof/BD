@@ -68,7 +68,7 @@ namespace BD
             {
                 try
                 {
-                    model.Аптеки.Local.Remove(DataGrid.SelectedItem as Аптеки);
+                    model.Аптеки.Remove(DataGrid.SelectedItem as Аптеки);
                     model.SaveChanges();
                     OnPropertyChanged();
                 }

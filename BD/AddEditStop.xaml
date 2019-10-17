@@ -1,0 +1,31 @@
+﻿<Window x:Class="BD.AddEditStop"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BD"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Height="200" Width="550" Background="#FFF8E9">
+
+    <DockPanel>
+        <StackPanel Height="50" DockPanel.Dock="Bottom">
+            <Button x:Name="AddEdit" HorizontalAlignment="Right" Click="AddEditClick"/>
+        </StackPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="183" />
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Column="0" Grid.Row="0" Text="Название остановки" Margin="10" VerticalAlignment="Center" FontSize="15"/>
+            <TextBox  x:Name="StopName" Text="{Binding Название_остановки}" Grid.Column="1" Grid.Row="0" Margin="10" FontSize="15"/>
+            <TextBlock Grid.Column="0" Grid.Row="1" Text="Улица" Margin="10" VerticalAlignment="Center" FontSize="15"/>
+            <ComboBox x:Name="ComboBoxStreet" SelectedItem="{Binding Улицы}" DisplayMemberPath="Название_улицы" Grid.Column="1" Grid.Row="1" Margin="10" Height="32" FontSize="15"/>
+            
+        </Grid>
+    </DockPanel>
+</Window>

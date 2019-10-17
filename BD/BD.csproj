@@ -103,11 +103,17 @@
     <Compile Include="AboutTheProgram.xaml.cs">
       <DependentUpon>AboutTheProgram.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddAssortment.xaml.cs">
+      <DependentUpon>AddAssortment.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddDrug.xaml.cs">
       <DependentUpon>AddDrug.xaml</DependentUpon>
     </Compile>
     <Compile Include="AddDrugstore.xaml.cs">
       <DependentUpon>AddDrugstore.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddEditStop.xaml.cs">
+      <DependentUpon>AddEditStop.xaml</DependentUpon>
     </Compile>
     <Compile Include="Class\RegexClass.cs" />
     <Compile Include="Drugstore.xaml.cs">
@@ -207,11 +213,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AddAssortment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddDrug.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddDrugstore.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddEditStop.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -23,44 +23,42 @@ namespace BD
     /// <summary>
     /// Логика взаимодействия для AD.xaml
     /// </summary>
-    public partial class AddDrugstore : Window, INotifyPropertyChanged
+    public partial class AddEditStop : Window, INotifyPropertyChanged
     {
         BAZANOWEntities model;
-        Аптеки drugstore;
+        Остановки stop;
 
-        public AddDrugstore(BAZANOWEntities model, Аптеки drugstore)
+        public AddEditStop(BAZANOWEntities model, Остановки stop)
         {
             InitializeComponent();
-            this.drugstore = drugstore;
-            DataContext = drugstore;
+            this.stop = stop;
+            DataContext = stop;
             this.model = model;
-            ComboBox_street.ItemsSource = model.Улицы.ToArray();
-            if (model.Entry(drugstore).State == System.Data.Entity.EntityState.Detached)
+            ComboBoxStreet.ItemsSource = model.Улицы.ToArray();
+            if (model.Entry(stop).State == System.Data.Entity.EntityState.Detached)
             {
-                Title = "Добавление аптеки";
+                Title = "Добавление остановки";
                 AddEdit.Content = "Добавить";
-                DrugstoreName.Focus();
+                StopName.Focus();
             }
             else
             {
-                Title = "Редактирование аптеки";
+                Title = "Изменение данных об остановке";
                 AddEdit.Content = "Изменить";
             }
         }
 
         private void AddEditClick(object sender, RoutedEventArgs e)
         {
-            if(MessageBox.Show("Подтверждение", "Вы уверены, что хотите внести изменения в базу данных?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if (MessageBox.Show("Подтверждение", "Вы уверены, что хотите внести изменения в базу данных?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 try
                 {
-                    if (model.Entry(drugstore).State == System.Data.Entity.EntityState.Detached && RegexClass.RegexDrugstore(DrugstoreName.Text, WorkStartTime.Text, WorkEndingTime.Text))
+                    if (model.Entry(stop).State == System.Data.Entity.EntityState.Detached)
                     {
-                        model.Аптеки.Local.Add(drugstore);
-                    }else if(RegexClass.RegexDrugstore(DrugstoreName.Text, WorkStartTime.Text, WorkEndingTime.Text) == false)
-                    {
-                        MessageBox.Show("Ошибка","Проверьте правильность вводимых данных", MessageBoxButton.OK);
+                        model.Остановки.Add(stop);
                     }
+                    
                     model.SaveChanges();
                     OnPropertyChanged();
                 }
@@ -69,8 +67,8 @@ namespace BD
                     MessageBox.Show("Ошибка", "Проверьте правильность вводимых данных", MessageBoxButton.OK);
                 }
             }
-            
-            
+
+
         }
 
         void OnPropertyChanged([CallerMemberName] string prop = "")
