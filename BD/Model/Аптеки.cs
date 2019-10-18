@@ -17,8 +17,8 @@ namespace BD.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Аптеки()
         {
-            this.Ассортимент_товара = new HashSet<Ассортимент_товара>();
             this.Остановки = new HashSet<Остановки>();
+            this.Ассортимент_товара = new HashSet<Ассортимент_товара>();
         }
     
         public int id_аптеки { get; set; }
@@ -29,9 +29,9 @@ namespace BD.Model
         public string Время_окончания_работы { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Ассортимент_товара> Ассортимент_товара { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Остановки> Остановки { get; set; }
         public virtual Улицы Улицы { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Ассортимент_товара> Ассортимент_товара { get; set; }
     }
 }

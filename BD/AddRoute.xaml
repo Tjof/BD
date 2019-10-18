@@ -43,7 +43,7 @@
         </DataGrid>
             <DataGrid x:Name="DataGrid2" Width="285" AutoGenerateColumns="False" SelectionChanged="DataGrid2_SelectionChanged">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Остановки.Название_остановки}" ClipboardContentBinding="{x:Null}" Header="Остановки" Width="*"/>
+                    <DataGridTextColumn Binding="{Binding Название_остановки}" ClipboardContentBinding="{x:Null}" Header="Остановки" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>

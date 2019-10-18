@@ -24,8 +24,9 @@ namespace BD
             this.model = model;
             Stopss = new ObservableCollection<Остановки>(model.Остановки.Include("Улицы").ToArray());
             DataGrid.ItemsSource = Stopss;
-            ComboBoxTransportMod.ItemsSource = model.Виды_Транспорта.ToArray();
+            DataGrid2.ItemsSource = route.Остановки;
 
+            ComboBoxTransportMod.ItemsSource = model.Виды_Транспорта.ToArray();
             if (model.Entry(route).State == System.Data.Entity.EntityState.Detached)
             {
                 Title = "Добавление маршрута";

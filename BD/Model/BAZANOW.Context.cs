@@ -25,7 +25,6 @@ namespace BD.Model
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Ассортимент_товара> Ассортимент_товара { get; set; }
         public virtual DbSet<Виды_Транспорта> Виды_Транспорта { get; set; }
         public virtual DbSet<Лекарство> Лекарство { get; set; }
         public virtual DbSet<Объекты> Объекты { get; set; }
@@ -37,5 +36,6 @@ namespace BD.Model
         public virtual DbSet<Аптеки> Аптеки { get; set; }
         public virtual DbSet<Транспортные_маршруты> Транспортные_маршруты { get; set; }
         public virtual DbSet<Улицы> Улицы { get; set; }
+        public virtual DbSet<Ассортимент_товара> Ассортимент_товара { get; set; }
     }
 }

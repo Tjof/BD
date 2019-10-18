@@ -5,7 +5,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="8d01df641ae344fca5644d7d85ed567e" Name="Diagram1" ZoomLevel="110">
-        <EntityTypeShape EntityType="BAZANOWModel.Ассортимент_товара" Width="1.5" PointX="5.25" PointY="3.5" />
         <EntityTypeShape EntityType="BAZANOWModel.Виды_Транспорта" Width="1.5" PointX="8.25" PointY="0.875" />
         <EntityTypeShape EntityType="BAZANOWModel.Лекарство" Width="1.5" PointX="3" PointY="7.125" />
         <EntityTypeShape EntityType="BAZANOWModel.Объекты" Width="1.5" PointX="0.75" PointY="10.375" />
@@ -14,13 +13,10 @@
         <EntityTypeShape EntityType="BAZANOWModel.ПользователиОбъекты" Width="1.5" PointX="3" PointY="9.875" />
         <EntityTypeShape EntityType="BAZANOWModel.Районы_города" Width="1.5" PointX="8.25" PointY="7.25" />
         <EntityTypeShape EntityType="BAZANOWModel.Формы_упаковки" Width="1.5" PointX="3" PointY="0.75" />
-        <AssociationConnector Association="BAZANOWModel.FK_Ассортимент_товара_Лекарство" />
-        <AssociationConnector Association="BAZANOWModel.FK_Ассортимент_товара_Формы_упаковки" />
         <AssociationConnector Association="BAZANOWModel.FK_ПользователиОбъекты_Объекты" />
         <AssociationConnector Association="BAZANOWModel.FK_ПользователиОбъекты_Пользователи" />
         <AssociationConnector Association="BAZANOWModel.Лекарства_и_их_заменители" />
         <EntityTypeShape EntityType="BAZANOWModel.Аптеки" Width="1.5" PointX="3" PointY="3.375" />
-        <AssociationConnector Association="BAZANOWModel.FK_Ассортимент_товара_Аптеки" />
         <AssociationConnector Association="BAZANOWModel.ОстановкиАптеки" />
         <EntityTypeShape EntityType="BAZANOWModel.Транспортные_маршруты" Width="1.5" PointX="10.5" PointY="3.75" />
         <EntityTypeShape EntityType="BAZANOWModel.Улицы" Width="1.5" PointX="0.75" PointY="3.875" />
@@ -29,6 +25,10 @@
         <AssociationConnector Association="BAZANOWModel.FK_Остановки_Улицы" />
         <AssociationConnector Association="BAZANOWModel.МаршрутыОстановки" />
         <AssociationConnector Association="BAZANOWModel.МаршрутыРайоны" />
+        <EntityTypeShape EntityType="BAZANOWModel.Ассортимент_товара" Width="1.5" PointX="5.25" PointY="3.625" />
+        <AssociationConnector Association="BAZANOWModel.FK_Ассортимент_товара_Аптеки" />
+        <AssociationConnector Association="BAZANOWModel.FK_Ассортимент_товара_Лекарство" />
+        <AssociationConnector Association="BAZANOWModel.FK_Ассортимент_товара_Формы_упаковки" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
