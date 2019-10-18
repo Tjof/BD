@@ -23,7 +23,6 @@
                 <DataGridTextColumn Binding="{Binding Номер_дома}" ClipboardContentBinding="{x:Null}" Header="Номер дома" Width="*"/>
                 <DataGridTextColumn Binding="{Binding Время_начала_работы, StringFormat=HH:mm}" ClipboardContentBinding="{x:Null}" Header="Начало работы" Width="*"/>
                 <DataGridTextColumn Binding="{Binding Время_окончания_работы, StringFormat=HH:mm}" ClipboardContentBinding="{x:Null}" Header="Окончание работы" Width="*"/>
-                <DataGridTextColumn Binding="{Binding Остановки.Название_остановки}" ClipboardContentBinding="{x:Null}" Header="Ближайшая остановка" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
     </DockPanel>

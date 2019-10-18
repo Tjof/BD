@@ -30,7 +30,7 @@ namespace BD
         {
             InitializeComponent();
             model = new BAZANOWEntities();
-            Drugs = new ObservableCollection<Аптеки>(model.Аптеки.Include("Улицы").Include("Остановки").ToArray());
+            Drugs = new ObservableCollection<Аптеки>(model.Аптеки.Include("Улицы").ToArray());
             DataGrid.ItemsSource = Drugs;
         }
 

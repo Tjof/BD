@@ -35,6 +35,8 @@ namespace BD
             DataContext = drugstore;
             this.model = model;
             ComboBox_street.ItemsSource = model.Улицы.ToArray();
+            ComboBox_stop.ItemsSource = drugstore.Остановки;
+
             if (model.Entry(drugstore).State == System.Data.Entity.EntityState.Detached)
             {
                 Title = "Добавление аптеки";

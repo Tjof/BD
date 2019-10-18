@@ -24,9 +24,9 @@ namespace BD
             this.model = model;
             Stopss = new ObservableCollection<Остановки>(model.Остановки.Include("Улицы").ToArray());
             DataGrid.ItemsSource = Stopss;
-            DataGrid2.ItemsSource = route.Остановки;
-
+            DataGrid2.ItemsSource = route.Остановки.ToArray();
             ComboBoxTransportMod.ItemsSource = model.Виды_Транспорта.ToArray();
+
             if (model.Entry(route).State == System.Data.Entity.EntityState.Detached)
             {
                 Title = "Добавление маршрута";
@@ -79,7 +79,19 @@ namespace BD
 
         private void ButtonAddRoute(object sender, RoutedEventArgs e)
         {
-            
+            if (MessageBox.Show("Подтверждение", "Вы уверены, что хотите внести изменения в базу данных?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    route.Остановки.Add(DataGrid.SelectedItem as Остановки);
+                    model.SaveChanges();
+                    //OnPropertyChanged();
+                }
+                catch (System.Data.Entity.Infrastructure.DbUpdateException)
+                {
+                    MessageBox.Show("Ошибка", "Проверьте правильность вводимых данных", MessageBoxButton.OK);
+                }
+            }
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)
@@ -88,7 +100,7 @@ namespace BD
             {
                 try
                 {
-                    model.Транспортные_маршруты.Remove(DataGrid2.SelectedItem as Транспортные_маршруты);
+                    route.Остановки.Remove(DataGrid2.SelectedItem as Остановки);
                     model.SaveChanges();
                     OnPropertyChanged();
                 }
