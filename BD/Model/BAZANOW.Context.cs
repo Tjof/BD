@@ -25,17 +25,18 @@ namespace BD.Model
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Ассортимент_товара> Ассортимент_товара { get; set; }
         public virtual DbSet<Виды_Транспорта> Виды_Транспорта { get; set; }
         public virtual DbSet<Лекарство> Лекарство { get; set; }
+        public virtual DbSet<МаршрутыРайоны> МаршрутыРайоны { get; set; }
         public virtual DbSet<Объекты> Объекты { get; set; }
         public virtual DbSet<Остановки> Остановки { get; set; }
         public virtual DbSet<Пользователи> Пользователи { get; set; }
         public virtual DbSet<ПользователиОбъекты> ПользователиОбъекты { get; set; }
         public virtual DbSet<Районы_города> Районы_города { get; set; }
-        public virtual DbSet<Формы_упаковки> Формы_упаковки { get; set; }
-        public virtual DbSet<Аптеки> Аптеки { get; set; }
         public virtual DbSet<Транспортные_маршруты> Транспортные_маршруты { get; set; }
         public virtual DbSet<Улицы> Улицы { get; set; }
-        public virtual DbSet<Ассортимент_товара> Ассортимент_товара { get; set; }
+        public virtual DbSet<Формы_упаковки> Формы_упаковки { get; set; }
+        public virtual DbSet<Аптеки> Аптеки { get; set; }
     }
 }

@@ -17,13 +17,13 @@ namespace BD.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Районы_города()
         {
-            this.Транспортные_маршруты = new HashSet<Транспортные_маршруты>();
+            this.МаршрутыРайоны = new HashSet<МаршрутыРайоны>();
         }
     
         public int id_района { get; set; }
         public string Название_района { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Транспортные_маршруты> Транспортные_маршруты { get; set; }
+        public virtual ICollection<МаршрутыРайоны> МаршрутыРайоны { get; set; }
     }
 }

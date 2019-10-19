@@ -12,16 +12,11 @@ namespace BD.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Ассортимент_товара
+    public partial class МаршрутыРайоны
     {
-        public int id_лекарство { get; set; }
-        public int id_аптеки { get; set; }
-        public string Количество { get; set; }
-        public int id_ФормыУпаковки { get; set; }
-        public string Цена { get; set; }
+        public int id_маршрута { get; set; }
+        public int id_района { get; set; }
     
-        public virtual Лекарство Лекарство { get; set; }
-        public virtual Формы_упаковки Формы_упаковки { get; set; }
-        public virtual Аптеки Аптеки { get; set; }
+        public virtual Районы_города Районы_города { get; set; }
     }
 }

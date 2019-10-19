@@ -29,9 +29,9 @@ namespace BD
         public Drugstore()
         {
             InitializeComponent();
+            DataContext = this;
             model = new BAZANOWEntities();
-            Drugs = new ObservableCollection<Аптеки>(model.Аптеки.Include("Улицы").ToArray());
-            DataGrid.ItemsSource = Drugs;
+            Drugs = new ObservableCollection<Аптеки>(model.Аптеки.Include("Улицы").Include("Остановки").ToArray());
         }
 
         public ObservableCollection<Аптеки> Drugs

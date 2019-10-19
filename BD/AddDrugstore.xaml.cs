@@ -35,7 +35,7 @@ namespace BD
             DataContext = drugstore;
             this.model = model;
             ComboBox_street.ItemsSource = model.Улицы.ToArray();
-            ComboBox_stop.ItemsSource = drugstore.Остановки;
+            ComboBox_stop.ItemsSource = model.Остановки.ToList();
 
             if (model.Entry(drugstore).State == System.Data.Entity.EntityState.Detached)
             {
@@ -48,6 +48,8 @@ namespace BD
                 Title = "Редактирование аптеки";
                 AddEdit.Content = "Изменить";
             }
+
+
         }
 
         private void AddEditClick(object sender, RoutedEventArgs e)
