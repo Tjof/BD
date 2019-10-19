@@ -45,18 +45,6 @@ namespace BD
                 _streetss = value;
             }
         }
-        
-        private Улицы streets = new Улицы();
-
-        public Улицы Streetsss
-        {
-            get => streets;
-            set
-            {
-                streets = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Streetsss"));
-            }
-        }
 
         private void ButtonAdd(object sender, RoutedEventArgs e)
         {
@@ -74,6 +62,7 @@ namespace BD
             {
                 try
                 {
+                    _streetss.Remove(DataGrid.SelectedItem as Улицы);
                     model.Улицы.Remove(DataGrid.SelectedItem as Улицы);
                     model.SaveChanges();
                 }

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -24,22 +25,23 @@ namespace BD
     public partial class Drugstore : Window, INotifyPropertyChanged
     {
         BAZANOWEntities model;
-        ObservableCollection<Аптеки> _drugs;
+        ObservableCollection<Аптеки> _drugstore;
 
         public Drugstore()
         {
             InitializeComponent();
             DataContext = this;
             model = new BAZANOWEntities();
-            Drugs = new ObservableCollection<Аптеки>(model.Аптеки.Include("Улицы").Include("Остановки").ToArray());
+            model.Аптеки.Load();
+            Drugstores = model.Аптеки.Local;// Include("Улицы").Include("Остановки").Local;
         }
 
-        public ObservableCollection<Аптеки> Drugs
+        public ObservableCollection<Аптеки> Drugstores
         {
-            get => _drugs;
+            get => _drugstore;
             set
             {
-                _drugs = value;
+                _drugstore = value;
                 OnPropertyChanged();
             }
         }
@@ -68,9 +70,8 @@ namespace BD
             {
                 try
                 {
-                    model.Аптеки.Remove(DataGrid.SelectedItem as Аптеки);
+                    model.Аптеки.Local.Remove(DataGrid.SelectedItem as Аптеки);
                     model.SaveChanges();
-                    OnPropertyChanged();
                 }
                 catch (System.Data.Entity.Infrastructure.DbUpdateException)
                 {

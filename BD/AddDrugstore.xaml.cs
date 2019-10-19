@@ -35,7 +35,7 @@ namespace BD
             DataContext = drugstore;
             this.model = model;
             ComboBox_street.ItemsSource = model.Улицы.ToArray();
-            ComboBox_stop.ItemsSource = model.Остановки.ToList();
+            ComboBox_stop.ItemsSource = model.Остановки.ToArray();
 
             if (model.Entry(drugstore).State == System.Data.Entity.EntityState.Detached)
             {
@@ -49,7 +49,6 @@ namespace BD
                 AddEdit.Content = "Изменить";
             }
 
-
         }
 
         private void AddEditClick(object sender, RoutedEventArgs e)
@@ -60,13 +59,13 @@ namespace BD
                 {
                     if (model.Entry(drugstore).State == System.Data.Entity.EntityState.Detached && RegexClass.RegexDrugstore(DrugstoreName.Text, WorkStartTime.Text, WorkEndingTime.Text))
                     {
-                        model.Аптеки.Local.Add(drugstore);
+
+                        model.Аптеки.Add(drugstore);
                     }else if(RegexClass.RegexDrugstore(DrugstoreName.Text, WorkStartTime.Text, WorkEndingTime.Text) == false)
                     {
                         MessageBox.Show("Ошибка","Проверьте правильность вводимых данных", MessageBoxButton.OK);
                     }
                     model.SaveChanges();
-                    OnPropertyChanged();
                 }
                 catch (System.Data.Entity.Infrastructure.DbUpdateException)
                 {

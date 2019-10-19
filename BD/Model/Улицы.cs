@@ -25,11 +25,7 @@ namespace BD.Model
     
         public int id_улицы { get; set; }
 
-        public string Название_улицы
-        {
-            get;
-            set;
-        }
+        public string Название_улицы { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Остановки> Остановки { get; set; }

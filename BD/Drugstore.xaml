@@ -16,7 +16,7 @@
             </StackPanel>
         </DockPanel>
         <StackPanel Height="50" DockPanel.Dock="Bottom"/>
-        <DataGrid x:Name="DataGrid" SelectionChanged="DataGrid_SelectionChanged" ItemsSource="{Binding Drugs}">
+        <DataGrid x:Name="DataGrid" SelectionChanged="DataGrid_SelectionChanged" ItemsSource="{Binding Drugstores}">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Название, Mode=OneTime}" ClipboardContentBinding="{x:Null}" Header="Название Аптеки" Width="*"/>
                 <DataGridTextColumn Binding="{Binding Улицы.Название_улицы, Mode=OneTime}" ClipboardContentBinding="{x:Null}" Header="Улица" Width="*"/>

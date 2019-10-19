@@ -17,7 +17,7 @@ using System.Collections;
 namespace BD
 {
     /// <summary>
-    /// Логика взаимодействия для Drugs.xaml
+    /// Логика взаимодействия для Drugstores.xaml
     /// </summary>
     public partial class Drugs : Window
     {
