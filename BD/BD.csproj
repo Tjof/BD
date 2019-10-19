@@ -149,7 +149,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BAZANOW.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Model\Extension\Аптеки_extension.cs" />
     <Compile Include="Model\Аптеки.cs">
       <DependentUpon>BAZANOW.tt</DependentUpon>
     </Compile>
@@ -186,7 +185,6 @@
     <Compile Include="Model\Улицы.cs">
       <DependentUpon>BAZANOW.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\Extension\Улицы_extension.cs" />
     <Compile Include="Model\Формы_упаковки.cs">
       <DependentUpon>BAZANOW.tt</DependentUpon>
     </Compile>
@@ -394,6 +392,9 @@
       <DependentUpon>BAZANOW.edmx</DependentUpon>
       <LastGenOutput>BAZANOW.cs</LastGenOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model\Extension\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

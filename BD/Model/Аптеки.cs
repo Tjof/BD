@@ -11,42 +11,31 @@ namespace BD.Model
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class Аптеки : ICloneable
+
+    public partial class Аптеки
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Аптеки()
         {
             this.Ассортимент_товара = new HashSet<Ассортимент_товара>();
         }
-    
+
         public int id_аптеки { get; set; }
         public string Название { get; set; }
-        public int id_улицы { get; set; }
+        public int id_улицы
+        {
+            get;
+            set;
+        }
         public string Номер_дома { get; set; }
         public string Время_начала_работы { get; set; }
         public string Время_окончания_работы { get; set; }
         public int id_остановки { get; set; }
-    
+
         public virtual Остановки Остановки { get; set; }
         public virtual Улицы Улицы { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ассортимент_товара> Ассортимент_товара { get; set; }
 
-        public object Clone()
-        {
-            Остановки stop = new Остановки { id_остановки = this.Остановки.id_остановки };
-            Улицы street = new Улицы { id_улицы = this.Улицы.id_улицы };
-            return new Аптеки
-            {
-                Название = this.Название,
-                Номер_дома = this.Номер_дома,
-                Время_начала_работы = this.Время_начала_работы,
-                Время_окончания_работы = this.Время_окончания_работы,
-                id_улицы = street,
-                id_остановки = stop
-            };
-            //return this.MemberwiseClone();
-        }
     }
 }

@@ -37,7 +37,7 @@ namespace BD
             ComboBox_street.ItemsSource = model.Улицы.ToArray();
             ComboBox_stop.ItemsSource = model.Остановки.ToArray();
 
-            if (model.Entry(drugstore).State == System.Data.Entity.EntityState.Detached)
+            if (drugstore.id_аптеки == 0)
             {
                 Title = "Добавление аптеки";
                 AddEdit.Content = "Добавить";
@@ -53,22 +53,34 @@ namespace BD
 
         private void AddEditClick(object sender, RoutedEventArgs e)
         {
-            if(MessageBox.Show("Подтверждение", "Вы уверены, что хотите внести изменения в базу данных?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if (MessageBox.Show("Подтверждение", "Вы уверены, что хотите внести изменения в базу данных?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                try
-                {
-                    if (model.Entry(drugstore).State == System.Data.Entity.EntityState.Detached && RegexClass.RegexDrugstore(DrugstoreName.Text, WorkStartTime.Text, WorkEndingTime.Text))
+                if (RegexClass.RegexDrugstore(DrugstoreName.Text, WorkStartTime.Text, WorkEndingTime.Text)) {
+                    try
                     {
-
-                        model.Аптеки.Add(drugstore);
-                    }else if(RegexClass.RegexDrugstore(DrugstoreName.Text, WorkStartTime.Text, WorkEndingTime.Text) == false)
-                    {
-                        MessageBox.Show("Ошибка","Проверьте правильность вводимых данных", MessageBoxButton.OK);
+                        foreach(FrameworkElement element in elementsGrid.Children)
+                        {
+                            if( element is TextBox)
+                                element.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
+                            else if (element is ComboBox)
+                                element.GetBindingExpression(ComboBox.SelectedItemProperty)?.UpdateSource();
+                        }
+                        if (drugstore.id_аптеки == 0 ) //new record
+                        {
+                            model.Аптеки.Add(drugstore);
+                        }
+                        else
+                        {
+                            model.Entry(drugstore).State = System.Data.Entity.EntityState.Modified;
+                        }
+                        model.SaveChanges();
                     }
-                    model.SaveChanges();
+                    catch (System.Data.Entity.Infrastructure.DbUpdateException)
+                    {
+                        MessageBox.Show("Ошибка", "Проверьте правильность вводимых данных", MessageBoxButton.OK);
+                    }
                 }
-                catch (System.Data.Entity.Infrastructure.DbUpdateException)
-                {
+                else {
                     MessageBox.Show("Ошибка", "Проверьте правильность вводимых данных", MessageBoxButton.OK);
                 }
             }

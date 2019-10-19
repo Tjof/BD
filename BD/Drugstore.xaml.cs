@@ -82,13 +82,16 @@ namespace BD
 
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
-            Аптеки a1 = (DataGrid.SelectedItem as Аптеки);
-            Аптеки a2 = (Аптеки)a1.Clone();
-            AddDrugstore editDrugstore = new AddDrugstore(model, a2)
+            Аптеки a = (DataGrid.SelectedItem as Аптеки);
+            using (CollectionViewSource.GetDefaultView(Drugstores).DeferRefresh())
             {
-                Owner = this
-            };
-            editDrugstore.ShowDialog();
+                AddDrugstore editDrugstore = new AddDrugstore(model, a)
+                {
+                    Owner = this
+                };
+                //анализируем результат
+                editDrugstore.ShowDialog();
+            }            
         }
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)

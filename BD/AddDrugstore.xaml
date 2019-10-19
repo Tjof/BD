@@ -12,7 +12,7 @@
         <StackPanel Height="50" DockPanel.Dock="Bottom">
             <Button x:Name="AddEdit" HorizontalAlignment="Right" Click="AddEditClick"/>
         </StackPanel>
-        <Grid>
+        <Grid x:Name="elementsGrid">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="183" />
                 <ColumnDefinition Width="*"/>
@@ -26,17 +26,17 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <TextBlock Grid.Column="0" Grid.Row="0" Text="Название аптеки" Margin="10" VerticalAlignment="Center" FontSize="15"/>
-            <TextBox x:Name="DrugstoreName" Text="{Binding Name}" Grid.Column="1" Grid.Row="0" Margin="10" FontSize="15"/>
+            <TextBox x:Name="DrugstoreName" Text="{Binding Название, UpdateSourceTrigger=Explicit}" Grid.Column="1" Grid.Row="0" Margin="10" FontSize="15"/>
             <TextBlock Grid.Column="0" Grid.Row="1" Text="Улица" Margin="10" VerticalAlignment="Center" FontSize="15"/>
-            <ComboBox x:Name="ComboBox_street" SelectedItem="{Binding Улицы}" IsEditable="True" DisplayMemberPath="Название_улицы" Grid.Column="1" Grid.Row="1" Margin="10" Height="32" FontSize="15"/>
+            <ComboBox x:Name="ComboBox_street" SelectedItem="{Binding Улицы, UpdateSourceTrigger=Explicit}" IsEditable="True" DisplayMemberPath="Название_улицы" Grid.Column="1" Grid.Row="1" Margin="10" Height="32" FontSize="15"/>
             <TextBlock Grid.Column="0" Grid.Row="2" Text="Номер дома" Margin="10" VerticalAlignment="Center" FontSize="15"/>
-            <TextBox x:Name="HouseNumber" Text="{Binding HouseNumber}" Grid.Column="1" Grid.Row="2" Margin="10" FontSize="15"/>
+            <TextBox x:Name="HouseNumber" Text="{Binding Номер_дома, UpdateSourceTrigger=Explicit}" Grid.Column="1" Grid.Row="2" Margin="10" FontSize="15"/>
             <TextBlock Grid.Column="0" Grid.Row="3" Text="Время начала работы" Margin="10" VerticalAlignment="Center" FontSize="15"/>
-            <xctk:MaskedTextBox x:Name="WorkStartTime" Text="{Binding WorkStartingTime}" Padding="5" Grid.Column="1" Grid.Row="3" Margin="10" Mask="00:00" FontSize="15"/>
+            <xctk:MaskedTextBox x:Name="WorkStartTime" Text="{Binding Время_начала_работы, UpdateSourceTrigger=Explicit}" Padding="5" Grid.Column="1" Grid.Row="3" Margin="10" Mask="00:00" FontSize="15"/>
             <TextBlock Grid.Column="0" Grid.Row="4" Text="Время окончания" Margin="10" VerticalAlignment="Center" FontSize="15"/>
-            <xctk:MaskedTextBox x:Name="WorkEndingTime" Text="{Binding WorkEndingTime}" Padding="5" Grid.Column="1" Grid.Row="4" Margin="10" Mask="00:00" FontSize="15"/>
+            <xctk:MaskedTextBox x:Name="WorkEndingTime" Text="{Binding Время_окончания_работы, UpdateSourceTrigger=Explicit}" Padding="5" Grid.Column="1" Grid.Row="4" Margin="10" Mask="00:00" FontSize="15"/>
             <TextBlock Grid.Column="0" Grid.Row="5" Text="Ближайшая остановка" Margin="10" VerticalAlignment="Center" FontSize="15"/>
-            <ComboBox x:Name="ComboBox_stop" SelectedItem="{Binding Остановки}" IsEditable="True" DisplayMemberPath="Название_остановки" Grid.Column="1" Grid.Row="5" Margin="10" Height="32"/>
+            <ComboBox x:Name="ComboBox_stop" SelectedItem="{Binding Остановки, UpdateSourceTrigger=Explicit}" IsEditable="True" DisplayMemberPath="Название_остановки" Grid.Column="1" Grid.Row="5" Margin="10" Height="32"/>
         </Grid>
     </DockPanel>
 </Window>

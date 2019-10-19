@@ -62,7 +62,6 @@ namespace BD
             {
                 try
                 {
-                    _streetss.Remove(DataGrid.SelectedItem as Улицы);
                     model.Улицы.Remove(DataGrid.SelectedItem as Улицы);
                     model.SaveChanges();
                 }
@@ -97,13 +96,11 @@ namespace BD
                     {
                         try
                         {
-                            (DataGrid.SelectedItem as Улицы).Name = StreetNameEdit.Text;
+                            (DataGrid.SelectedItem as Улицы).Название_улицы = StreetNameEdit.Text;
                             model.SaveChanges();
                             StreetNameEdit.Text = "";
                             StreetNameEdit.IsReadOnly = true;
                             AddEditStreet.IsEnabled = false;
-                            //CollectionViewSource.GetDefaultView(_streetss).Refresh();
-                            //Streetss = new ObservableCollection<Улицы>(model.Улицы.ToArray());
                         }
                         catch (System.Data.Entity.Infrastructure.DbUpdateException)
                         {
@@ -118,8 +115,6 @@ namespace BD
                         Улицы street = new Улицы();
                         try
                         {
-                            street.Name = StreetNameEdit.Text;
-                            _streetss.Add(street);
                             model.Улицы.Add(street);
                             model.SaveChanges();
                             StreetNameEdit.Text = "";
