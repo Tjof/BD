@@ -21,7 +21,7 @@
         </StackPanel>
         <DataGrid x:Name="DataGrid" AutoGenerateColumns="False" SelectionChanged="DataGrid_SelectionChanged">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Название_улицы}" ClipboardContentBinding="{x:Null}" Header="Название улицы" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Name}" ClipboardContentBinding="{x:Null}" Header="Название улицы" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
     </DockPanel>

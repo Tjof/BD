@@ -185,6 +185,7 @@
     <Compile Include="Model\Улицы.cs">
       <DependentUpon>BAZANOW.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Улицы_extension.cs" />
     <Compile Include="Model\Формы_упаковки.cs">
       <DependentUpon>BAZANOW.tt</DependentUpon>
     </Compile>
