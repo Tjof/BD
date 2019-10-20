@@ -1,29 +1,16 @@
-﻿using BD.Class;
-using BD.Model;
-using System;
-using System.Collections.Generic;
+﻿using BD.Model;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+using System.Data.Entity;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace BD
 {
     /// <summary>
     /// Логика взаимодействия для Streets.xaml
     /// </summary>
-    public partial class Streets : Window, INotifyPropertyChanged
+    public partial class Streets : Window
     {
         BAZANOWEntities model;
         private ObservableCollection<Улицы> _streetss;
@@ -32,9 +19,9 @@ namespace BD
         {
             InitializeComponent();
             model = new BAZANOWEntities();
-            Streetss = new ObservableCollection<Улицы>(model.Улицы.ToArray());
+            model.Улицы.Load();
+            Streetss = model.Улицы.Local;
             DataGrid.ItemsSource = Streetss;
-
         }
 
         public ObservableCollection<Улицы> Streetss
@@ -62,8 +49,9 @@ namespace BD
             {
                 try
                 {
-                    model.Улицы.Remove(DataGrid.SelectedItem as Улицы);
+                    model.Улицы.Local.Remove(DataGrid.SelectedItem as Улицы);
                     model.SaveChanges();
+                    CollectionViewSource.GetDefaultView(model.Улицы.Local).Refresh();
                 }
                 catch (System.Data.Entity.Infrastructure.DbUpdateException)
                 {
@@ -98,6 +86,7 @@ namespace BD
                         {
                             (DataGrid.SelectedItem as Улицы).Название_улицы = StreetNameEdit.Text;
                             model.SaveChanges();
+                            CollectionViewSource.GetDefaultView(model.Улицы.Local).Refresh();
                             StreetNameEdit.Text = "";
                             StreetNameEdit.IsReadOnly = true;
                             AddEditStreet.IsEnabled = false;
@@ -115,8 +104,10 @@ namespace BD
                         Улицы street = new Улицы();
                         try
                         {
-                            model.Улицы.Add(street);
+                            street.Название_улицы = StreetNameEdit.Text;
+                            model.Улицы.Local.Add(street);
                             model.SaveChanges();
+                            CollectionViewSource.GetDefaultView(model.Улицы.Local).Refresh();
                             StreetNameEdit.Text = "";
                             StreetNameEdit.IsReadOnly = true;
                             AddEditStreet.IsEnabled = false;
@@ -130,15 +121,6 @@ namespace BD
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged(string name)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
-            }
-        }
-
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (DataGrid.SelectedItem != null)
@@ -147,15 +129,11 @@ namespace BD
                 Delete.IsEnabled = true;
                 StreetNameEdit.IsEnabled = false;
                 AddEditStreet.IsEnabled = false;
-            }
-
-            if (DataGrid.SelectedItem == null)
-            {
-                StreetNameEdit.Text = "";
+                StreetNameEdit.Text = (DataGrid.SelectedItem as Улицы).Название_улицы;
             }
             else
             {
-                StreetNameEdit.Text = (DataGrid.SelectedItem as Улицы).Название_улицы;
+                StreetNameEdit.Text = "";
             }
         }
     }

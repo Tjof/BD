@@ -22,7 +22,7 @@ namespace BD
     /// <summary>
     /// Логика взаимодействия для Drugstore.xaml
     /// </summary>
-    public partial class Drugstore : Window, INotifyPropertyChanged
+    public partial class Drugstore : Window
     {
         BAZANOWEntities model;
         ObservableCollection<Аптеки> _drugstore;
@@ -42,7 +42,6 @@ namespace BD
             set
             {
                 _drugstore = value;
-                OnPropertyChanged();
             }
         }
 
@@ -57,12 +56,6 @@ namespace BD
             AddDrugstore addDrugstore = new AddDrugstore(model, a);
             addDrugstore.ShowDialog();
         }
-
-        void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
-        }
-        public event PropertyChangedEventHandler PropertyChanged;
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
@@ -82,7 +75,7 @@ namespace BD
 
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
-            Аптеки a = (DataGrid.SelectedItem as Аптеки);
+            Аптеки a = DataGrid.SelectedItem as Аптеки;
             using (CollectionViewSource.GetDefaultView(Drugstores).DeferRefresh())
             {
                 AddDrugstore editDrugstore = new AddDrugstore(model, a)

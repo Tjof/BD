@@ -1,29 +1,16 @@
-﻿using BD.Class;
-using BD.Model;
-using System;
-using System.Collections.Generic;
+﻿using BD.Model;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+using System.Data.Entity;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace BD
 {
     /// <summary>
     /// Логика взаимодействия для Streets.xaml
     /// </summary>
-    public partial class PackingForm : Window, INotifyPropertyChanged
+    public partial class PackingForm : Window
     {
         BAZANOWEntities model;
         private ObservableCollection<Формы_упаковки> _packingformss;
@@ -32,9 +19,9 @@ namespace BD
         {
             InitializeComponent();
             model = new BAZANOWEntities();
-            PackingForms = new ObservableCollection<Формы_упаковки>(model.Формы_упаковки.ToArray());
+            model.Формы_упаковки.Load();
+            PackingForms = model.Формы_упаковки.Local;
             DataGrid.ItemsSource = PackingForms;
-
         }
 
         public ObservableCollection<Формы_упаковки> PackingForms
@@ -62,8 +49,9 @@ namespace BD
             {
                 try
                 {
-                    model.Формы_упаковки.Remove(DataGrid.SelectedItem as Формы_упаковки);
+                    model.Формы_упаковки.Local.Remove(DataGrid.SelectedItem as Формы_упаковки);
                     model.SaveChanges();
+                    CollectionViewSource.GetDefaultView(model.Формы_упаковки.Local).Refresh();
                 }
                 catch (System.Data.Entity.Infrastructure.DbUpdateException)
                 {
@@ -98,6 +86,7 @@ namespace BD
                         {
                             (DataGrid.SelectedItem as Формы_упаковки).Название_формы = PackingFormNameEdit.Text;
                             model.SaveChanges();
+                            CollectionViewSource.GetDefaultView(model.Формы_упаковки.Local).Refresh();
                             PackingFormNameEdit.Text = "";
                             PackingFormNameEdit.IsReadOnly = true;
                             AddEditPackingform.IsEnabled = false;
@@ -116,7 +105,8 @@ namespace BD
                         try
                         {
                             packingform.Название_формы = PackingFormNameEdit.Text;
-                            model.Формы_упаковки.Add(packingform);
+                            model.Формы_упаковки.Local.Add(packingform);
+                            CollectionViewSource.GetDefaultView(model.Формы_упаковки.Local).Refresh();
                             model.SaveChanges();
                             PackingFormNameEdit.Text = "";
                             PackingFormNameEdit.IsReadOnly = true;
@@ -131,15 +121,6 @@ namespace BD
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged(string name)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
-            }
-        }
-
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (DataGrid.SelectedItem != null)
@@ -148,15 +129,11 @@ namespace BD
                 Delete.IsEnabled = true;
                 PackingFormNameEdit.IsEnabled = false;
                 AddEditPackingform.IsEnabled = false;
-            }
-
-            if (DataGrid.SelectedItem == null)
-            {
-                PackingFormNameEdit.Text = "";
+                PackingFormNameEdit.Text = (DataGrid.SelectedItem as Формы_упаковки).Название_формы;
             }
             else
             {
-                PackingFormNameEdit.Text = (DataGrid.SelectedItem as Формы_упаковки).Название_формы;
+                PackingFormNameEdit.Text = "";
             }
         }
     }

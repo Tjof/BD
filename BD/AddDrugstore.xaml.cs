@@ -1,29 +1,15 @@
 ﻿using BD.Model;
 using BD.Class;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using Xceed.Wpf.Toolkit;
 
 namespace BD
 {
     /// <summary>
     /// Логика взаимодействия для AD.xaml
     /// </summary>
-    public partial class AddDrugstore : Window, INotifyPropertyChanged
+    public partial class AddDrugstore : Window
     {
         BAZANOWEntities model;
         Аптеки drugstore;
@@ -74,6 +60,7 @@ namespace BD
                             model.Entry(drugstore).State = System.Data.Entity.EntityState.Modified;
                         }
                         model.SaveChanges();
+                        this.Close();
                     }
                     catch (System.Data.Entity.Infrastructure.DbUpdateException)
                     {
@@ -84,14 +71,6 @@ namespace BD
                     MessageBox.Show("Ошибка", "Проверьте правильность вводимых данных", MessageBoxButton.OK);
                 }
             }
-            
-            
         }
-
-        void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
-        }
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

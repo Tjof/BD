@@ -19,7 +19,7 @@
             <TextBox x:Name="TransportModeNameEdit" HorizontalAlignment="Left" IsEnabled="False" Height="35" Margin="40,7,0,8" TextWrapping="Wrap" Width="250" IsReadOnly="True"/>
             <Button x:Name="AddEditTransportMode" Content="Сохранить" Margin="20,7,0,8" Click="ButtonSaveEdit" IsEnabled="False"/>
         </StackPanel>
-        <DataGrid x:Name="DataGrid" AutoGenerateColumns="False" SelectionChanged="DataGrid_SelectionChanged">
+        <DataGrid x:Name="DataGrid" AutoGenerateColumns="False" SelectionChanged="DataGrid_SelectionChanged" ItemsSource="{Binding TransportModes}">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Вид_транспорта}" ClipboardContentBinding="{x:Null}" Header="Вид транспорта" Width="*"/>
             </DataGrid.Columns>

@@ -1,29 +1,17 @@
-﻿using BD.Class;
-using BD.Model;
-using System;
-using System.Collections.Generic;
+﻿using BD.Model;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
+using System.Data.Entity;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace BD
 {
     /// <summary>
     /// Логика взаимодействия для Districts.xaml
     /// </summary>
-    public partial class Districts : Window, INotifyPropertyChanged
+    public partial class Districts : Window
     {
         BAZANOWEntities model;
         private ObservableCollection<Районы_города> _districts;
@@ -32,9 +20,9 @@ namespace BD
         {
             InitializeComponent();
             model = new BAZANOWEntities();
-            Districtss = new ObservableCollection<Районы_города>(model.Районы_города.ToArray());
+            model.Районы_города.Load();
+            Districtss = model.Районы_города.Local;
             DataGrid.ItemsSource = Districtss;
-
         }
 
         public ObservableCollection<Районы_города> Districtss
@@ -62,8 +50,9 @@ namespace BD
             {
                 try
                 {
-                    model.Районы_города.Remove(DataGrid.SelectedItem as Районы_города);
+                    model.Районы_города.Local.Remove(DataGrid.SelectedItem as Районы_города);
                     model.SaveChanges();
+                    CollectionViewSource.GetDefaultView(model.Районы_города.Local).Refresh();
                 }
                 catch (System.Data.Entity.Infrastructure.DbUpdateException)
                 {
@@ -98,6 +87,7 @@ namespace BD
                         {
                             (DataGrid.SelectedItem as Районы_города).Название_района = DistrictNameEdit.Text;
                             model.SaveChanges();
+                            CollectionViewSource.GetDefaultView(model.Районы_города.Local).Refresh();
                             DistrictNameEdit.Text = "";
                             DistrictNameEdit.IsReadOnly = true;
                             AddEditDistrict.IsEnabled = false;
@@ -116,8 +106,9 @@ namespace BD
                         try
                         {
                             district.Название_района = DistrictNameEdit.Text;
-                            model.Районы_города.Add(district);
+                            model.Районы_города.Local.Add(district);
                             model.SaveChanges();
+                            CollectionViewSource.GetDefaultView(model.Районы_города.Local).Refresh();
                             DistrictNameEdit.Text = "";
                             DistrictNameEdit.IsReadOnly = true;
                             AddEditDistrict.IsEnabled = false;
@@ -131,15 +122,6 @@ namespace BD
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged(string name)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
-            }
-        }
-
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (DataGrid.SelectedItem != null)
@@ -148,15 +130,11 @@ namespace BD
                 Delete.IsEnabled = true;
                 DistrictNameEdit.IsEnabled = false;
                 AddEditDistrict.IsEnabled = false;
-            }
-
-            if (DataGrid.SelectedItem == null)
-            {
-                DistrictNameEdit.Text = "";
+                DistrictNameEdit.Text = (DataGrid.SelectedItem as Районы_города).Название_района;
             }
             else
             {
-                DistrictNameEdit.Text = (DataGrid.SelectedItem as Районы_города).Название_района;
+                DistrictNameEdit.Text = "";
             }
         }
 

@@ -4,11 +4,44 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BD"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="Добавление лекарства" Height="150" Width="530" Background="#FFF8E9">
-    <Grid>
-        <Label Content="Лекарство:" HorizontalAlignment="Left" Margin="30,15,0,0" VerticalAlignment="Top" Width="180" Height="35" FontFamily="Times New Roman" FontSize="20"/>
-        <TextBox Height="35" Margin="230,15,30,0" VerticalAlignment="Top" FontSize="20"/>
-        <Button Content="Добавить" Margin="0,0,30,16" Height="Auto" Width="Auto" FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-    </Grid>
+        Height="500" Width="570" Background="#FFF8E9">
+
+    <DockPanel>
+        <DockPanel Height="55" DockPanel.Dock="Top">
+            <Grid x:Name="elementsGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Column="0" Grid.Row="0" Text="Лекарство:" Margin="10" VerticalAlignment="Center" FontSize="17"/>
+                <TextBox x:Name="DrugName" Text="{Binding Название_лекарства, UpdateSourceTrigger=Explicit}" Grid.Column="1" Grid.Row="0" Margin="14" FontSize="15"/>
+            </Grid>
+        </DockPanel>
+        <DockPanel DockPanel.Dock="Top" Height="50">
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="Add" Content="Добавить заменитель" IsEnabled="False" Click="AddStop" Width="175"/>
+                <Button x:Name="Delete" Content="Удалить заменитель" IsEnabled="False" Click="DeleteStop" Width="160"/>
+            </StackPanel>
+        </DockPanel>
+        <DockPanel DockPanel.Dock="Bottom">
+            <Button x:Name="AddEdit" Click="AddEditClick" DockPanel.Dock="Right" HorizontalAlignment="Right"/>
+        </DockPanel>
+        <StackPanel Orientation="Horizontal">
+            <DataGrid x:Name="DataGrid" Width="275" AutoGenerateColumns="False" SelectionChanged="DataGrid_SelectionChanged">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Название_лекарства}" ClipboardContentBinding="{x:Null}" Header="Список всех лекарств" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <DataGrid x:Name="DataGrid2" Width="285" AutoGenerateColumns="False" SelectionChanged="DataGrid2_SelectionChanged">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Название_лекарства}" ClipboardContentBinding="{x:Null}" Header="Лекарство заменители" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </DockPanel>
 </Window>

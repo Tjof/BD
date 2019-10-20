@@ -1,16 +1,18 @@
 ﻿using BD.Model;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace BD
 {
     /// <summary>
     /// Логика взаимодействия для AD.xaml
     /// </summary>
-    public partial class AddRoute : Window, INotifyPropertyChanged
+    public partial class AddRoute : Window
     {
         BAZANOWEntities model;
         Транспортные_маршруты route;
@@ -21,13 +23,15 @@ namespace BD
             InitializeComponent();
             this.route = route;
             DataContext = route;
-            this.model = model;
-            Stopss = new ObservableCollection<Остановки>(model.Остановки.Include("Улицы").ToArray());
+            model.Остановки.Load();
+            Stopss = model.Остановки.Local;
             DataGrid.ItemsSource = Stopss;
+            this.model = model;
+
             DataGrid2.ItemsSource = route.Остановки.ToArray();
             ComboBoxTransportMod.ItemsSource = model.Виды_Транспорта.ToArray();
 
-            if (model.Entry(route).State == System.Data.Entity.EntityState.Detached)
+            if (route.id_маршрута == 0)
             {
                 Title = "Добавление маршрута";
                 AddEdit.Content = "Добавить";
@@ -47,7 +51,6 @@ namespace BD
             set
             {
                 _stops = value;
-                OnPropertyChanged();
             }
         }
 
@@ -57,12 +60,23 @@ namespace BD
             {
                 try
                 {
-                    if (model.Entry(route).State == System.Data.Entity.EntityState.Detached)
+                    foreach (FrameworkElement element in elementsGrid.Children)
+                    {
+                        if (element is TextBox)
+                            element.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
+                        else if (element is ComboBox)
+                            element.GetBindingExpression(ComboBox.SelectedItemProperty)?.UpdateSource();
+                    }
+                    if (route.id_маршрута == 0) //new record
                     {
                         model.Транспортные_маршруты.Add(route);
                     }
+                    else
+                    {
+                        model.Entry(route).State = System.Data.Entity.EntityState.Modified;
+                    }
                     model.SaveChanges();
-                    OnPropertyChanged();
+                    this.Close();
                 }
                 catch (System.Data.Entity.Infrastructure.DbUpdateException)
                 {
@@ -71,13 +85,7 @@ namespace BD
             }
         }
 
-        void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
-        }
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void ButtonAddRoute(object sender, RoutedEventArgs e)
+        private void AddStop(object sender, RoutedEventArgs e)
         {
             if (MessageBox.Show("Подтверждение", "Вы уверены, что хотите внести изменения в базу данных?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
@@ -85,7 +93,6 @@ namespace BD
                 {
                     route.Остановки.Add(DataGrid.SelectedItem as Остановки);
                     model.SaveChanges();
-                    //OnPropertyChanged();
                 }
                 catch (System.Data.Entity.Infrastructure.DbUpdateException)
                 {
@@ -94,7 +101,7 @@ namespace BD
             }
         }
 
-        private void Delete_Click(object sender, RoutedEventArgs e)
+        private void DeleteStop(object sender, RoutedEventArgs e)
         {
             if (MessageBox.Show("Подтверждение", "Вы уверены, что хотите внести изменения в базу данных?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
@@ -102,7 +109,6 @@ namespace BD
                 {
                     route.Остановки.Remove(DataGrid2.SelectedItem as Остановки);
                     model.SaveChanges();
-                    OnPropertyChanged();
                 }
                 catch (System.Data.Entity.Infrastructure.DbUpdateException)
                 {

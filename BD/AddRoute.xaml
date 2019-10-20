@@ -10,7 +10,7 @@
 
     <DockPanel>
         <DockPanel Height="55" DockPanel.Dock="Top">
-            <Grid>
+            <Grid x:Name="elementsGrid">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="140" />
                     <ColumnDefinition Width="100"/>
@@ -21,22 +21,22 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Column="0" Grid.Row="0" Text="Номер маршрута" Margin="10" VerticalAlignment="Center" FontSize="15"/>
-                <TextBox  x:Name="RouteNumber" Text="{Binding Номер_маршрута}" Grid.Column="1" Grid.Row="0" Margin="14" FontSize="15"/>
+                <TextBox  x:Name="RouteNumber" Text="{Binding Номер_маршрута, UpdateSourceTrigger=Explicit}" Grid.Column="1" Grid.Row="0" Margin="14" FontSize="15"/>
                 <TextBlock Grid.Column="2" Grid.Row="0" Text="Вид транспорта" Margin="10" VerticalAlignment="Center" FontSize="15"/>
-                <ComboBox x:Name="ComboBoxTransportMod" SelectedItem="{Binding Виды_Транспорта}" DisplayMemberPath="Вид_транспорта" Grid.Column="3" Grid.Row="0" Margin="11" Height="32" FontSize="15"/>
+                <ComboBox x:Name="ComboBoxTransportMod" SelectedItem="{Binding Виды_Транспорта, UpdateSourceTrigger=Explicit}" DisplayMemberPath="Вид_транспорта" Grid.Column="3" Grid.Row="0" Margin="11" Height="32" FontSize="15"/>
             </Grid>
         </DockPanel>
         <DockPanel DockPanel.Dock="Top" Height="50">
             <StackPanel Orientation="Horizontal">
-                <Button x:Name="Add" Content="Добавить остановку" IsEnabled="False" Click="ButtonAddRoute" Width="175"/>
-                <Button x:Name="Delete" Content="Удалить остановку" IsEnabled="False" Click="Delete_Click" Width="160"/>
+                <Button x:Name="Add" Content="Добавить остановку" IsEnabled="False" Click="AddStop" Width="175"/>
+                <Button x:Name="Delete" Content="Удалить остановку" IsEnabled="False" Click="DeleteStop" Width="160"/>
             </StackPanel>
         </DockPanel>
         <DockPanel DockPanel.Dock="Bottom">
             <Button x:Name="AddEdit" Click="AddEditClick" DockPanel.Dock="Right" HorizontalAlignment="Right"/>
         </DockPanel>
         <StackPanel Orientation="Horizontal">
-        <DataGrid x:Name="DataGrid" Width="275" AutoGenerateColumns="False" SelectionChanged="DataGrid_SelectionChanged">
+            <DataGrid x:Name="DataGrid" Width="275" AutoGenerateColumns="False" SelectionChanged="DataGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Название_остановки}" ClipboardContentBinding="{x:Null}" Header="Остановки" Width="*"/>
             </DataGrid.Columns>

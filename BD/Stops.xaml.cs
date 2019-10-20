@@ -1,27 +1,16 @@
 ﻿using BD.Model;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.Entity;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace BD
 {
     /// <summary>
     /// Логика взаимодействия для Drugstore.xaml
     /// </summary>
-    public partial class Stops : Window, INotifyPropertyChanged
+    public partial class Stops : Window
     {
         BAZANOWEntities model;
         ObservableCollection<Остановки> _stops;
@@ -29,9 +18,10 @@ namespace BD
         public Stops()
         {
             InitializeComponent();
+            DataContext = this;
             model = new BAZANOWEntities();
-            Stopss = new ObservableCollection<Остановки>(model.Остановки.Include("Улицы").ToArray());
-            DataGrid.ItemsSource = Stopss;
+            model.Остановки.Load();
+            Stopss = model.Остановки.Local;
         }
 
         public ObservableCollection<Остановки> Stopss
@@ -40,7 +30,6 @@ namespace BD
             set
             {
                 _stops = value;
-                OnPropertyChanged();
             }
         }
 
@@ -56,21 +45,14 @@ namespace BD
             addStop.ShowDialog();
         }
 
-        void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
-        }
-        public event PropertyChangedEventHandler PropertyChanged;
-
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
             if (MessageBox.Show("Подтверждение", "Вы уверены, что хотите внести изменения в базу данных?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 try
                 {
-                    model.Остановки.Remove(DataGrid.SelectedItem as Остановки);
+                    model.Остановки.Local.Remove(DataGrid.SelectedItem as Остановки);
                     model.SaveChanges();
-                    OnPropertyChanged();
                 }
                 catch (System.Data.Entity.Infrastructure.DbUpdateException)
                 {
@@ -81,11 +63,15 @@ namespace BD
 
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
-            AddEditStop editStop = new AddEditStop(model, DataGrid.SelectedItem as Остановки)
+            Остановки a = DataGrid.SelectedItem as Остановки;
+            using (CollectionViewSource.GetDefaultView(Stopss).DeferRefresh())
             {
-                Owner = this
-            };
-            editStop.ShowDialog();
+                AddEditStop editStop = new AddEditStop(model, a)
+                {
+                    Owner = this
+                };
+                editStop.ShowDialog();
+            }
         }
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)

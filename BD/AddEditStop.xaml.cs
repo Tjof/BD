@@ -1,29 +1,14 @@
 ﻿using BD.Model;
-using BD.Class;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using Xceed.Wpf.Toolkit;
 
 namespace BD
 {
     /// <summary>
     /// Логика взаимодействия для AD.xaml
     /// </summary>
-    public partial class AddEditStop : Window, INotifyPropertyChanged
+    public partial class AddEditStop : Window
     {
         BAZANOWEntities model;
         Остановки stop;
@@ -35,7 +20,8 @@ namespace BD
             DataContext = stop;
             this.model = model;
             ComboBoxStreet.ItemsSource = model.Улицы.ToArray();
-            if (model.Entry(stop).State == System.Data.Entity.EntityState.Detached)
+
+            if (stop.id_остановки == 0)
             {
                 Title = "Добавление остановки";
                 AddEdit.Content = "Добавить";
@@ -54,26 +40,29 @@ namespace BD
             {
                 try
                 {
-                    if (model.Entry(stop).State == System.Data.Entity.EntityState.Detached)
+                    foreach (FrameworkElement element in elementsGrid.Children)
+                    {
+                        if (element is TextBox)
+                            element.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
+                        else if (element is ComboBox)
+                            element.GetBindingExpression(ComboBox.SelectedItemProperty)?.UpdateSource();
+                    }
+                    if (stop.id_остановки == 0) //new record
                     {
                         model.Остановки.Add(stop);
                     }
+                    else
+                    {
+                        model.Entry(stop).State = System.Data.Entity.EntityState.Modified;
+                    }
                     model.SaveChanges();
-                    OnPropertyChanged();
+                    this.Close();
                 }
                 catch (System.Data.Entity.Infrastructure.DbUpdateException)
                 {
                     MessageBox.Show("Ошибка", "Проверьте правильность вводимых данных", MessageBoxButton.OK);
                 }
             }
-
-
         }
-
-        void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
-        }
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

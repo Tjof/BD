@@ -11,7 +11,7 @@ namespace BD.Model
 {
     using System;
     using System.Collections.Generic;
-
+    
     public partial class Аптеки
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,23 +19,18 @@ namespace BD.Model
         {
             this.Ассортимент_товара = new HashSet<Ассортимент_товара>();
         }
-
+    
         public int id_аптеки { get; set; }
         public string Название { get; set; }
-        public int id_улицы
-        {
-            get;
-            set;
-        }
+        public int id_улицы { get; set; }
         public string Номер_дома { get; set; }
         public string Время_начала_работы { get; set; }
         public string Время_окончания_работы { get; set; }
         public int id_остановки { get; set; }
-
+    
         public virtual Остановки Остановки { get; set; }
         public virtual Улицы Улицы { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ассортимент_товара> Ассортимент_товара { get; set; }
-
     }
 }

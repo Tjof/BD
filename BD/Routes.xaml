@@ -16,7 +16,7 @@
             </StackPanel>
         </DockPanel>
         <StackPanel Height="50" DockPanel.Dock="Bottom"/>
-        <DataGrid x:Name="DataGrid" SelectionChanged="DataGrid_SelectionChanged">
+        <DataGrid x:Name="DataGrid" SelectionChanged="DataGrid_SelectionChanged" ItemsSource="{Binding Routess}">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Номер_маршрута}" ClipboardContentBinding="{x:Null}" Header="Номер маршрута" Width="130"/>
                 <DataGridTextColumn Binding="{Binding Виды_Транспорта.Вид_транспорта}" ClipboardContentBinding="{x:Null}" Header="Вид транспорта" Width="*"/>

@@ -1,29 +1,16 @@
-﻿using BD.Class;
-using BD.Model;
-using System;
-using System.Collections.Generic;
+﻿using BD.Model;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+using System.Data.Entity;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace BD
 {
     /// <summary>
     /// Логика взаимодействия для Streets.xaml
     /// </summary>
-    public partial class TransportMode : Window, INotifyPropertyChanged
+    public partial class TransportMode : Window
     {
         BAZANOWEntities model;
         private ObservableCollection<Виды_Транспорта> _transportMode;
@@ -32,9 +19,9 @@ namespace BD
         {
             InitializeComponent();
             model = new BAZANOWEntities();
-            TransportModes = new ObservableCollection<Виды_Транспорта>(model.Виды_Транспорта.ToArray());
+            model.Виды_Транспорта.Load();
+            TransportModes = model.Виды_Транспорта.Local;
             DataGrid.ItemsSource = TransportModes;
-
         }
 
         public ObservableCollection<Виды_Транспорта> TransportModes
@@ -62,8 +49,9 @@ namespace BD
             {
                 try
                 {
-                    model.Виды_Транспорта.Remove(DataGrid.SelectedItem as Виды_Транспорта);
+                    model.Виды_Транспорта.Local.Remove(DataGrid.SelectedItem as Виды_Транспорта);
                     model.SaveChanges();
+                    CollectionViewSource.GetDefaultView(model.Виды_Транспорта.Local).Refresh();
                 }
                 catch (System.Data.Entity.Infrastructure.DbUpdateException)
                 {
@@ -98,6 +86,7 @@ namespace BD
                         {
                             (DataGrid.SelectedItem as Виды_Транспорта).Вид_транспорта = TransportModeNameEdit.Text;
                             model.SaveChanges();
+                            CollectionViewSource.GetDefaultView(model.Виды_Транспорта.Local).Refresh();
                             TransportModeNameEdit.Text = "";
                             TransportModeNameEdit.IsReadOnly = true;
                             AddEditTransportMode.IsEnabled = false;
@@ -117,6 +106,7 @@ namespace BD
                         {
                             transportMode.Вид_транспорта = TransportModeNameEdit.Text;
                             model.Виды_Транспорта.Add(transportMode);
+                            CollectionViewSource.GetDefaultView(model.Виды_Транспорта.Local).Refresh();
                             model.SaveChanges();
                             TransportModeNameEdit.Text = "";
                             TransportModeNameEdit.IsReadOnly = true;
@@ -131,15 +121,6 @@ namespace BD
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged(string name)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
-            }
-        }
-
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (DataGrid.SelectedItem != null)
@@ -148,15 +129,11 @@ namespace BD
                 Delete.IsEnabled = true;
                 TransportModeNameEdit.IsEnabled = false;
                 AddEditTransportMode.IsEnabled = false;
-            }
-
-            if (DataGrid.SelectedItem == null)
-            {
-                TransportModeNameEdit.Text = "";
+                TransportModeNameEdit.Text = (DataGrid.SelectedItem as Виды_Транспорта).Вид_транспорта;
             }
             else
             {
-                TransportModeNameEdit.Text = (DataGrid.SelectedItem as Виды_Транспорта).Вид_транспорта;
+                TransportModeNameEdit.Text = "";
             }
         }
     }

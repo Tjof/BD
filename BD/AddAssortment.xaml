@@ -12,7 +12,7 @@
         <StackPanel Height="50" DockPanel.Dock="Bottom">
             <Button x:Name="AddEdit" HorizontalAlignment="Right" Click="AddEditClick"/>
         </StackPanel>
-        <Grid>
+        <Grid x:Name="elementsGrid">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="183" />
                 <ColumnDefinition Width="*"/>
@@ -25,15 +25,15 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <TextBlock Grid.Column="0" Grid.Row="0" Text="Название лекарства" Margin="10" VerticalAlignment="Center" FontSize="15"/>
-            <ComboBox x:Name="DrugName" SelectedItem="{Binding Лекарство}" DisplayMemberPath="Название_лекарства" Grid.Column="1" Grid.Row="0" Margin="10" Height="32" FontSize="15"/>
+            <ComboBox x:Name="DrugName" SelectedItem="{Binding Лекарство, UpdateSourceTrigger=Explicit}" DisplayMemberPath="Название_лекарства" Grid.Column="1" Grid.Row="0" Margin="10" Height="32" FontSize="15"/>
             <TextBlock Grid.Column="0" Grid.Row="1" Text="Название аптеки" Margin="10" VerticalAlignment="Center" FontSize="15"/>
-            <ComboBox x:Name="DrugstoreName" SelectedItem="{Binding Аптеки}" DisplayMemberPath="Название" Grid.Column="1" Grid.Row="1" Margin="10" Height="32" FontSize="15"/>
+            <ComboBox x:Name="DrugstoreName" SelectedItem="{Binding Аптеки, UpdateSourceTrigger=Explicit}" DisplayMemberPath="Название" Grid.Column="1" Grid.Row="1" Margin="10" Height="32" FontSize="15"/>
             <TextBlock Grid.Column="0" Grid.Row="2" Text="Количество" Margin="10" VerticalAlignment="Center" FontSize="15"/>
-            <TextBox Text="{Binding Количество}" Grid.Column="1" Grid.Row="2" Margin="10" FontSize="15"/>
+            <TextBox Text="{Binding Количество, UpdateSourceTrigger=Explicit}" Grid.Column="1" Grid.Row="2" Margin="10" FontSize="15"/>
             <TextBlock Grid.Column="0" Grid.Row="3" Text="Форма упаковки" Margin="10" VerticalAlignment="Center" FontSize="15"/>
-            <ComboBox x:Name="PackingFormName" SelectedItem="{Binding Формы_упаковки}" DisplayMemberPath="Название_формы" Grid.Column="1" Grid.Row="3" Margin="10" Height="32" FontSize="15"/>
+            <ComboBox x:Name="PackingFormName" SelectedItem="{Binding Формы_упаковки, UpdateSourceTrigger=Explicit}" DisplayMemberPath="Название_формы" Grid.Column="1" Grid.Row="3" Margin="10" Height="32" FontSize="15"/>
             <TextBlock Grid.Column="0" Grid.Row="4" Text="Цена" Margin="10" VerticalAlignment="Center" FontSize="15"/>
-            <TextBox Text="{Binding Цена}" Grid.Column="1" Grid.Row="4" Margin="10" FontSize="15"/>
+            <TextBox Text="{Binding Цена, UpdateSourceTrigger=Explicit}" Grid.Column="1" Grid.Row="4" Margin="10" FontSize="15"/>
         </Grid>
     </DockPanel>
 </Window>

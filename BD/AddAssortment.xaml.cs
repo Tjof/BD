@@ -1,29 +1,14 @@
 ﻿using BD.Model;
-using BD.Class;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using Xceed.Wpf.Toolkit;
 
 namespace BD
 {
     /// <summary>
     /// Логика взаимодействия для AD.xaml
     /// </summary>
-    public partial class AddAssortment : Window, INotifyPropertyChanged
+    public partial class AddAssortment : Window
     {
         BAZANOWEntities model;
         Ассортимент_товара assortment;
@@ -37,7 +22,8 @@ namespace BD
             DrugName.ItemsSource = model.Лекарство.ToArray();
             DrugstoreName.ItemsSource = model.Аптеки.ToArray();
             PackingFormName.ItemsSource = model.Формы_упаковки.ToArray();
-            if (model.Entry(assortment).State == System.Data.Entity.EntityState.Detached)
+
+            if (assortment.id_лекарство == 0)
             {
                 Title = "Добавление нового ассортимента";
                 AddEdit.Content = "Добавить";
@@ -50,38 +36,46 @@ namespace BD
                 DrugstoreName.IsEnabled = false;
                 PackingFormName.IsEnabled = false;
             }
+
         }
 
         private void AddEditClick(object sender, RoutedEventArgs e)
         {
             if (MessageBox.Show("Подтверждение", "Вы уверены, что хотите внести изменения в базу данных?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
+
+                //if (RegexClass.RegexDrugstore(DrugstoreName.Text, WorkStartTime.Text, WorkEndingTime.Text))
+                //{
                 try
                 {
-                    if (model.Entry(assortment).State == System.Data.Entity.EntityState.Detached)
+                    foreach (FrameworkElement element in elementsGrid.Children)
+                    {
+                        if (element is TextBox)
+                            element.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
+                        else if (element is ComboBox)
+                            element.GetBindingExpression(ComboBox.SelectedItemProperty)?.UpdateSource();
+                    }
+                    if (assortment.id_лекарство == 0) //new record
                     {
                         model.Ассортимент_товара.Add(assortment);
                     }
-                    //else
-                    //{
-                    //    MessageBox.Show("Ошибка", "Проверьте правильность вводимых данных", MessageBoxButton.OK);
-                    //}
+                    else
+                    {
+                        model.Entry(assortment).State = System.Data.Entity.EntityState.Modified;
+                    }
                     model.SaveChanges();
-                    OnPropertyChanged();
+                    this.Close();
                 }
                 catch (System.Data.Entity.Infrastructure.DbUpdateException)
                 {
                     MessageBox.Show("Ошибка", "Проверьте правильность вводимых данных", MessageBoxButton.OK);
                 }
+                //}
+                //else
+                //{
+                //    MessageBox.Show("Ошибка", "Проверьте правильность вводимых данных", MessageBoxButton.OK);
+                //}
             }
-
-
         }
-
-        void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
-        }
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

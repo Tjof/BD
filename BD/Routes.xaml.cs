@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -21,7 +22,7 @@ namespace BD
     /// <summary>
     /// Логика взаимодействия для Routes.xaml
     /// </summary>
-    public partial class Routes : Window, INotifyPropertyChanged
+    public partial class Routes : Window
     {
         BAZANOWEntities model;
         ObservableCollection<Транспортные_маршруты> _routes;
@@ -29,9 +30,10 @@ namespace BD
         public Routes()
         {
             InitializeComponent();
+            DataContext = this;
             model = new BAZANOWEntities();
-            Routess = new ObservableCollection<Транспортные_маршруты>(model.Транспортные_маршруты.Include("Виды_Транспорта").ToArray());
-            DataGrid.ItemsSource = Routess;
+            model.Транспортные_маршруты.Load();
+            Routess = model.Транспортные_маршруты.Local;
         }
 
         public ObservableCollection<Транспортные_маршруты> Routess
@@ -40,7 +42,6 @@ namespace BD
             set
             {
                 _routes = value;
-                OnPropertyChanged();
             }
         }
 
@@ -56,21 +57,14 @@ namespace BD
             addRoute.ShowDialog();
         }
 
-        void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
-        }
-        public event PropertyChangedEventHandler PropertyChanged;
-
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
             if (MessageBox.Show("Подтверждение", "Вы уверены, что хотите внести изменения в базу данных?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 try
                 {
-                    model.Транспортные_маршруты.Remove(DataGrid.SelectedItem as Транспортные_маршруты);
+                    model.Транспортные_маршруты.Local.Remove(DataGrid.SelectedItem as Транспортные_маршруты);
                     model.SaveChanges();
-                    OnPropertyChanged();
                 }
                 catch (System.Data.Entity.Infrastructure.DbUpdateException)
                 {
@@ -81,11 +75,15 @@ namespace BD
 
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
-            AddRoute editStop = new AddRoute(model, DataGrid.SelectedItem as Транспортные_маршруты)
+            Транспортные_маршруты a = DataGrid.SelectedItem as Транспортные_маршруты;
+            using (CollectionViewSource.GetDefaultView(Routess).DeferRefresh())
             {
-                Owner = this
-            };
-            editStop.ShowDialog();
+                AddRoute editStop = new AddRoute(model, a)
+                {
+                    Owner = this
+                };
+                editStop.ShowDialog();
+            }
         }
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)

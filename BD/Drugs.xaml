@@ -5,30 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BD"
         mc:Ignorable="d"
-        Title="Лекарства" Height="408" Width="808"
-        Closed="Window_Closed">
+        Title="Лекарства" Height="408" Width="808">
     <DockPanel>
         <DockPanel DockPanel.Dock="Top">
-            <Button Content="Закрыть" DockPanel.Dock="Right" Click="Button_Click"/>
+            <Button Content="Закрыть" DockPanel.Dock="Right" Click="ButtonClose"/>
             <StackPanel Orientation="Horizontal">
-                <Button Content="Добавить"/>
-                <Button Content="Изменить"/>
-                <Button Content="Удалить"/>
+                <Button x:Name="Add" Content="Добавить" Click="ButtonAddStop"/>
+                <Button x:Name="Edit" Content="Изменить" IsEnabled="False" Click="Edit_Click"/>
+                <Button x:Name="Delete" Content="Удалить" IsEnabled="False" Click="Delete_Click"/>
             </StackPanel>
         </DockPanel>
         <StackPanel Height="50" DockPanel.Dock="Bottom"/>
-        <StackPanel Orientation="Horizontal">
-            <DataGrid x:Name="DataGrid" AutoGenerateColumns="False" BorderBrush="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Width="400">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Название_лекарства}" ClipboardContentBinding="{x:Null}" Header="Название лекарства" Width="*"/>
-                </DataGrid.Columns>
-            </DataGrid>
-            <DataGrid Width="400" ItemsSource="{Binding ElementName=DataGrid, Path=SelectedItem.Лекарство1}" AutoGenerateColumns="False">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Название_лекарства}" ClipboardContentBinding="{x:Null}" Header="Название лекарства заменителя" Width="*"/>
-                </DataGrid.Columns>
-            </DataGrid>
-        </StackPanel>
+        <DataGrid x:Name="DataGrid" AutoGenerateColumns="False" SelectionChanged="DataGrid_SelectionChanged" ItemsSource="{Binding Drugss}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Название_лекарства}" ClipboardContentBinding="{x:Null}" Header="Название лекарства" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </DockPanel>
 </Window>
 
