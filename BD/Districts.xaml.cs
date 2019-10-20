@@ -1,7 +1,9 @@
 ﻿using BD.Model;
+using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Data.Entity;
-using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -11,10 +13,11 @@ namespace BD
     /// <summary>
     /// Логика взаимодействия для Districts.xaml
     /// </summary>
-    public partial class Districts : Window
+    public partial class Districts : Window, INotifyPropertyChanged
     {
         BAZANOWEntities model;
         private ObservableCollection<Районы_города> _districts;
+        private bool _editAllowed;
 
         public Districts()
         {
@@ -108,13 +111,14 @@ namespace BD
                             district.Название_района = DistrictNameEdit.Text;
                             model.Районы_города.Local.Add(district);
                             model.SaveChanges();
-                            CollectionViewSource.GetDefaultView(model.Районы_города.Local).Refresh();
+                            EditAllowed = false;
                             DistrictNameEdit.Text = "";
                             DistrictNameEdit.IsReadOnly = true;
                             AddEditDistrict.IsEnabled = false;
                         }
                         catch (System.Data.Entity.Infrastructure.DbUpdateException)
                         {
+                            model.Районы_города.Local.Remove(district);
                             MessageBox.Show("Ошибка", "Проверьте правильность вводимых данных", MessageBoxButton.OK);
                         }
                     }
@@ -136,6 +140,23 @@ namespace BD
             {
                 DistrictNameEdit.Text = "";
             }
+        }
+
+        public bool EditAllowed
+        {
+            get { return _editAllowed; }
+            set
+            {
+                _editAllowed = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        void OnPropertyChanged([CallerMemberName] string prop = "")
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
 
     }

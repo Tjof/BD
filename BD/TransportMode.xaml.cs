@@ -1,6 +1,9 @@
 ﻿using BD.Model;
+using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Data.Entity;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -10,10 +13,11 @@ namespace BD
     /// <summary>
     /// Логика взаимодействия для Streets.xaml
     /// </summary>
-    public partial class TransportMode : Window
+    public partial class TransportMode : Window, INotifyPropertyChanged
     {
         BAZANOWEntities model;
         private ObservableCollection<Виды_Транспорта> _transportMode;
+        private bool _editAllowed;
 
         public TransportMode()
         {
@@ -87,7 +91,7 @@ namespace BD
                             (DataGrid.SelectedItem as Виды_Транспорта).Вид_транспорта = TransportModeNameEdit.Text;
                             model.SaveChanges();
                             CollectionViewSource.GetDefaultView(model.Виды_Транспорта.Local).Refresh();
-                            TransportModeNameEdit.Text = "";
+                            TransportModeNameEdit.Text = String.Empty;
                             TransportModeNameEdit.IsReadOnly = true;
                             AddEditTransportMode.IsEnabled = false;
                         }
@@ -106,14 +110,15 @@ namespace BD
                         {
                             transportMode.Вид_транспорта = TransportModeNameEdit.Text;
                             model.Виды_Транспорта.Add(transportMode);
-                            CollectionViewSource.GetDefaultView(model.Виды_Транспорта.Local).Refresh();
                             model.SaveChanges();
-                            TransportModeNameEdit.Text = "";
+                            EditAllowed = false;
+                            TransportModeNameEdit.Text = String.Empty;
                             TransportModeNameEdit.IsReadOnly = true;
                             AddEditTransportMode.IsEnabled = false;
                         }
                         catch (System.Data.Entity.Infrastructure.DbUpdateException)
                         {
+                            model.Виды_Транспорта.Local.Remove(transportMode);
                             MessageBox.Show("Ошибка", "Проверьте правильность вводимых данных", MessageBoxButton.OK);
                         }
                     }
@@ -135,6 +140,23 @@ namespace BD
             {
                 TransportModeNameEdit.Text = "";
             }
+        }
+
+        public bool EditAllowed
+        {
+            get { return _editAllowed; }
+            set
+            {
+                _editAllowed = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        void OnPropertyChanged([CallerMemberName] string prop = "")
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
     }
 }

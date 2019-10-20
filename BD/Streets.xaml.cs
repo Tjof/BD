@@ -1,6 +1,9 @@
 ﻿using BD.Model;
+using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Data.Entity;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -10,10 +13,11 @@ namespace BD
     /// <summary>
     /// Логика взаимодействия для Streets.xaml
     /// </summary>
-    public partial class Streets : Window
+    public partial class Streets : Window, INotifyPropertyChanged
     {
         BAZANOWEntities model;
         private ObservableCollection<Улицы> _streetss;
+        private bool _editAllowed;
 
         public Streets()
         {
@@ -87,7 +91,7 @@ namespace BD
                             (DataGrid.SelectedItem as Улицы).Название_улицы = StreetNameEdit.Text;
                             model.SaveChanges();
                             CollectionViewSource.GetDefaultView(model.Улицы.Local).Refresh();
-                            StreetNameEdit.Text = "";
+                            StreetNameEdit.Text = String.Empty;
                             StreetNameEdit.IsReadOnly = true;
                             AddEditStreet.IsEnabled = false;
                         }
@@ -107,13 +111,14 @@ namespace BD
                             street.Название_улицы = StreetNameEdit.Text;
                             model.Улицы.Local.Add(street);
                             model.SaveChanges();
-                            CollectionViewSource.GetDefaultView(model.Улицы.Local).Refresh();
-                            StreetNameEdit.Text = "";
+                            EditAllowed = false;
+                            StreetNameEdit.Text = String.Empty;
                             StreetNameEdit.IsReadOnly = true;
                             AddEditStreet.IsEnabled = false;
                         }
                         catch (System.Data.Entity.Infrastructure.DbUpdateException)
                         {
+                            model.Улицы.Local.Remove(street);
                             MessageBox.Show("Ошибка", "Проверьте правильность вводимых данных", MessageBoxButton.OK);
                         }
                     }
@@ -135,6 +140,23 @@ namespace BD
             {
                 StreetNameEdit.Text = "";
             }
+        }
+
+        public bool EditAllowed
+        {
+            get { return _editAllowed; }
+            set
+            {
+                _editAllowed = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        void OnPropertyChanged([CallerMemberName] string prop = "")
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
     }
 }

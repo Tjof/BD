@@ -1,6 +1,9 @@
 ﻿using BD.Model;
+using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Data.Entity;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -10,10 +13,11 @@ namespace BD
     /// <summary>
     /// Логика взаимодействия для Streets.xaml
     /// </summary>
-    public partial class PackingForm : Window
+    public partial class PackingForm : Window, INotifyPropertyChanged
     {
         BAZANOWEntities model;
         private ObservableCollection<Формы_упаковки> _packingformss;
+        private bool _editAllowed;
 
         public PackingForm()
         {
@@ -87,7 +91,7 @@ namespace BD
                             (DataGrid.SelectedItem as Формы_упаковки).Название_формы = PackingFormNameEdit.Text;
                             model.SaveChanges();
                             CollectionViewSource.GetDefaultView(model.Формы_упаковки.Local).Refresh();
-                            PackingFormNameEdit.Text = "";
+                            PackingFormNameEdit.Text = String.Empty;
                             PackingFormNameEdit.IsReadOnly = true;
                             AddEditPackingform.IsEnabled = false;
                         }
@@ -106,14 +110,15 @@ namespace BD
                         {
                             packingform.Название_формы = PackingFormNameEdit.Text;
                             model.Формы_упаковки.Local.Add(packingform);
-                            CollectionViewSource.GetDefaultView(model.Формы_упаковки.Local).Refresh();
+                            EditAllowed = false;
                             model.SaveChanges();
-                            PackingFormNameEdit.Text = "";
+                            PackingFormNameEdit.Text = String.Empty;
                             PackingFormNameEdit.IsReadOnly = true;
                             AddEditPackingform.IsEnabled = false;
                         }
                         catch (System.Data.Entity.Infrastructure.DbUpdateException)
                         {
+                            model.Формы_упаковки.Local.Remove(packingform);
                             MessageBox.Show("Ошибка", "Проверьте правильность вводимых данных", MessageBoxButton.OK);
                         }
                     }
@@ -135,6 +140,23 @@ namespace BD
             {
                 PackingFormNameEdit.Text = "";
             }
+        }
+
+        public bool EditAllowed
+        {
+            get { return _editAllowed; }
+            set
+            {
+                _editAllowed = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        void OnPropertyChanged([CallerMemberName] string prop = "")
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
     }
 }
