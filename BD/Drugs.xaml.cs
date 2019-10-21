@@ -1,6 +1,8 @@
 ﻿using BD.Model;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -13,7 +15,7 @@ namespace BD
     public partial class Drugs : Window
     {
         BAZANOWEntities model;
-        ObservableCollection<Лекарство> _drugs;
+        public ICollectionView Drugss { get; set; }
 
         public Drugs()
         {
@@ -21,16 +23,7 @@ namespace BD
             DataContext = this;
             model = new BAZANOWEntities();
             model.Лекарство.Load();
-            Drugss = model.Лекарство.Local;
-        }
-
-        public ObservableCollection<Лекарство> Drugss
-        {
-            get => _drugs;
-            set
-            {
-                _drugs = value;
-            }
+            Drugss = CollectionViewSource.GetDefaultView(model.Лекарство.Local);
         }
 
         private void ButtonClose(object sender, RoutedEventArgs e)
@@ -49,12 +42,17 @@ namespace BD
         {
             if (MessageBox.Show("Подтверждение", "Вы уверены, что хотите внести изменения в базу данных?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
+                var a = DataGrid.SelectedItem as Лекарство;
                 try
                 {
-                    model.Лекарство.Local.Remove(DataGrid.SelectedItem as Лекарство);
+                    if(a.Ассортимент_товара.Count != 0)
+                    {
+                        throw new DbUpdateException("Лекарство связано!");
+                    }
+                    model.Лекарство.Local.Remove(a);
                     model.SaveChanges();
                 }
-                catch (System.Data.Entity.Infrastructure.DbUpdateException)
+                catch (DbUpdateException)
                 {
                     MessageBox.Show("Ошибка", "Удаляемые данные связаны!", MessageBoxButton.OK);
                 }

@@ -78,7 +78,9 @@ namespace BD
                 }
                 catch (System.Data.Entity.Infrastructure.DbUpdateException)
                 {
+                    model.Лекарство.Local.Remove(drugs);
                     MessageBox.Show("Ошибка", "Проверьте правильность вводимых данных", MessageBoxButton.OK);
+                    this.Close();
                 }
             }
         }

@@ -3,6 +3,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
@@ -51,13 +52,18 @@ namespace BD
         {
             if (MessageBox.Show("Подтверждение", "Вы уверены, что хотите внести изменения в базу данных?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
+                var a = DataGrid.SelectedItem as Улицы;
                 try
                 {
-                    model.Улицы.Local.Remove(DataGrid.SelectedItem as Улицы);
+                    if (a.Аптеки.Count != 0 || a.Остановки.Count != 0)
+                    {
+                        throw new DbUpdateException("Улица связана!");
+                    }
+                    model.Улицы.Local.Remove(a);
                     model.SaveChanges();
                     CollectionViewSource.GetDefaultView(model.Улицы.Local).Refresh();
                 }
-                catch (System.Data.Entity.Infrastructure.DbUpdateException)
+                catch (DbUpdateException)
                 {
                     MessageBox.Show("Ошибка", "Удаляемые данные связаны!", MessageBoxButton.OK);
                 }

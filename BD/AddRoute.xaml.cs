@@ -84,7 +84,9 @@ namespace BD
                     }
                     catch (System.Data.Entity.Infrastructure.DbUpdateException)
                     {
+                        model.Транспортные_маршруты.Local.Remove(route);
                         MessageBox.Show("Ошибка", "Проверьте правильность вводимых данных", MessageBoxButton.OK);
+                        this.Close();
                     }
                 }
                 else

@@ -60,7 +60,9 @@ namespace BD
                 }
                 catch (System.Data.Entity.Infrastructure.DbUpdateException)
                 {
+                    model.Остановки.Local.Remove(stop);
                     MessageBox.Show("Ошибка", "Проверьте правильность вводимых данных", MessageBoxButton.OK);
+                    this.Close();
                 }
             }
         }

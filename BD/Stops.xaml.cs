@@ -1,6 +1,7 @@
 ﻿using BD.Model;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -49,12 +50,17 @@ namespace BD
         {
             if (MessageBox.Show("Подтверждение", "Вы уверены, что хотите внести изменения в базу данных?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
+                var a = DataGrid.SelectedItem as Остановки;
                 try
                 {
-                    model.Остановки.Local.Remove(DataGrid.SelectedItem as Остановки);
+                    if(a.Аптеки.Count != 0 || a.Транспортные_маршруты.Count != 0)
+                    {
+                        throw new DbUpdateException("Данная остановка связана!");
+                    }
+                    model.Остановки.Local.Remove(a);
                     model.SaveChanges();
                 }
-                catch (System.Data.Entity.Infrastructure.DbUpdateException)
+                catch (DbUpdateException)
                 {
                     MessageBox.Show("Ошибка", "Удаляемые данные связаны!", MessageBoxButton.OK);
                 }

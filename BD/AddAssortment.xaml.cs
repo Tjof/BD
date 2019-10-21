@@ -20,6 +20,7 @@ namespace BD
             this.assortment = assortment;
             DataContext = assortment;
             this.model = model;
+            
             DrugName.ItemsSource = model.Лекарство.ToArray();
             DrugstoreName.ItemsSource = model.Аптеки.ToArray();
             PackingFormName.ItemsSource = model.Формы_упаковки.ToArray();
@@ -57,7 +58,7 @@ namespace BD
                         }
                         if (assortment.id_лекарство == 0) //new record
                         {
-                            model.Ассортимент_товара.Add(assortment);
+                            model.Ассортимент_товара.Local.Add(assortment);
                         }
                         else
                         {
@@ -68,7 +69,9 @@ namespace BD
                     }
                     catch (System.Data.Entity.Infrastructure.DbUpdateException)
                     {
+                        model.Ассортимент_товара.Local.Remove(assortment);
                         MessageBox.Show("Ошибка", "Проверьте правильность вводимых данных", MessageBoxButton.OK);
+                        this.Close();
                     }
                 }
                 else

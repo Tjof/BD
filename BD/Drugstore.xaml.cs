@@ -1,21 +1,10 @@
 ﻿using BD.Model;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Data.Entity;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.Entity.Infrastructure;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace BD
 {
@@ -61,12 +50,17 @@ namespace BD
         {
             if (MessageBox.Show("Подтверждение", "Вы уверены, что хотите внести изменения в базу данных?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
+                var a = DataGrid.SelectedItem as Аптеки;
                 try
                 {
-                    model.Аптеки.Local.Remove(DataGrid.SelectedItem as Аптеки);
+                    if(a.Ассортимент_товара.Count != 0)
+                    {
+                        throw new DbUpdateException("Аптека связана!");
+                    }
+                    model.Аптеки.Local.Remove(a);
                     model.SaveChanges();
                 }
-                catch (System.Data.Entity.Infrastructure.DbUpdateException)
+                catch (DbUpdateException)
                 {
                     System.Windows.MessageBox.Show("Ашибка! Запись связана!!!");
                 }

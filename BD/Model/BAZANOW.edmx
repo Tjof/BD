@@ -192,7 +192,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Лекарства и их заменители_Лекарство">
-          <End Role="Лекарство" Type="Self.Лекарство" Multiplicity="1" />
+          <End Role="Лекарство" Type="Self.Лекарство" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Лекарства и их заменители" Type="Self.Лекарства и их заменители" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Лекарство">

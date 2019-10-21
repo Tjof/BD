@@ -3,6 +3,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
@@ -51,13 +52,18 @@ namespace BD
         {
             if (MessageBox.Show("Подтверждение", "Вы уверены, что хотите внести изменения в базу данных?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
+                var a = DataGrid.SelectedItem as Формы_упаковки;
                 try
                 {
-                    model.Формы_упаковки.Local.Remove(DataGrid.SelectedItem as Формы_упаковки);
+                    if (a.Ассортимент_товара.Count != 0)
+                    {
+                        throw new DbUpdateException("Форма упаковки связана!");
+                    }
+                    model.Формы_упаковки.Local.Remove(a);
                     model.SaveChanges();
                     CollectionViewSource.GetDefaultView(model.Формы_упаковки.Local).Refresh();
                 }
-                catch (System.Data.Entity.Infrastructure.DbUpdateException)
+                catch (DbUpdateException)
                 {
                     MessageBox.Show("Ошибка", "Удаляемые данные связаны!", MessageBoxButton.OK);
                 }
