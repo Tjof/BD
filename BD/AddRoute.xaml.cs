@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace BD
 {
@@ -28,7 +29,7 @@ namespace BD
             Stopss = model.Остановки.Local;
             DataGrid.ItemsSource = Stopss;
             this.model = model;
-
+            
             DataGrid2.ItemsSource = route.Остановки.ToArray();
             ComboBoxTransportMod.ItemsSource = model.Виды_Транспорта.ToArray();
 
@@ -104,6 +105,7 @@ namespace BD
                 {
                     route.Остановки.Add(DataGrid.SelectedItem as Остановки);
                     model.SaveChanges();
+                    //CollectionViewSource.GetDefaultView(route.Остановки.Local).Refresh();
                 }
                 catch (System.Data.Entity.Infrastructure.DbUpdateException)
                 {
@@ -120,6 +122,7 @@ namespace BD
                 {
                     route.Остановки.Remove(DataGrid2.SelectedItem as Остановки);
                     model.SaveChanges();
+                    //CollectionViewSource.GetDefaultView(model.Остановки.Local).Refresh();
                 }
                 catch (System.Data.Entity.Infrastructure.DbUpdateException)
                 {
