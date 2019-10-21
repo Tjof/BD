@@ -32,8 +32,14 @@
                 <Button x:Name="Delete" Content="Удалить остановку" IsEnabled="False" Click="DeleteStop" Width="160"/>
             </StackPanel>
         </DockPanel>
-        <DockPanel DockPanel.Dock="Bottom">
-            <Button x:Name="AddEdit" Click="AddEditClick" DockPanel.Dock="Right" HorizontalAlignment="Right"/>
+        <DockPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right">
+            <Button Width="60">
+                <Image Source="down-arrow.png"/>
+            </Button>
+            <Button Width="60">
+                <Image Source="up-arrow.png"/>
+            </Button>
+            <Button x:Name="AddEdit" Click="AddEditClick"/>
         </DockPanel>
         <StackPanel Orientation="Horizontal">
             <DataGrid x:Name="DataGrid" Width="275" AutoGenerateColumns="False" SelectionChanged="DataGrid_SelectionChanged">

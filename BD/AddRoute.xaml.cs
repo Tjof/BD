@@ -136,6 +136,8 @@ namespace BD
             if (DataGrid.SelectedItem != null)
             {
                 Add.IsEnabled = true;
+                Delete.IsEnabled = false;
+                DataGrid2.SelectedItem = null;
             }
         }
 
@@ -144,6 +146,8 @@ namespace BD
             if (DataGrid2.SelectedItem != null)
             {
                 Delete.IsEnabled = true;
+                Add.IsEnabled = false;
+                DataGrid.SelectedItem = null;
             }
         }
     }

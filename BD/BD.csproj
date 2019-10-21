@@ -382,6 +382,8 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="up-arrow.png" />
+    <Resource Include="down-arrow.png" />
     <Content Include="Model\BAZANOW.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>BAZANOW.edmx</DependentUpon>
