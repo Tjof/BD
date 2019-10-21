@@ -4,17 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="7f5d1b524b384ec3bfe411c5f5f4c39b" Name="Diagram1">
+      <Diagram DiagramId="7f5d1b524b384ec3bfe411c5f5f4c39b" Name="Diagram1" ZoomLevel="73">
         <EntityTypeShape EntityType="BAZANOWModel.Ассортимент_товара" Width="1.5" PointX="7.5" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BAZANOWModel.Виды_Транспорта" Width="1.5" PointX="3" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="BAZANOWModel.Виды_Транспорта" Width="1.5" PointX="1" PointY="10" IsExpanded="true" />
         <EntityTypeShape EntityType="BAZANOWModel.Лекарство" Width="1.5" PointX="5.25" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="BAZANOWModel.МаршрутыРайоны" Width="1.5" PointX="12" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="BAZANOWModel.Объекты" Width="1.5" PointX="7.75" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="BAZANOWModel.Остановки" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="BAZANOWModel.Пользователи" Width="1.5" PointX="6.375" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BAZANOWModel.Пользователи" Width="1.5" PointX="12.25" PointY="2.375" IsExpanded="true" />
         <EntityTypeShape EntityType="BAZANOWModel.ПользователиОбъекты" Width="1.5" PointX="10" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="BAZANOWModel.Районы_города" Width="1.5" PointX="9.75" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="BAZANOWModel.Транспортные_маршруты" Width="1.5" PointX="5.25" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BAZANOWModel.Транспортные_маршруты" Width="1.5" PointX="3.5" PointY="9.5" IsExpanded="true" />
         <EntityTypeShape EntityType="BAZANOWModel.Улицы" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="BAZANOWModel.Формы_упаковки" Width="1.5" PointX="5.25" PointY="11.5" IsExpanded="true" />
         <AssociationConnector Association="BAZANOWModel.FK_Ассортимент_товара_Лекарство" ManuallyRouted="false" />

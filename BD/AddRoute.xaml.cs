@@ -8,6 +8,7 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Collections.Generic;
 
 namespace BD
 {
@@ -18,19 +19,20 @@ namespace BD
     {
         BAZANOWEntities model;
         Транспортные_маршруты route;
-        ObservableCollection<Остановки> _stops;
+        ObservableCollection<Остановки> stops;
 
         public AddRoute(BAZANOWEntities model, Транспортные_маршруты route)
         {
             InitializeComponent();
             this.route = route;
             DataContext = route;
-            model.Остановки.Load();
-            Stopss = model.Остановки.Local;
-            DataGrid.ItemsSource = Stopss;
+            var a = model.Остановки.ToArray();
             this.model = model;
-            
-            DataGrid2.ItemsSource = route.Остановки.ToArray();
+
+            Stopss = new ObservableCollection<Остановки>(route.Остановки.ToList());
+
+            DataGrid.ItemsSource = a;
+            DataGrid2.ItemsSource = Stopss;
             ComboBoxTransportMod.ItemsSource = model.Виды_Транспорта.ToArray();
 
             if (route.id_маршрута == 0)
@@ -49,10 +51,10 @@ namespace BD
 
         public ObservableCollection<Остановки> Stopss
         {
-            get => _stops;
+            get => stops;
             set
             {
-                _stops = value;
+                stops = value;
             }
         }
 
@@ -103,9 +105,8 @@ namespace BD
             {
                 try
                 {
-                    route.Остановки.Add(DataGrid.SelectedItem as Остановки);
+                    Stopss.Add(DataGrid.SelectedItem as Остановки);
                     model.SaveChanges();
-                    //CollectionViewSource.GetDefaultView(route.Остановки.Local).Refresh();
                 }
                 catch (System.Data.Entity.Infrastructure.DbUpdateException)
                 {
@@ -120,9 +121,8 @@ namespace BD
             {
                 try
                 {
-                    route.Остановки.Remove(DataGrid2.SelectedItem as Остановки);
+                    Stopss.Remove(DataGrid2.SelectedItem as Остановки);
                     model.SaveChanges();
-                    //CollectionViewSource.GetDefaultView(model.Остановки.Local).Refresh();
                 }
                 catch (System.Data.Entity.Infrastructure.DbUpdateException)
                 {

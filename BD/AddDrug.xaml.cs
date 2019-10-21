@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace BD
 {
@@ -26,8 +27,10 @@ namespace BD
             var a = model.Лекарство.ToArray();
             this.model = model;
 
+            Drugss = new ObservableCollection<Лекарство>(drugs.Лекарство2.ToList());
+
             DataGrid.ItemsSource = a;
-            DataGrid2.ItemsSource = drugs.Лекарство2.ToArray();
+            DataGrid2.ItemsSource = Drugss;
 
             if (drugs.id_лекарство == 0)
             {
@@ -91,7 +94,7 @@ namespace BD
             {
                 try
                 {
-                    drugs.Лекарство2.Add(DataGrid.SelectedItem as Лекарство);
+                    Drugss.Add(DataGrid.SelectedItem as Лекарство);
                     model.SaveChanges();
                 }
                 catch (System.Data.Entity.Infrastructure.DbUpdateException)
@@ -107,7 +110,7 @@ namespace BD
             {
                 try
                 {
-                    drugs.Лекарство2.Remove(DataGrid2.SelectedItem as Лекарство);
+                    Drugss.Remove(DataGrid2.SelectedItem as Лекарство);
                     model.SaveChanges();
                 }
                 catch (System.Data.Entity.Infrastructure.DbUpdateException)
