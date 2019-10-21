@@ -82,6 +82,7 @@ namespace BD
         {
             if (MessageBox.Show("Подтверждение", "Вы уверены, что хотите внести изменения в базу данных?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
+
                 if (DataGrid.SelectedItem != null)
                 {
                     if (StreetNameEdit != null)

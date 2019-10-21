@@ -1,4 +1,5 @@
 ﻿using BD.Model;
+using BD.Class;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -82,46 +83,53 @@ namespace BD
         {
             if (MessageBox.Show("Подтверждение", "Вы уверены, что хотите внести изменения в базу данных?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                if (DataGrid.SelectedItem != null)
+                if (RegexClass.RegexDistrict(DistrictNameEdit.Text))
                 {
-                    if (DistrictNameEdit != null)
+                    if (DataGrid.SelectedItem != null)
                     {
-                        try
+                        if (DistrictNameEdit != null)
                         {
-                            (DataGrid.SelectedItem as Районы_города).Название_района = DistrictNameEdit.Text;
-                            model.SaveChanges();
-                            CollectionViewSource.GetDefaultView(model.Районы_города.Local).Refresh();
-                            DistrictNameEdit.Text = "";
-                            DistrictNameEdit.IsReadOnly = true;
-                            AddEditDistrict.IsEnabled = false;
+                            try
+                            {
+                                (DataGrid.SelectedItem as Районы_города).Название_района = DistrictNameEdit.Text;
+                                model.SaveChanges();
+                                CollectionViewSource.GetDefaultView(model.Районы_города.Local).Refresh();
+                                DistrictNameEdit.Text = "";
+                                DistrictNameEdit.IsReadOnly = true;
+                                AddEditDistrict.IsEnabled = false;
+                            }
+                            catch (System.Data.Entity.Infrastructure.DbUpdateException)
+                            {
+                                MessageBox.Show("Ошибка", "Проверьте правильность вводимых данных", MessageBoxButton.OK);
+                            }
                         }
-                        catch (System.Data.Entity.Infrastructure.DbUpdateException)
+                    }
+                    else
+                    {
+                        if (DistrictNameEdit != null)
                         {
-                            MessageBox.Show("Ошибка", "Проверьте правильность вводимых данных", MessageBoxButton.OK);
+                            Районы_города district = new Районы_города();
+                            try
+                            {
+                                district.Название_района = DistrictNameEdit.Text;
+                                model.Районы_города.Local.Add(district);
+                                model.SaveChanges();
+                                EditAllowed = false;
+                                DistrictNameEdit.Text = "";
+                                DistrictNameEdit.IsReadOnly = true;
+                                AddEditDistrict.IsEnabled = false;
+                            }
+                            catch (System.Data.Entity.Infrastructure.DbUpdateException)
+                            {
+                                model.Районы_города.Local.Remove(district);
+                                MessageBox.Show("Ошибка", "Проверьте правильность вводимых данных", MessageBoxButton.OK);
+                            }
                         }
                     }
                 }
                 else
                 {
-                    if(DistrictNameEdit != null)
-                    {
-                        Районы_города district = new Районы_города();
-                        try
-                        {
-                            district.Название_района = DistrictNameEdit.Text;
-                            model.Районы_города.Local.Add(district);
-                            model.SaveChanges();
-                            EditAllowed = false;
-                            DistrictNameEdit.Text = "";
-                            DistrictNameEdit.IsReadOnly = true;
-                            AddEditDistrict.IsEnabled = false;
-                        }
-                        catch (System.Data.Entity.Infrastructure.DbUpdateException)
-                        {
-                            model.Районы_города.Local.Remove(district);
-                            MessageBox.Show("Ошибка", "Проверьте правильность вводимых данных", MessageBoxButton.OK);
-                        }
-                    }
+                    MessageBox.Show("Ошибка", "Проверьте правильность вводимых данных", MessageBoxButton.OK);
                 }
             }
         }

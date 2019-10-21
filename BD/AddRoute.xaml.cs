@@ -1,4 +1,5 @@
 ﻿using BD.Model;
+using BD.Class;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data.Entity;
@@ -56,29 +57,37 @@ namespace BD
 
         private void AddEditClick(object sender, RoutedEventArgs e)
         {
+
             if (MessageBox.Show("Подтверждение", "Вы уверены, что хотите внести изменения в базу данных?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                try
+                if (RegexClass.RegexRoute(RouteNumber.Text))
                 {
-                    foreach (FrameworkElement element in elementsGrid.Children)
+                    try
                     {
-                        if (element is TextBox)
-                            element.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
-                        else if (element is ComboBox)
-                            element.GetBindingExpression(ComboBox.SelectedItemProperty)?.UpdateSource();
+                        foreach (FrameworkElement element in elementsGrid.Children)
+                        {
+                            if (element is TextBox)
+                                element.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
+                            else if (element is ComboBox)
+                                element.GetBindingExpression(ComboBox.SelectedItemProperty)?.UpdateSource();
+                        }
+                        if (route.id_маршрута == 0) //new record
+                        {
+                            model.Транспортные_маршруты.Add(route);
+                        }
+                        else
+                        {
+                            model.Entry(route).State = System.Data.Entity.EntityState.Modified;
+                        }
+                        model.SaveChanges();
+                        this.Close();
                     }
-                    if (route.id_маршрута == 0) //new record
+                    catch (System.Data.Entity.Infrastructure.DbUpdateException)
                     {
-                        model.Транспортные_маршруты.Add(route);
+                        MessageBox.Show("Ошибка", "Проверьте правильность вводимых данных", MessageBoxButton.OK);
                     }
-                    else
-                    {
-                        model.Entry(route).State = System.Data.Entity.EntityState.Modified;
-                    }
-                    model.SaveChanges();
-                    this.Close();
                 }
-                catch (System.Data.Entity.Infrastructure.DbUpdateException)
+                else
                 {
                     MessageBox.Show("Ошибка", "Проверьте правильность вводимых данных", MessageBoxButton.OK);
                 }
