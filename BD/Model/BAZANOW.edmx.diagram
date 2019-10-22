@@ -5,31 +5,30 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="7f5d1b524b384ec3bfe411c5f5f4c39b" Name="Diagram1" ZoomLevel="73">
-        <EntityTypeShape EntityType="BAZANOWModel.Ассортимент_товара" Width="1.5" PointX="7.5" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BAZANOWModel.Виды_Транспорта" Width="1.5" PointX="1" PointY="10" IsExpanded="true" />
-        <EntityTypeShape EntityType="BAZANOWModel.Лекарство" Width="1.5" PointX="5.25" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="BAZANOWModel.МаршрутыРайоны" Width="1.5" PointX="12" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="BAZANOWModel.Объекты" Width="1.5" PointX="7.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="BAZANOWModel.Остановки" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="BAZANOWModel.Пользователи" Width="1.5" PointX="12.25" PointY="2.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="BAZANOWModel.ПользователиОбъекты" Width="1.5" PointX="10" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="BAZANOWModel.Районы_города" Width="1.5" PointX="9.75" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="BAZANOWModel.Транспортные_маршруты" Width="1.5" PointX="3.5" PointY="9.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BAZANOWModel.Улицы" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="BAZANOWModel.Формы_упаковки" Width="1.5" PointX="5.25" PointY="11.5" IsExpanded="true" />
-        <AssociationConnector Association="BAZANOWModel.FK_Ассортимент_товара_Лекарство" ManuallyRouted="false" />
-        <AssociationConnector Association="BAZANOWModel.FK_Ассортимент_товара_Формы_упаковки" ManuallyRouted="false" />
-        <AssociationConnector Association="BAZANOWModel.FK_Транспортные_маршруты_Виды_Транспорта" ManuallyRouted="false" />
-        <AssociationConnector Association="BAZANOWModel.FK_МаршрутыРайоны_Районы_города" ManuallyRouted="false" />
-        <AssociationConnector Association="BAZANOWModel.FK_ПользователиОбъекты_Объекты" ManuallyRouted="false" />
-        <AssociationConnector Association="BAZANOWModel.FK_Остановки_Улицы" ManuallyRouted="false" />
-        <AssociationConnector Association="BAZANOWModel.FK_ПользователиОбъекты_Пользователи" ManuallyRouted="false" />
-        <AssociationConnector Association="BAZANOWModel.Лекарства_и_их_заменители" ManuallyRouted="false" />
-        <AssociationConnector Association="BAZANOWModel.МаршрутыОстановки" ManuallyRouted="false" />
         <EntityTypeShape EntityType="BAZANOWModel.Аптеки" Width="1.5" PointX="5.25" PointY="4.5" />
+        <EntityTypeShape EntityType="BAZANOWModel.Ассортимент_товара" Width="1.5" PointX="7.5" PointY="4.75" />
+        <EntityTypeShape EntityType="BAZANOWModel.Виды_Транспорта" Width="1.5" PointX="0.75" PointY="10" />
+        <EntityTypeShape EntityType="BAZANOWModel.Лекарство" Width="1.5" PointX="5.25" PointY="12.125" />
+        <EntityTypeShape EntityType="BAZANOWModel.МаршрутыОстановки" Width="1.5" PointX="5.25" PointY="8.75" />
+        <EntityTypeShape EntityType="BAZANOWModel.Объекты" Width="1.5" PointX="7.75" PointY="1.375" />
+        <EntityTypeShape EntityType="BAZANOWModel.Остановки" Width="1.5" PointX="3" PointY="6.625" />
+        <EntityTypeShape EntityType="BAZANOWModel.Пользователи" Width="1.5" PointX="7.75" PointY="8.375" />
+        <EntityTypeShape EntityType="BAZANOWModel.ПользователиОбъекты" Width="1.5" PointX="10" PointY="1" />
+        <EntityTypeShape EntityType="BAZANOWModel.Транспортные_маршруты" Width="1.5" PointX="3" PointY="9.75" />
+        <EntityTypeShape EntityType="BAZANOWModel.Улицы" Width="1.5" PointX="0.75" PointY="3.125" />
+        <EntityTypeShape EntityType="BAZANOWModel.Формы_упаковки" Width="1.5" PointX="5.25" PointY="1.875" />
         <AssociationConnector Association="BAZANOWModel.FK_Аптеки_Остановки" />
         <AssociationConnector Association="BAZANOWModel.FK_Аптеки_Улицы1" />
         <AssociationConnector Association="BAZANOWModel.FK_Ассортимент_товара_Аптеки" />
+        <AssociationConnector Association="BAZANOWModel.FK_Ассортимент_товара_Лекарство" />
+        <AssociationConnector Association="BAZANOWModel.FK_Ассортимент_товара_Формы_упаковки" />
+        <AssociationConnector Association="BAZANOWModel.FK_Транспортные_маршруты_Виды_Транспорта" />
+        <AssociationConnector Association="BAZANOWModel.FK_МаршрутыОстановки_Остановки" />
+        <AssociationConnector Association="BAZANOWModel.FK_МаршрутыОстановки_Транспортные_маршруты" />
+        <AssociationConnector Association="BAZANOWModel.FK_ПользователиОбъекты_Объекты" />
+        <AssociationConnector Association="BAZANOWModel.FK_Остановки_Улицы" />
+        <AssociationConnector Association="BAZANOWModel.FK_ПользователиОбъекты_Пользователи" />
+        <AssociationConnector Association="BAZANOWModel.Лекарства_и_их_заменители" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

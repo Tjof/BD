@@ -12,11 +12,13 @@ namespace BD.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class МаршрутыРайоны
+    public partial class МаршрутыОстановки
     {
         public int id_маршрута { get; set; }
-        public int id_района { get; set; }
+        public int id_остановки { get; set; }
+        public int Порядок { get; set; }
     
-        public virtual Районы_города Районы_города { get; set; }
+        public virtual Остановки Остановки { get; set; }
+        public virtual Транспортные_маршруты Транспортные_маршруты { get; set; }
     }
 }

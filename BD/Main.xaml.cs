@@ -102,15 +102,6 @@ namespace BD
             lekarstva.Show();
         }
 
-        private void Districts(object sender, RoutedEventArgs e)
-        {
-            Districts districts = new Districts()
-            {
-                Owner = this
-            };
-            districts.Show();
-        }
-
         private void Formiupakovki(object sender, RoutedEventArgs e)
         {
             PackingForm formi_Upakovki = new PackingForm()

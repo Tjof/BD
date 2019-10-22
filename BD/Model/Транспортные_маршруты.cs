@@ -17,7 +17,7 @@ namespace BD.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Транспортные_маршруты()
         {
-            this.Остановки = new HashSet<Остановки>();
+            this.МаршрутыОстановки = new HashSet<МаршрутыОстановки>();
         }
     
         public int id_маршрута { get; set; }
@@ -26,6 +26,6 @@ namespace BD.Model
     
         public virtual Виды_Транспорта Виды_Транспорта { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Остановки> Остановки { get; set; }
+        public virtual ICollection<МаршрутыОстановки> МаршрутыОстановки { get; set; }
     }
 }

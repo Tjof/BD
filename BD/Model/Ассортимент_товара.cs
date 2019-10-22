@@ -20,8 +20,8 @@ namespace BD.Model
         public int id_ФормыУпаковки { get; set; }
         public string Цена { get; set; }
     
+        public virtual Аптеки Аптеки { get; set; }
         public virtual Лекарство Лекарство { get; set; }
         public virtual Формы_упаковки Формы_упаковки { get; set; }
-        public virtual Аптеки Аптеки { get; set; }
     }
 }

@@ -53,7 +53,7 @@ namespace BD
                 var a = DataGrid.SelectedItem as Остановки;
                 try
                 {
-                    if(a.Аптеки.Count != 0 || a.Транспортные_маршруты.Count != 0)
+                    if(a.Аптеки.Count != 0 || a.МаршрутыОстановки.Count != 0)
                     {
                         throw new DbUpdateException("Данная остановка связана!");
                     }

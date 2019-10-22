@@ -19,7 +19,7 @@ namespace BD
     {
         BAZANOWEntities model;
         Транспортные_маршруты route;
-        ObservableCollection<Остановки> stops;
+        ObservableCollection<МаршрутыОстановки> stops;
 
         public AddRoute(BAZANOWEntities model, Транспортные_маршруты route)
         {
@@ -29,7 +29,7 @@ namespace BD
             var a = model.Остановки.ToArray();
             this.model = model;
 
-            Stopss = new ObservableCollection<Остановки>(route.Остановки.ToList());
+            Stopss = new ObservableCollection<МаршрутыОстановки>(route.МаршрутыОстановки.ToList());
 
             DataGrid.ItemsSource = a;
             DataGrid2.ItemsSource = Stopss;
@@ -49,7 +49,7 @@ namespace BD
 
         }
 
-        public ObservableCollection<Остановки> Stopss
+        public ObservableCollection<МаршрутыОстановки> Stopss
         {
             get => stops;
             set
@@ -103,9 +103,11 @@ namespace BD
         {
             if (MessageBox.Show("Подтверждение", "Вы уверены, что хотите внести изменения в базу данных?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
+                МаршрутыОстановки stop = new МаршрутыОстановки();
                 try
                 {
-                    Stopss.Add(DataGrid.SelectedItem as Остановки);
+                    stop.Остановки = DataGrid.SelectedItem as Остановки;
+                    Stopss.Add(stop);
                     model.SaveChanges();
                 }
                 catch (System.Data.Entity.Infrastructure.DbUpdateException)
@@ -121,7 +123,7 @@ namespace BD
             {
                 try
                 {
-                    Stopss.Remove(DataGrid2.SelectedItem as Остановки);
+                    Stopss.Remove(DataGrid2.SelectedItem as МаршрутыОстановки);
                     model.SaveChanges();
                 }
                 catch (System.Data.Entity.Infrastructure.DbUpdateException)

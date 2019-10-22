@@ -58,14 +58,7 @@
           </Key>
           <Property Name="id_маршрута" Type="int" Nullable="false" />
           <Property Name="id_остановки" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="МаршрутыРайоны">
-          <Key>
-            <PropertyRef Name="id_маршрута" />
-            <PropertyRef Name="id_района" />
-          </Key>
-          <Property Name="id_маршрута" Type="int" Nullable="false" />
-          <Property Name="id_района" Type="int" Nullable="false" />
+          <Property Name="Порядок" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Объекты">
           <Key>
@@ -101,13 +94,6 @@
           <Property Name="W" Type="bit" Nullable="false" />
           <Property Name="E" Type="bit" Nullable="false" />
           <Property Name="D" Type="bit" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Районы города">
-          <Key>
-            <PropertyRef Name="id_района" />
-          </Key>
-          <Property Name="id_района" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Название района" Type="nvarchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <EntityType Name="Транспортные маршруты">
           <Key>
@@ -243,18 +229,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_МаршрутыРайоны_Районы города">
-          <End Role="Районы города" Type="Self.Районы города" Multiplicity="1" />
-          <End Role="МаршрутыРайоны" Type="Self.МаршрутыРайоны" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Районы города">
-              <PropertyRef Name="id_района" />
-            </Principal>
-            <Dependent Role="МаршрутыРайоны">
-              <PropertyRef Name="id_района" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Остановки_Улицы">
           <End Role="Улицы" Type="Self.Улицы" Multiplicity="1" />
           <End Role="Остановки" Type="Self.Остановки" Multiplicity="*" />
@@ -310,12 +284,10 @@
           <EntitySet Name="Лекарства и их заменители" EntityType="Self.Лекарства и их заменители" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Лекарство" EntityType="Self.Лекарство" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="МаршрутыОстановки" EntityType="Self.МаршрутыОстановки" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="МаршрутыРайоны" EntityType="Self.МаршрутыРайоны" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Объекты" EntityType="Self.Объекты" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Остановки" EntityType="Self.Остановки" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Пользователи" EntityType="Self.Пользователи" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ПользователиОбъекты" EntityType="Self.ПользователиОбъекты" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Районы города" EntityType="Self.Районы города" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Транспортные маршруты" EntityType="Self.Транспортные маршруты" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Улицы" EntityType="Self.Улицы" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Формы упаковки" EntityType="Self.Формы упаковки" Schema="dbo" store:Type="Tables" />
@@ -355,10 +327,6 @@
             <End Role="Транспортные маршруты" EntitySet="Транспортные маршруты" />
             <End Role="МаршрутыОстановки" EntitySet="МаршрутыОстановки" />
           </AssociationSet>
-          <AssociationSet Name="FK_МаршрутыРайоны_Районы города" Association="Self.FK_МаршрутыРайоны_Районы города">
-            <End Role="Районы города" EntitySet="Районы города" />
-            <End Role="МаршрутыРайоны" EntitySet="МаршрутыРайоны" />
-          </AssociationSet>
           <AssociationSet Name="FK_Остановки_Улицы" Association="Self.FK_Остановки_Улицы">
             <End Role="Улицы" EntitySet="Улицы" />
             <End Role="Остановки" EntitySet="Остановки" />
@@ -380,267 +348,19 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BAZANOWModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Ассортимент_товара">
-          <Key>
-            <PropertyRef Name="id_лекарство" />
-            <PropertyRef Name="id_аптеки" />
-            <PropertyRef Name="id_ФормыУпаковки" />
-          </Key>
-          <Property Name="id_лекарство" Type="Int32" Nullable="false" />
-          <Property Name="id_аптеки" Type="Int32" Nullable="false" />
-          <Property Name="Количество" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="id_ФормыУпаковки" Type="Int32" Nullable="false" />
-          <Property Name="Цена" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Лекарство" Relationship="Self.FK_Ассортимент_товара_Лекарство" FromRole="Ассортимент_товара" ToRole="Лекарство" />
-          <NavigationProperty Name="Формы_упаковки" Relationship="Self.FK_Ассортимент_товара_Формы_упаковки" FromRole="Ассортимент_товара" ToRole="Формы_упаковки" />
-          <NavigationProperty Name="Аптеки" Relationship="BAZANOWModel.FK_Ассортимент_товара_Аптеки" FromRole="Ассортимент_товара" ToRole="Аптеки" />
-        </EntityType>
-        <EntityType Name="Виды_Транспорта">
-          <Key>
-            <PropertyRef Name="id_ВидаТранспорта" />
-          </Key>
-          <Property Name="id_ВидаТранспорта" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Вид_транспорта" Type="String" MaxLength="55" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Транспортные_маршруты" Relationship="Self.FK_Транспортные_маршруты_Виды_Транспорта" FromRole="Виды_Транспорта" ToRole="Транспортные_маршруты" />
-        </EntityType>
-        <EntityType Name="Лекарство">
-          <Key>
-            <PropertyRef Name="id_лекарство" />
-          </Key>
-          <Property Name="id_лекарство" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Название_лекарства" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Ассортимент_товара" Relationship="Self.FK_Ассортимент_товара_Лекарство" FromRole="Лекарство" ToRole="Ассортимент_товара" />
-          <NavigationProperty Name="Лекарство1" Relationship="Self.Лекарства_и_их_заменители" FromRole="Лекарство" ToRole="Лекарство1" />
-          <NavigationProperty Name="Лекарство2" Relationship="Self.Лекарства_и_их_заменители" FromRole="Лекарство1" ToRole="Лекарство" />
-        </EntityType>
-        <EntityType Name="МаршрутыРайоны">
-          <Key>
-            <PropertyRef Name="id_маршрута" />
-            <PropertyRef Name="id_района" />
-          </Key>
-          <Property Name="id_маршрута" Type="Int32" Nullable="false" />
-          <Property Name="id_района" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Районы_города" Relationship="Self.FK_МаршрутыРайоны_Районы_города" FromRole="МаршрутыРайоны" ToRole="Районы_города" />
-        </EntityType>
-        <EntityType Name="Объекты">
-          <Key>
-            <PropertyRef Name="id_объекта" />
-          </Key>
-          <Property Name="id_объекта" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Имя_объекта" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ПользователиОбъекты" Relationship="Self.FK_ПользователиОбъекты_Объекты" FromRole="Объекты" ToRole="ПользователиОбъекты" />
-        </EntityType>
-        <EntityType Name="Остановки">
-          <Key>
-            <PropertyRef Name="id_остановки" />
-          </Key>
-          <Property Name="id_остановки" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="id_улицы" Type="Int32" Nullable="false" />
-          <Property Name="Название_остановки" Type="String" MaxLength="55" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Улицы" Relationship="Self.FK_Остановки_Улицы" FromRole="Остановки" ToRole="Улицы" />
-          <NavigationProperty Name="Транспортные_маршруты" Relationship="Self.МаршрутыОстановки" FromRole="Остановки" ToRole="Транспортные_маршруты" />
-          <NavigationProperty Name="Аптеки" Relationship="BAZANOWModel.FK_Аптеки_Остановки" FromRole="Остановки" ToRole="Аптеки" />
-        </EntityType>
-        <EntityType Name="Пользователи">
-          <Key>
-            <PropertyRef Name="id_пользователя" />
-          </Key>
-          <Property Name="id_пользователя" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="login" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="pass" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="ПользователиОбъекты" Relationship="Self.FK_ПользователиОбъекты_Пользователи" FromRole="Пользователи" ToRole="ПользователиОбъекты" />
-        </EntityType>
-        <EntityType Name="ПользователиОбъекты">
-          <Key>
-            <PropertyRef Name="id_пользователя" />
-            <PropertyRef Name="id_объекта" />
-          </Key>
-          <Property Name="id_пользователя" Type="Int32" Nullable="false" />
-          <Property Name="id_объекта" Type="Int32" Nullable="false" />
-          <Property Name="R" Type="Boolean" Nullable="false" />
-          <Property Name="W" Type="Boolean" Nullable="false" />
-          <Property Name="E" Type="Boolean" Nullable="false" />
-          <Property Name="D" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Объекты" Relationship="Self.FK_ПользователиОбъекты_Объекты" FromRole="ПользователиОбъекты" ToRole="Объекты" />
-          <NavigationProperty Name="Пользователи" Relationship="Self.FK_ПользователиОбъекты_Пользователи" FromRole="ПользователиОбъекты" ToRole="Пользователи" />
-        </EntityType>
-        <EntityType Name="Районы_города">
-          <Key>
-            <PropertyRef Name="id_района" />
-          </Key>
-          <Property Name="id_района" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Название_района" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="МаршрутыРайоны" Relationship="Self.FK_МаршрутыРайоны_Районы_города" FromRole="Районы_города" ToRole="МаршрутыРайоны" />
-        </EntityType>
-        <EntityType Name="Транспортные_маршруты">
-          <Key>
-            <PropertyRef Name="id_маршрута" />
-          </Key>
-          <Property Name="id_маршрута" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Номер_маршрута" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="id_ВидаТранспорта" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Виды_Транспорта" Relationship="Self.FK_Транспортные_маршруты_Виды_Транспорта" FromRole="Транспортные_маршруты" ToRole="Виды_Транспорта" />
-          <NavigationProperty Name="Остановки" Relationship="Self.МаршрутыОстановки" FromRole="Транспортные_маршруты" ToRole="Остановки" />
-        </EntityType>
-        <EntityType Name="Улицы">
-          <Key>
-            <PropertyRef Name="id_улицы" />
-          </Key>
-          <Property Name="id_улицы" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Название_улицы" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Остановки" Relationship="Self.FK_Остановки_Улицы" FromRole="Улицы" ToRole="Остановки" />
-          <NavigationProperty Name="Аптеки" Relationship="BAZANOWModel.FK_Аптеки_Улицы1" FromRole="Улицы" ToRole="Аптеки" />
-        </EntityType>
-        <EntityType Name="Формы_упаковки">
-          <Key>
-            <PropertyRef Name="id_ФормыУпаковки" />
-          </Key>
-          <Property Name="id_ФормыУпаковки" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Название_формы" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Ассортимент_товара" Relationship="Self.FK_Ассортимент_товара_Формы_упаковки" FromRole="Формы_упаковки" ToRole="Ассортимент_товара" />
-        </EntityType>
-        <Association Name="FK_Ассортимент_товара_Лекарство">
-          <End Role="Лекарство" Type="Self.Лекарство" Multiplicity="1" />
-          <End Role="Ассортимент_товара" Type="Self.Ассортимент_товара" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Лекарство">
-              <PropertyRef Name="id_лекарство" />
-            </Principal>
-            <Dependent Role="Ассортимент_товара">
-              <PropertyRef Name="id_лекарство" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Ассортимент_товара_Формы_упаковки">
-          <End Role="Формы_упаковки" Type="Self.Формы_упаковки" Multiplicity="1" />
-          <End Role="Ассортимент_товара" Type="Self.Ассортимент_товара" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Формы_упаковки">
-              <PropertyRef Name="id_ФормыУпаковки" />
-            </Principal>
-            <Dependent Role="Ассортимент_товара">
-              <PropertyRef Name="id_ФормыУпаковки" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Транспортные_маршруты_Виды_Транспорта">
-          <End Role="Виды_Транспорта" Type="Self.Виды_Транспорта" Multiplicity="1" />
-          <End Role="Транспортные_маршруты" Type="Self.Транспортные_маршруты" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Виды_Транспорта">
-              <PropertyRef Name="id_ВидаТранспорта" />
-            </Principal>
-            <Dependent Role="Транспортные_маршруты">
-              <PropertyRef Name="id_ВидаТранспорта" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_МаршрутыРайоны_Районы_города">
-          <End Role="Районы_города" Type="Self.Районы_города" Multiplicity="1" />
-          <End Role="МаршрутыРайоны" Type="Self.МаршрутыРайоны" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Районы_города">
-              <PropertyRef Name="id_района" />
-            </Principal>
-            <Dependent Role="МаршрутыРайоны">
-              <PropertyRef Name="id_района" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ПользователиОбъекты_Объекты">
-          <End Role="Объекты" Type="Self.Объекты" Multiplicity="1" />
-          <End Role="ПользователиОбъекты" Type="Self.ПользователиОбъекты" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Объекты">
-              <PropertyRef Name="id_объекта" />
-            </Principal>
-            <Dependent Role="ПользователиОбъекты">
-              <PropertyRef Name="id_объекта" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Остановки_Улицы">
-          <End Role="Улицы" Type="Self.Улицы" Multiplicity="1" />
-          <End Role="Остановки" Type="Self.Остановки" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Улицы">
-              <PropertyRef Name="id_улицы" />
-            </Principal>
-            <Dependent Role="Остановки">
-              <PropertyRef Name="id_улицы" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ПользователиОбъекты_Пользователи">
-          <End Role="Пользователи" Type="Self.Пользователи" Multiplicity="1" />
-          <End Role="ПользователиОбъекты" Type="Self.ПользователиОбъекты" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Пользователи">
-              <PropertyRef Name="id_пользователя" />
-            </Principal>
-            <Dependent Role="ПользователиОбъекты">
-              <PropertyRef Name="id_пользователя" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="Лекарства_и_их_заменители">
-          <End Role="Лекарство" Type="Self.Лекарство" Multiplicity="*" />
-          <End Role="Лекарство1" Type="Self.Лекарство" Multiplicity="*" />
-        </Association>
-        <Association Name="МаршрутыОстановки">
-          <End Role="Остановки" Type="Self.Остановки" Multiplicity="*" />
-          <End Role="Транспортные_маршруты" Type="Self.Транспортные_маршруты" Multiplicity="*" />
-        </Association>
         <EntityContainer Name="BAZANOWEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Ассортимент_товара" EntityType="Self.Ассортимент_товара" />
-          <EntitySet Name="Виды_Транспорта" EntityType="Self.Виды_Транспорта" />
-          <EntitySet Name="Лекарство" EntityType="Self.Лекарство" />
-          <EntitySet Name="МаршрутыРайоны" EntityType="Self.МаршрутыРайоны" />
-          <EntitySet Name="Объекты" EntityType="Self.Объекты" />
-          <EntitySet Name="Остановки" EntityType="Self.Остановки" />
-          <EntitySet Name="Пользователи" EntityType="Self.Пользователи" />
-          <EntitySet Name="ПользователиОбъекты" EntityType="Self.ПользователиОбъекты" />
-          <EntitySet Name="Районы_города" EntityType="Self.Районы_города" />
-          <EntitySet Name="Транспортные_маршруты" EntityType="Self.Транспортные_маршруты" />
-          <EntitySet Name="Улицы" EntityType="Self.Улицы" />
-          <EntitySet Name="Формы_упаковки" EntityType="Self.Формы_упаковки" />
-          <AssociationSet Name="FK_Ассортимент_товара_Лекарство" Association="Self.FK_Ассортимент_товара_Лекарство">
-            <End Role="Лекарство" EntitySet="Лекарство" />
-            <End Role="Ассортимент_товара" EntitySet="Ассортимент_товара" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Ассортимент_товара_Формы_упаковки" Association="Self.FK_Ассортимент_товара_Формы_упаковки">
-            <End Role="Формы_упаковки" EntitySet="Формы_упаковки" />
-            <End Role="Ассортимент_товара" EntitySet="Ассортимент_товара" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Транспортные_маршруты_Виды_Транспорта" Association="Self.FK_Транспортные_маршруты_Виды_Транспорта">
-            <End Role="Виды_Транспорта" EntitySet="Виды_Транспорта" />
-            <End Role="Транспортные_маршруты" EntitySet="Транспортные_маршруты" />
-          </AssociationSet>
-          <AssociationSet Name="FK_МаршрутыРайоны_Районы_города" Association="Self.FK_МаршрутыРайоны_Районы_города">
-            <End Role="Районы_города" EntitySet="Районы_города" />
-            <End Role="МаршрутыРайоны" EntitySet="МаршрутыРайоны" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ПользователиОбъекты_Объекты" Association="Self.FK_ПользователиОбъекты_Объекты">
-            <End Role="Объекты" EntitySet="Объекты" />
-            <End Role="ПользователиОбъекты" EntitySet="ПользователиОбъекты" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Остановки_Улицы" Association="Self.FK_Остановки_Улицы">
-            <End Role="Улицы" EntitySet="Улицы" />
-            <End Role="Остановки" EntitySet="Остановки" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ПользователиОбъекты_Пользователи" Association="Self.FK_ПользователиОбъекты_Пользователи">
-            <End Role="Пользователи" EntitySet="Пользователи" />
-            <End Role="ПользователиОбъекты" EntitySet="ПользователиОбъекты" />
-          </AssociationSet>
-          <AssociationSet Name="Лекарства_и_их_заменители" Association="Self.Лекарства_и_их_заменители">
-            <End Role="Лекарство" EntitySet="Лекарство" />
-            <End Role="Лекарство1" EntitySet="Лекарство" />
-          </AssociationSet>
-          <AssociationSet Name="МаршрутыОстановки" Association="Self.МаршрутыОстановки">
-            <End Role="Остановки" EntitySet="Остановки" />
-            <End Role="Транспортные_маршруты" EntitySet="Транспортные_маршруты" />
-          </AssociationSet>
           <EntitySet Name="Аптеки" EntityType="BAZANOWModel.Аптеки" />
+          <EntitySet Name="Ассортимент_товара" EntityType="BAZANOWModel.Ассортимент_товара" />
+          <EntitySet Name="Виды_Транспорта" EntityType="BAZANOWModel.Виды_Транспорта" />
+          <EntitySet Name="Лекарство" EntityType="BAZANOWModel.Лекарство" />
+          <EntitySet Name="МаршрутыОстановки" EntityType="BAZANOWModel.МаршрутыОстановки" />
+          <EntitySet Name="Объекты" EntityType="BAZANOWModel.Объекты" />
+          <EntitySet Name="Остановки" EntityType="BAZANOWModel.Остановки" />
+          <EntitySet Name="Пользователи" EntityType="BAZANOWModel.Пользователи" />
+          <EntitySet Name="ПользователиОбъекты" EntityType="BAZANOWModel.ПользователиОбъекты" />
+          <EntitySet Name="Транспортные_маршруты" EntityType="BAZANOWModel.Транспортные_маршруты" />
+          <EntitySet Name="Улицы" EntityType="BAZANOWModel.Улицы" />
+          <EntitySet Name="Формы_упаковки" EntityType="BAZANOWModel.Формы_упаковки" />
           <AssociationSet Name="FK_Аптеки_Остановки" Association="BAZANOWModel.FK_Аптеки_Остановки">
             <End Role="Остановки" EntitySet="Остановки" />
             <End Role="Аптеки" EntitySet="Аптеки" />
@@ -652,6 +372,42 @@
           <AssociationSet Name="FK_Ассортимент_товара_Аптеки" Association="BAZANOWModel.FK_Ассортимент_товара_Аптеки">
             <End Role="Аптеки" EntitySet="Аптеки" />
             <End Role="Ассортимент_товара" EntitySet="Ассортимент_товара" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ассортимент_товара_Лекарство" Association="BAZANOWModel.FK_Ассортимент_товара_Лекарство">
+            <End Role="Лекарство" EntitySet="Лекарство" />
+            <End Role="Ассортимент_товара" EntitySet="Ассортимент_товара" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ассортимент_товара_Формы_упаковки" Association="BAZANOWModel.FK_Ассортимент_товара_Формы_упаковки">
+            <End Role="Формы_упаковки" EntitySet="Формы_упаковки" />
+            <End Role="Ассортимент_товара" EntitySet="Ассортимент_товара" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Транспортные_маршруты_Виды_Транспорта" Association="BAZANOWModel.FK_Транспортные_маршруты_Виды_Транспорта">
+            <End Role="Виды_Транспорта" EntitySet="Виды_Транспорта" />
+            <End Role="Транспортные_маршруты" EntitySet="Транспортные_маршруты" />
+          </AssociationSet>
+          <AssociationSet Name="FK_МаршрутыОстановки_Остановки" Association="BAZANOWModel.FK_МаршрутыОстановки_Остановки">
+            <End Role="Остановки" EntitySet="Остановки" />
+            <End Role="МаршрутыОстановки" EntitySet="МаршрутыОстановки" />
+          </AssociationSet>
+          <AssociationSet Name="FK_МаршрутыОстановки_Транспортные_маршруты" Association="BAZANOWModel.FK_МаршрутыОстановки_Транспортные_маршруты">
+            <End Role="Транспортные_маршруты" EntitySet="Транспортные_маршруты" />
+            <End Role="МаршрутыОстановки" EntitySet="МаршрутыОстановки" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ПользователиОбъекты_Объекты" Association="BAZANOWModel.FK_ПользователиОбъекты_Объекты">
+            <End Role="Объекты" EntitySet="Объекты" />
+            <End Role="ПользователиОбъекты" EntitySet="ПользователиОбъекты" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Остановки_Улицы" Association="BAZANOWModel.FK_Остановки_Улицы">
+            <End Role="Улицы" EntitySet="Улицы" />
+            <End Role="Остановки" EntitySet="Остановки" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ПользователиОбъекты_Пользователи" Association="BAZANOWModel.FK_ПользователиОбъекты_Пользователи">
+            <End Role="Пользователи" EntitySet="Пользователи" />
+            <End Role="ПользователиОбъекты" EntitySet="ПользователиОбъекты" />
+          </AssociationSet>
+          <AssociationSet Name="Лекарства_и_их_заменители" Association="BAZANOWModel.Лекарства_и_их_заменители">
+            <End Role="Лекарство" EntitySet="Лекарство" />
+            <End Role="Лекарство1" EntitySet="Лекарство" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Аптеки">
@@ -668,6 +424,119 @@
           <NavigationProperty Name="Остановки" Relationship="BAZANOWModel.FK_Аптеки_Остановки" FromRole="Аптеки" ToRole="Остановки" />
           <NavigationProperty Name="Улицы" Relationship="BAZANOWModel.FK_Аптеки_Улицы1" FromRole="Аптеки" ToRole="Улицы" />
           <NavigationProperty Name="Ассортимент_товара" Relationship="BAZANOWModel.FK_Ассортимент_товара_Аптеки" FromRole="Аптеки" ToRole="Ассортимент_товара" />
+        </EntityType>
+        <EntityType Name="Ассортимент_товара">
+          <Key>
+            <PropertyRef Name="id_лекарство" />
+            <PropertyRef Name="id_аптеки" />
+            <PropertyRef Name="id_ФормыУпаковки" />
+          </Key>
+          <Property Name="id_лекарство" Type="Int32" Nullable="false" />
+          <Property Name="id_аптеки" Type="Int32" Nullable="false" />
+          <Property Name="Количество" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="id_ФормыУпаковки" Type="Int32" Nullable="false" />
+          <Property Name="Цена" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Аптеки" Relationship="BAZANOWModel.FK_Ассортимент_товара_Аптеки" FromRole="Ассортимент_товара" ToRole="Аптеки" />
+          <NavigationProperty Name="Лекарство" Relationship="BAZANOWModel.FK_Ассортимент_товара_Лекарство" FromRole="Ассортимент_товара" ToRole="Лекарство" />
+          <NavigationProperty Name="Формы_упаковки" Relationship="BAZANOWModel.FK_Ассортимент_товара_Формы_упаковки" FromRole="Ассортимент_товара" ToRole="Формы_упаковки" />
+        </EntityType>
+        <EntityType Name="Виды_Транспорта">
+          <Key>
+            <PropertyRef Name="id_ВидаТранспорта" />
+          </Key>
+          <Property Name="id_ВидаТранспорта" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Вид_транспорта" Type="String" Nullable="false" MaxLength="55" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Транспортные_маршруты" Relationship="BAZANOWModel.FK_Транспортные_маршруты_Виды_Транспорта" FromRole="Виды_Транспорта" ToRole="Транспортные_маршруты" />
+        </EntityType>
+        <EntityType Name="Лекарство">
+          <Key>
+            <PropertyRef Name="id_лекарство" />
+          </Key>
+          <Property Name="id_лекарство" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Название_лекарства" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Ассортимент_товара" Relationship="BAZANOWModel.FK_Ассортимент_товара_Лекарство" FromRole="Лекарство" ToRole="Ассортимент_товара" />
+          <NavigationProperty Name="Лекарство1" Relationship="BAZANOWModel.Лекарства_и_их_заменители" FromRole="Лекарство" ToRole="Лекарство1" />
+          <NavigationProperty Name="Лекарство2" Relationship="BAZANOWModel.Лекарства_и_их_заменители" FromRole="Лекарство1" ToRole="Лекарство" />
+        </EntityType>
+        <EntityType Name="МаршрутыОстановки">
+          <Key>
+            <PropertyRef Name="id_маршрута" />
+            <PropertyRef Name="id_остановки" />
+          </Key>
+          <Property Name="id_маршрута" Type="Int32" Nullable="false" />
+          <Property Name="id_остановки" Type="Int32" Nullable="false" />
+          <Property Name="Порядок" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Остановки" Relationship="BAZANOWModel.FK_МаршрутыОстановки_Остановки" FromRole="МаршрутыОстановки" ToRole="Остановки" />
+          <NavigationProperty Name="Транспортные_маршруты" Relationship="BAZANOWModel.FK_МаршрутыОстановки_Транспортные_маршруты" FromRole="МаршрутыОстановки" ToRole="Транспортные_маршруты" />
+        </EntityType>
+        <EntityType Name="Объекты">
+          <Key>
+            <PropertyRef Name="id_объекта" />
+          </Key>
+          <Property Name="id_объекта" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Имя_объекта" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ПользователиОбъекты" Relationship="BAZANOWModel.FK_ПользователиОбъекты_Объекты" FromRole="Объекты" ToRole="ПользователиОбъекты" />
+        </EntityType>
+        <EntityType Name="Остановки">
+          <Key>
+            <PropertyRef Name="id_остановки" />
+          </Key>
+          <Property Name="id_остановки" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_улицы" Type="Int32" Nullable="false" />
+          <Property Name="Название_остановки" Type="String" Nullable="false" MaxLength="55" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Аптеки" Relationship="BAZANOWModel.FK_Аптеки_Остановки" FromRole="Остановки" ToRole="Аптеки" />
+          <NavigationProperty Name="МаршрутыОстановки" Relationship="BAZANOWModel.FK_МаршрутыОстановки_Остановки" FromRole="Остановки" ToRole="МаршрутыОстановки" />
+          <NavigationProperty Name="Улицы" Relationship="BAZANOWModel.FK_Остановки_Улицы" FromRole="Остановки" ToRole="Улицы" />
+        </EntityType>
+        <EntityType Name="Пользователи">
+          <Key>
+            <PropertyRef Name="id_пользователя" />
+          </Key>
+          <Property Name="id_пользователя" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="login" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="pass" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ПользователиОбъекты" Relationship="BAZANOWModel.FK_ПользователиОбъекты_Пользователи" FromRole="Пользователи" ToRole="ПользователиОбъекты" />
+        </EntityType>
+        <EntityType Name="ПользователиОбъекты">
+          <Key>
+            <PropertyRef Name="id_пользователя" />
+            <PropertyRef Name="id_объекта" />
+          </Key>
+          <Property Name="id_пользователя" Type="Int32" Nullable="false" />
+          <Property Name="id_объекта" Type="Int32" Nullable="false" />
+          <Property Name="R" Type="Boolean" Nullable="false" />
+          <Property Name="W" Type="Boolean" Nullable="false" />
+          <Property Name="E" Type="Boolean" Nullable="false" />
+          <Property Name="D" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Объекты" Relationship="BAZANOWModel.FK_ПользователиОбъекты_Объекты" FromRole="ПользователиОбъекты" ToRole="Объекты" />
+          <NavigationProperty Name="Пользователи" Relationship="BAZANOWModel.FK_ПользователиОбъекты_Пользователи" FromRole="ПользователиОбъекты" ToRole="Пользователи" />
+        </EntityType>
+        <EntityType Name="Транспортные_маршруты">
+          <Key>
+            <PropertyRef Name="id_маршрута" />
+          </Key>
+          <Property Name="id_маршрута" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Номер_маршрута" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="id_ВидаТранспорта" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Виды_Транспорта" Relationship="BAZANOWModel.FK_Транспортные_маршруты_Виды_Транспорта" FromRole="Транспортные_маршруты" ToRole="Виды_Транспорта" />
+          <NavigationProperty Name="МаршрутыОстановки" Relationship="BAZANOWModel.FK_МаршрутыОстановки_Транспортные_маршруты" FromRole="Транспортные_маршруты" ToRole="МаршрутыОстановки" />
+        </EntityType>
+        <EntityType Name="Улицы">
+          <Key>
+            <PropertyRef Name="id_улицы" />
+          </Key>
+          <Property Name="id_улицы" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Название_улицы" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Аптеки" Relationship="BAZANOWModel.FK_Аптеки_Улицы1" FromRole="Улицы" ToRole="Аптеки" />
+          <NavigationProperty Name="Остановки" Relationship="BAZANOWModel.FK_Остановки_Улицы" FromRole="Улицы" ToRole="Остановки" />
+        </EntityType>
+        <EntityType Name="Формы_упаковки">
+          <Key>
+            <PropertyRef Name="id_ФормыУпаковки" />
+          </Key>
+          <Property Name="id_ФормыУпаковки" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Название_формы" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Ассортимент_товара" Relationship="BAZANOWModel.FK_Ассортимент_товара_Формы_упаковки" FromRole="Формы_упаковки" ToRole="Ассортимент_товара" />
         </EntityType>
         <Association Name="FK_Аптеки_Остановки">
           <End Type="BAZANOWModel.Остановки" Role="Остановки" Multiplicity="1" />
@@ -705,134 +574,114 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <Association Name="FK_Ассортимент_товара_Лекарство">
+          <End Type="BAZANOWModel.Лекарство" Role="Лекарство" Multiplicity="1" />
+          <End Type="BAZANOWModel.Ассортимент_товара" Role="Ассортимент_товара" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Лекарство">
+              <PropertyRef Name="id_лекарство" />
+            </Principal>
+            <Dependent Role="Ассортимент_товара">
+              <PropertyRef Name="id_лекарство" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ассортимент_товара_Формы_упаковки">
+          <End Type="BAZANOWModel.Формы_упаковки" Role="Формы_упаковки" Multiplicity="1" />
+          <End Type="BAZANOWModel.Ассортимент_товара" Role="Ассортимент_товара" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Формы_упаковки">
+              <PropertyRef Name="id_ФормыУпаковки" />
+            </Principal>
+            <Dependent Role="Ассортимент_товара">
+              <PropertyRef Name="id_ФормыУпаковки" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Транспортные_маршруты_Виды_Транспорта">
+          <End Type="BAZANOWModel.Виды_Транспорта" Role="Виды_Транспорта" Multiplicity="1" />
+          <End Type="BAZANOWModel.Транспортные_маршруты" Role="Транспортные_маршруты" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Виды_Транспорта">
+              <PropertyRef Name="id_ВидаТранспорта" />
+            </Principal>
+            <Dependent Role="Транспортные_маршруты">
+              <PropertyRef Name="id_ВидаТранспорта" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_МаршрутыОстановки_Остановки">
+          <End Type="BAZANOWModel.Остановки" Role="Остановки" Multiplicity="1" />
+          <End Type="BAZANOWModel.МаршрутыОстановки" Role="МаршрутыОстановки" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Остановки">
+              <PropertyRef Name="id_остановки" />
+            </Principal>
+            <Dependent Role="МаршрутыОстановки">
+              <PropertyRef Name="id_остановки" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_МаршрутыОстановки_Транспортные_маршруты">
+          <End Type="BAZANOWModel.Транспортные_маршруты" Role="Транспортные_маршруты" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BAZANOWModel.МаршрутыОстановки" Role="МаршрутыОстановки" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Транспортные_маршруты">
+              <PropertyRef Name="id_маршрута" />
+            </Principal>
+            <Dependent Role="МаршрутыОстановки">
+              <PropertyRef Name="id_маршрута" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ПользователиОбъекты_Объекты">
+          <End Type="BAZANOWModel.Объекты" Role="Объекты" Multiplicity="1" />
+          <End Type="BAZANOWModel.ПользователиОбъекты" Role="ПользователиОбъекты" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Объекты">
+              <PropertyRef Name="id_объекта" />
+            </Principal>
+            <Dependent Role="ПользователиОбъекты">
+              <PropertyRef Name="id_объекта" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Остановки_Улицы">
+          <End Type="BAZANOWModel.Улицы" Role="Улицы" Multiplicity="1" />
+          <End Type="BAZANOWModel.Остановки" Role="Остановки" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Улицы">
+              <PropertyRef Name="id_улицы" />
+            </Principal>
+            <Dependent Role="Остановки">
+              <PropertyRef Name="id_улицы" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ПользователиОбъекты_Пользователи">
+          <End Type="BAZANOWModel.Пользователи" Role="Пользователи" Multiplicity="1" />
+          <End Type="BAZANOWModel.ПользователиОбъекты" Role="ПользователиОбъекты" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Пользователи">
+              <PropertyRef Name="id_пользователя" />
+            </Principal>
+            <Dependent Role="ПользователиОбъекты">
+              <PropertyRef Name="id_пользователя" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Лекарства_и_их_заменители">
+          <End Type="BAZANOWModel.Лекарство" Role="Лекарство" Multiplicity="*" />
+          <End Type="BAZANOWModel.Лекарство" Role="Лекарство1" Multiplicity="*" />
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище BAZANOWModelContainer" CdmEntityContainer="BAZANOWEntities">
-          <EntitySetMapping Name="Ассортимент_товара">
-            <EntityTypeMapping TypeName="BAZANOWModel.Ассортимент_товара">
-              <MappingFragment StoreEntitySet="Ассортимент товара">
-                <ScalarProperty Name="id_лекарство" ColumnName="id_лекарство" />
-                <ScalarProperty Name="id_аптеки" ColumnName="id_аптеки" />
-                <ScalarProperty Name="Количество" ColumnName="Количество" />
-                <ScalarProperty Name="id_ФормыУпаковки" ColumnName="id_ФормыУпаковки" />
-                <ScalarProperty Name="Цена" ColumnName="Цена" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Виды_Транспорта">
-            <EntityTypeMapping TypeName="BAZANOWModel.Виды_Транспорта">
-              <MappingFragment StoreEntitySet="Виды Транспорта">
-                <ScalarProperty Name="id_ВидаТранспорта" ColumnName="id_ВидаТранспорта" />
-                <ScalarProperty Name="Вид_транспорта" ColumnName="Вид транспорта" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Лекарство">
-            <EntityTypeMapping TypeName="BAZANOWModel.Лекарство">
-              <MappingFragment StoreEntitySet="Лекарство">
-                <ScalarProperty Name="id_лекарство" ColumnName="id_лекарство" />
-                <ScalarProperty Name="Название_лекарства" ColumnName="Название лекарства" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="МаршрутыРайоны">
-            <EntityTypeMapping TypeName="BAZANOWModel.МаршрутыРайоны">
-              <MappingFragment StoreEntitySet="МаршрутыРайоны">
-                <ScalarProperty Name="id_маршрута" ColumnName="id_маршрута" />
-                <ScalarProperty Name="id_района" ColumnName="id_района" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Объекты">
-            <EntityTypeMapping TypeName="BAZANOWModel.Объекты">
-              <MappingFragment StoreEntitySet="Объекты">
-                <ScalarProperty Name="id_объекта" ColumnName="id_объекта" />
-                <ScalarProperty Name="Имя_объекта" ColumnName="Имя объекта" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Остановки">
-            <EntityTypeMapping TypeName="BAZANOWModel.Остановки">
-              <MappingFragment StoreEntitySet="Остановки">
-                <ScalarProperty Name="id_остановки" ColumnName="id_остановки" />
-                <ScalarProperty Name="id_улицы" ColumnName="id_улицы" />
-                <ScalarProperty Name="Название_остановки" ColumnName="Название остановки" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Пользователи">
-            <EntityTypeMapping TypeName="BAZANOWModel.Пользователи">
-              <MappingFragment StoreEntitySet="Пользователи">
-                <ScalarProperty Name="id_пользователя" ColumnName="id_пользователя" />
-                <ScalarProperty Name="login" ColumnName="login" />
-                <ScalarProperty Name="pass" ColumnName="pass" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ПользователиОбъекты">
-            <EntityTypeMapping TypeName="BAZANOWModel.ПользователиОбъекты">
-              <MappingFragment StoreEntitySet="ПользователиОбъекты">
-                <ScalarProperty Name="id_пользователя" ColumnName="id_пользователя" />
-                <ScalarProperty Name="id_объекта" ColumnName="id_объекта" />
-                <ScalarProperty Name="R" ColumnName="R" />
-                <ScalarProperty Name="W" ColumnName="W" />
-                <ScalarProperty Name="E" ColumnName="E" />
-                <ScalarProperty Name="D" ColumnName="D" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Районы_города">
-            <EntityTypeMapping TypeName="BAZANOWModel.Районы_города">
-              <MappingFragment StoreEntitySet="Районы города">
-                <ScalarProperty Name="id_района" ColumnName="id_района" />
-                <ScalarProperty Name="Название_района" ColumnName="Название района" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Транспортные_маршруты">
-            <EntityTypeMapping TypeName="BAZANOWModel.Транспортные_маршруты">
-              <MappingFragment StoreEntitySet="Транспортные маршруты">
-                <ScalarProperty Name="id_маршрута" ColumnName="id_маршрута" />
-                <ScalarProperty Name="Номер_маршрута" ColumnName="Номер маршрута" />
-                <ScalarProperty Name="id_ВидаТранспорта" ColumnName="id_ВидаТранспорта" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Улицы">
-            <EntityTypeMapping TypeName="BAZANOWModel.Улицы">
-              <MappingFragment StoreEntitySet="Улицы">
-                <ScalarProperty Name="id_улицы" ColumnName="id_улицы" />
-                <ScalarProperty Name="Название_улицы" ColumnName="Название улицы" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Формы_упаковки">
-            <EntityTypeMapping TypeName="BAZANOWModel.Формы_упаковки">
-              <MappingFragment StoreEntitySet="Формы упаковки">
-                <ScalarProperty Name="id_ФормыУпаковки" ColumnName="id_ФормыУпаковки" />
-                <ScalarProperty Name="Название_формы" ColumnName="Название формы" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="Лекарства_и_их_заменители" TypeName="BAZANOWModel.Лекарства_и_их_заменители" StoreEntitySet="Лекарства и их заменители">
-            <EndProperty Name="Лекарство">
-              <ScalarProperty Name="id_лекарство" ColumnName="id_лекарство" />
-            </EndProperty>
-            <EndProperty Name="Лекарство1">
-              <ScalarProperty Name="id_лекарство" ColumnName="id_заменителя" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="МаршрутыОстановки" TypeName="BAZANOWModel.МаршрутыОстановки" StoreEntitySet="МаршрутыОстановки">
-            <EndProperty Name="Остановки">
-              <ScalarProperty Name="id_остановки" ColumnName="id_остановки" />
-            </EndProperty>
-            <EndProperty Name="Транспортные_маршруты">
-              <ScalarProperty Name="id_маршрута" ColumnName="id_маршрута" />
-            </EndProperty>
-          </AssociationSetMapping>
           <EntitySetMapping Name="Аптеки">
             <EntityTypeMapping TypeName="BAZANOWModel.Аптеки">
               <MappingFragment StoreEntitySet="Аптеки">
@@ -846,6 +695,113 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Ассортимент_товара">
+            <EntityTypeMapping TypeName="BAZANOWModel.Ассортимент_товара">
+              <MappingFragment StoreEntitySet="Ассортимент товара">
+                <ScalarProperty Name="Цена" ColumnName="Цена" />
+                <ScalarProperty Name="id_ФормыУпаковки" ColumnName="id_ФормыУпаковки" />
+                <ScalarProperty Name="Количество" ColumnName="Количество" />
+                <ScalarProperty Name="id_аптеки" ColumnName="id_аптеки" />
+                <ScalarProperty Name="id_лекарство" ColumnName="id_лекарство" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Виды_Транспорта">
+            <EntityTypeMapping TypeName="BAZANOWModel.Виды_Транспорта">
+              <MappingFragment StoreEntitySet="Виды Транспорта">
+                <ScalarProperty Name="Вид_транспорта" ColumnName="Вид транспорта" />
+                <ScalarProperty Name="id_ВидаТранспорта" ColumnName="id_ВидаТранспорта" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Лекарство">
+            <EntityTypeMapping TypeName="BAZANOWModel.Лекарство">
+              <MappingFragment StoreEntitySet="Лекарство">
+                <ScalarProperty Name="Название_лекарства" ColumnName="Название лекарства" />
+                <ScalarProperty Name="id_лекарство" ColumnName="id_лекарство" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="МаршрутыОстановки">
+            <EntityTypeMapping TypeName="BAZANOWModel.МаршрутыОстановки">
+              <MappingFragment StoreEntitySet="МаршрутыОстановки">
+                <ScalarProperty Name="Порядок" ColumnName="Порядок" />
+                <ScalarProperty Name="id_остановки" ColumnName="id_остановки" />
+                <ScalarProperty Name="id_маршрута" ColumnName="id_маршрута" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Объекты">
+            <EntityTypeMapping TypeName="BAZANOWModel.Объекты">
+              <MappingFragment StoreEntitySet="Объекты">
+                <ScalarProperty Name="Имя_объекта" ColumnName="Имя объекта" />
+                <ScalarProperty Name="id_объекта" ColumnName="id_объекта" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Остановки">
+            <EntityTypeMapping TypeName="BAZANOWModel.Остановки">
+              <MappingFragment StoreEntitySet="Остановки">
+                <ScalarProperty Name="Название_остановки" ColumnName="Название остановки" />
+                <ScalarProperty Name="id_улицы" ColumnName="id_улицы" />
+                <ScalarProperty Name="id_остановки" ColumnName="id_остановки" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Пользователи">
+            <EntityTypeMapping TypeName="BAZANOWModel.Пользователи">
+              <MappingFragment StoreEntitySet="Пользователи">
+                <ScalarProperty Name="pass" ColumnName="pass" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="id_пользователя" ColumnName="id_пользователя" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ПользователиОбъекты">
+            <EntityTypeMapping TypeName="BAZANOWModel.ПользователиОбъекты">
+              <MappingFragment StoreEntitySet="ПользователиОбъекты">
+                <ScalarProperty Name="D" ColumnName="D" />
+                <ScalarProperty Name="E" ColumnName="E" />
+                <ScalarProperty Name="W" ColumnName="W" />
+                <ScalarProperty Name="R" ColumnName="R" />
+                <ScalarProperty Name="id_объекта" ColumnName="id_объекта" />
+                <ScalarProperty Name="id_пользователя" ColumnName="id_пользователя" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Транспортные_маршруты">
+            <EntityTypeMapping TypeName="BAZANOWModel.Транспортные_маршруты">
+              <MappingFragment StoreEntitySet="Транспортные маршруты">
+                <ScalarProperty Name="id_ВидаТранспорта" ColumnName="id_ВидаТранспорта" />
+                <ScalarProperty Name="Номер_маршрута" ColumnName="Номер маршрута" />
+                <ScalarProperty Name="id_маршрута" ColumnName="id_маршрута" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Улицы">
+            <EntityTypeMapping TypeName="BAZANOWModel.Улицы">
+              <MappingFragment StoreEntitySet="Улицы">
+                <ScalarProperty Name="Название_улицы" ColumnName="Название улицы" />
+                <ScalarProperty Name="id_улицы" ColumnName="id_улицы" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Формы_упаковки">
+            <EntityTypeMapping TypeName="BAZANOWModel.Формы_упаковки">
+              <MappingFragment StoreEntitySet="Формы упаковки">
+                <ScalarProperty Name="Название_формы" ColumnName="Название формы" />
+                <ScalarProperty Name="id_ФормыУпаковки" ColumnName="id_ФормыУпаковки" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Лекарства_и_их_заменители" TypeName="BAZANOWModel.Лекарства_и_их_заменители" StoreEntitySet="Лекарства и их заменители">
+            <EndProperty Name="Лекарство1">
+              <ScalarProperty Name="id_лекарство" ColumnName="id_заменителя" />
+            </EndProperty>
+            <EndProperty Name="Лекарство">
+              <ScalarProperty Name="id_лекарство" ColumnName="id_лекарство" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

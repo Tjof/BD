@@ -43,13 +43,13 @@
         </DockPanel>
         <StackPanel Orientation="Horizontal">
             <DataGrid x:Name="DataGrid" Width="275" AutoGenerateColumns="False" SelectionChanged="DataGrid_SelectionChanged">
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Название_остановки}" ClipboardContentBinding="{x:Null}" Header="Остановки" Width="*"/>
-            </DataGrid.Columns>
-        </DataGrid>
-            <DataGrid x:Name="DataGrid2" Width="285" AutoGenerateColumns="False" SelectionChanged="DataGrid2_SelectionChanged">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding Название_остановки}" ClipboardContentBinding="{x:Null}" Header="Остановки" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <DataGrid x:Name="DataGrid2" Width="285" AutoGenerateColumns="False" SelectionChanged="DataGrid2_SelectionChanged">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Остановки.Название_остановки}" ClipboardContentBinding="{x:Null}" Header="Остановки" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
