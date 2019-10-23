@@ -103,11 +103,13 @@ namespace BD
         {
             if (MessageBox.Show("Подтверждение", "Вы уверены, что хотите внести изменения в базу данных?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                МаршрутыОстановки stop = new МаршрутыОстановки();
                 try
                 {
-                    stop.Остановки = DataGrid.SelectedItem as Остановки;
-                    Stopss.Add(stop);
+                    МаршрутыОстановки a = new МаршрутыОстановки();
+                    a.Остановки = DataGrid.SelectedItem as Остановки;
+                    a.Транспортные_маршруты = route;
+                    a.Порядок = 10;
+                    Stopss.Add(a);
                     model.SaveChanges();
                 }
                 catch (System.Data.Entity.Infrastructure.DbUpdateException)
