@@ -352,7 +352,6 @@
           <EntitySet Name="Аптеки" EntityType="BAZANOWModel.Аптеки" />
           <EntitySet Name="Ассортимент_товара" EntityType="BAZANOWModel.Ассортимент_товара" />
           <EntitySet Name="Виды_Транспорта" EntityType="BAZANOWModel.Виды_Транспорта" />
-          <EntitySet Name="Лекарство" EntityType="BAZANOWModel.Лекарство" />
           <EntitySet Name="МаршрутыОстановки" EntityType="BAZANOWModel.МаршрутыОстановки" />
           <EntitySet Name="Объекты" EntityType="BAZANOWModel.Объекты" />
           <EntitySet Name="Остановки" EntityType="BAZANOWModel.Остановки" />
@@ -371,10 +370,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_Ассортимент_товара_Аптеки" Association="BAZANOWModel.FK_Ассортимент_товара_Аптеки">
             <End Role="Аптеки" EntitySet="Аптеки" />
-            <End Role="Ассортимент_товара" EntitySet="Ассортимент_товара" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Ассортимент_товара_Лекарство" Association="BAZANOWModel.FK_Ассортимент_товара_Лекарство">
-            <End Role="Лекарство" EntitySet="Лекарство" />
             <End Role="Ассортимент_товара" EntitySet="Ассортимент_товара" />
           </AssociationSet>
           <AssociationSet Name="FK_Ассортимент_товара_Формы_упаковки" Association="BAZANOWModel.FK_Ассортимент_товара_Формы_упаковки">
@@ -404,6 +399,11 @@
           <AssociationSet Name="FK_ПользователиОбъекты_Пользователи" Association="BAZANOWModel.FK_ПользователиОбъекты_Пользователи">
             <End Role="Пользователи" EntitySet="Пользователи" />
             <End Role="ПользователиОбъекты" EntitySet="ПользователиОбъекты" />
+          </AssociationSet>
+          <EntitySet Name="Лекарство" EntityType="BAZANOWModel.Лекарство" />
+          <AssociationSet Name="FK_Ассортимент_товара_Лекарство" Association="BAZANOWModel.FK_Ассортимент_товара_Лекарство">
+            <End Role="Лекарство" EntitySet="Лекарство" />
+            <End Role="Ассортимент_товара" EntitySet="Ассортимент_товара" />
           </AssociationSet>
           <AssociationSet Name="Лекарства_и_их_заменители" Association="BAZANOWModel.Лекарства_и_их_заменители">
             <End Role="Лекарство" EntitySet="Лекарство" />
@@ -437,8 +437,8 @@
           <Property Name="id_ФормыУпаковки" Type="Int32" Nullable="false" />
           <Property Name="Цена" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Аптеки" Relationship="BAZANOWModel.FK_Ассортимент_товара_Аптеки" FromRole="Ассортимент_товара" ToRole="Аптеки" />
-          <NavigationProperty Name="Лекарство" Relationship="BAZANOWModel.FK_Ассортимент_товара_Лекарство" FromRole="Ассортимент_товара" ToRole="Лекарство" />
           <NavigationProperty Name="Формы_упаковки" Relationship="BAZANOWModel.FK_Ассортимент_товара_Формы_упаковки" FromRole="Ассортимент_товара" ToRole="Формы_упаковки" />
+          <NavigationProperty Name="Лекарство" Relationship="BAZANOWModel.FK_Ассортимент_товара_Лекарство" FromRole="Ассортимент_товара" ToRole="Лекарство" />
         </EntityType>
         <EntityType Name="Виды_Транспорта">
           <Key>
@@ -447,16 +447,6 @@
           <Property Name="id_ВидаТранспорта" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Вид_транспорта" Type="String" Nullable="false" MaxLength="55" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Транспортные_маршруты" Relationship="BAZANOWModel.FK_Транспортные_маршруты_Виды_Транспорта" FromRole="Виды_Транспорта" ToRole="Транспортные_маршруты" />
-        </EntityType>
-        <EntityType Name="Лекарство">
-          <Key>
-            <PropertyRef Name="id_лекарство" />
-          </Key>
-          <Property Name="id_лекарство" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Название_лекарства" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Ассортимент_товара" Relationship="BAZANOWModel.FK_Ассортимент_товара_Лекарство" FromRole="Лекарство" ToRole="Ассортимент_товара" />
-          <NavigationProperty Name="Лекарство1" Relationship="BAZANOWModel.Лекарства_и_их_заменители" FromRole="Лекарство" ToRole="Лекарство1" />
-          <NavigationProperty Name="Лекарство2" Relationship="BAZANOWModel.Лекарства_и_их_заменители" FromRole="Лекарство1" ToRole="Лекарство" />
         </EntityType>
         <EntityType Name="МаршрутыОстановки">
           <Key>
@@ -574,18 +564,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Ассортимент_товара_Лекарство">
-          <End Type="BAZANOWModel.Лекарство" Role="Лекарство" Multiplicity="1" />
-          <End Type="BAZANOWModel.Ассортимент_товара" Role="Ассортимент_товара" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Лекарство">
-              <PropertyRef Name="id_лекарство" />
-            </Principal>
-            <Dependent Role="Ассортимент_товара">
-              <PropertyRef Name="id_лекарство" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Ассортимент_товара_Формы_упаковки">
           <End Type="BAZANOWModel.Формы_упаковки" Role="Формы_упаковки" Multiplicity="1" />
           <End Type="BAZANOWModel.Ассортимент_товара" Role="Ассортимент_товара" Multiplicity="*" />
@@ -672,6 +650,28 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Лекарство">
+          <Key>
+            <PropertyRef Name="id_лекарство" />
+          </Key>
+          <Property Name="id_лекарство" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Название_лекарства" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Ассортимент_товара" Relationship="BAZANOWModel.FK_Ассортимент_товара_Лекарство" FromRole="Лекарство" ToRole="Ассортимент_товара" />
+          <NavigationProperty Name="Лекарство1" Relationship="BAZANOWModel.Лекарства_и_их_заменители" FromRole="Лекарство" ToRole="Лекарство1" />
+          <NavigationProperty Name="Лекарство2" Relationship="BAZANOWModel.Лекарства_и_их_заменители" FromRole="Лекарство1" ToRole="Лекарство" />
+        </EntityType>
+        <Association Name="FK_Ассортимент_товара_Лекарство">
+          <End Type="BAZANOWModel.Лекарство" Role="Лекарство" Multiplicity="1" />
+          <End Type="BAZANOWModel.Ассортимент_товара" Role="Ассортимент_товара" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Лекарство">
+              <PropertyRef Name="id_лекарство" />
+            </Principal>
+            <Dependent Role="Ассортимент_товара">
+              <PropertyRef Name="id_лекарство" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="Лекарства_и_их_заменители">
           <End Type="BAZANOWModel.Лекарство" Role="Лекарство" Multiplicity="*" />
           <End Type="BAZANOWModel.Лекарство" Role="Лекарство1" Multiplicity="*" />
@@ -711,14 +711,6 @@
               <MappingFragment StoreEntitySet="Виды Транспорта">
                 <ScalarProperty Name="Вид_транспорта" ColumnName="Вид транспорта" />
                 <ScalarProperty Name="id_ВидаТранспорта" ColumnName="id_ВидаТранспорта" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Лекарство">
-            <EntityTypeMapping TypeName="BAZANOWModel.Лекарство">
-              <MappingFragment StoreEntitySet="Лекарство">
-                <ScalarProperty Name="Название_лекарства" ColumnName="Название лекарства" />
-                <ScalarProperty Name="id_лекарство" ColumnName="id_лекарство" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -791,6 +783,14 @@
               <MappingFragment StoreEntitySet="Формы упаковки">
                 <ScalarProperty Name="Название_формы" ColumnName="Название формы" />
                 <ScalarProperty Name="id_ФормыУпаковки" ColumnName="id_ФормыУпаковки" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Лекарство">
+            <EntityTypeMapping TypeName="BAZANOWModel.Лекарство">
+              <MappingFragment StoreEntitySet="Лекарство">
+                <ScalarProperty Name="Название_лекарства" ColumnName="Название лекарства" />
+                <ScalarProperty Name="id_лекарство" ColumnName="id_лекарство" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -33,10 +33,10 @@
             </StackPanel>
         </DockPanel>
         <DockPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right">
-            <Button Width="60">
+            <Button Width="60" Click="DownStop">
                 <Image Source="down-arrow.png"/>
             </Button>
-            <Button Width="60">
+            <Button Width="60" Click="UpStop">
                 <Image Source="up-arrow.png"/>
             </Button>
             <Button x:Name="AddEdit" Click="AddEditClick"/>

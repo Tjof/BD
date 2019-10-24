@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Collections.Generic;
+using System.Data;
 
 namespace BD
 {
@@ -47,6 +48,9 @@ namespace BD
                 AddEdit.Content = "Изменить";
             }
 
+            // Сортируем остановки в таблице по полю Порядок
+            DataGrid2.Items.SortDescriptions.Clear();
+            DataGrid2.Items.SortDescriptions.Add(new SortDescription("Порядок", ListSortDirection.Ascending));
         }
 
         public ObservableCollection<МаршрутыОстановки> Stopss
@@ -103,21 +107,22 @@ namespace BD
         {
             if (MessageBox.Show("Подтверждение", "Вы уверены, что хотите внести изменения в базу данных?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                МаршрутыОстановки a = new МаршрутыОстановки
+                int maxp = Stopss.Max(p => p.Порядок);
+                МаршрутыОстановки stop = new МаршрутыОстановки
                 {
                     Остановки = DataGrid.SelectedItem as Остановки,
                     Транспортные_маршруты = route,
-                    Порядок = 11
+                    Порядок = maxp + 1
                 };
                 try
                 {
-                    Stopss.Add(a);
-                    model.МаршрутыОстановки.Add(a);
+                    Stopss.Add(stop);
+                    model.МаршрутыОстановки.Add(stop);
                     model.SaveChanges();
                 }
                 catch (System.Data.Entity.Infrastructure.DbUpdateException)
                 {
-                    Stopss.Remove(a);
+                    Stopss.Remove(stop);
                     MessageBox.Show("Ошибка", "Проверьте правильность вводимых данных", MessageBoxButton.OK);
                 }
             }
@@ -127,6 +132,12 @@ namespace BD
         {
             if (MessageBox.Show("Подтверждение", "Вы уверены, что хотите внести изменения в базу данных?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
+                int p = (DataGrid2.SelectedItem as МаршрутыОстановки).Порядок;
+                foreach (var items in Stopss)
+                {
+                    if (items.Порядок > p)
+                        items.Порядок = items.Порядок - 1;
+                }
                 try
                 {
                     model.МаршрутыОстановки.Remove(DataGrid2.SelectedItem as МаршрутыОстановки);
@@ -158,6 +169,28 @@ namespace BD
                 Add.IsEnabled = false;
                 DataGrid.SelectedItem = null;
             }
+        }
+
+        private void UpStop(object sender, RoutedEventArgs e)
+        {
+            var p = DataGrid2.SelectedItem as МаршрутыОстановки;
+            p.Порядок = p.Порядок - 1;
+            DataGridRow row = (DataGridRow)DataGrid2.ItemContainerGenerator.ContainerFromIndex(DataGrid2.SelectedIndex - 1);
+            var p2 = row.Item as МаршрутыОстановки;
+            p2.Порядок = p2.Порядок + 1;
+            model.SaveChanges();
+            CollectionViewSource.GetDefaultView(Stopss).Refresh();
+        }
+
+        private void DownStop(object sender, RoutedEventArgs e)
+        {
+            var p = DataGrid2.SelectedItem as МаршрутыОстановки;
+            p.Порядок = p.Порядок + 1;
+            DataGridRow row = (DataGridRow)DataGrid2.ItemContainerGenerator.ContainerFromIndex(DataGrid2.SelectedIndex + 1);
+            var p2 = row.Item as МаршрутыОстановки;
+            p2.Порядок = p2.Порядок - 1;
+            model.SaveChanges();
+            CollectionViewSource.GetDefaultView(Stopss).Refresh();
         }
     }
 }

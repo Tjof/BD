@@ -8,7 +8,6 @@
         <EntityTypeShape EntityType="BAZANOWModel.Аптеки" Width="1.5" PointX="5.25" PointY="4.5" />
         <EntityTypeShape EntityType="BAZANOWModel.Ассортимент_товара" Width="1.5" PointX="7.5" PointY="4.75" />
         <EntityTypeShape EntityType="BAZANOWModel.Виды_Транспорта" Width="1.5" PointX="0.75" PointY="10" />
-        <EntityTypeShape EntityType="BAZANOWModel.Лекарство" Width="1.5" PointX="5.25" PointY="12.125" />
         <EntityTypeShape EntityType="BAZANOWModel.МаршрутыОстановки" Width="1.5" PointX="5.25" PointY="8.75" />
         <EntityTypeShape EntityType="BAZANOWModel.Объекты" Width="1.5" PointX="7.75" PointY="1.375" />
         <EntityTypeShape EntityType="BAZANOWModel.Остановки" Width="1.5" PointX="3" PointY="6.625" />
@@ -20,7 +19,6 @@
         <AssociationConnector Association="BAZANOWModel.FK_Аптеки_Остановки" />
         <AssociationConnector Association="BAZANOWModel.FK_Аптеки_Улицы1" />
         <AssociationConnector Association="BAZANOWModel.FK_Ассортимент_товара_Аптеки" />
-        <AssociationConnector Association="BAZANOWModel.FK_Ассортимент_товара_Лекарство" />
         <AssociationConnector Association="BAZANOWModel.FK_Ассортимент_товара_Формы_упаковки" />
         <AssociationConnector Association="BAZANOWModel.FK_Транспортные_маршруты_Виды_Транспорта" />
         <AssociationConnector Association="BAZANOWModel.FK_МаршрутыОстановки_Остановки" />
@@ -28,6 +26,8 @@
         <AssociationConnector Association="BAZANOWModel.FK_ПользователиОбъекты_Объекты" />
         <AssociationConnector Association="BAZANOWModel.FK_Остановки_Улицы" />
         <AssociationConnector Association="BAZANOWModel.FK_ПользователиОбъекты_Пользователи" />
+        <EntityTypeShape EntityType="BAZANOWModel.Лекарство" Width="1.5" PointX="10.375" PointY="4.875" />
+        <AssociationConnector Association="BAZANOWModel.FK_Ассортимент_товара_Лекарство" />
         <AssociationConnector Association="BAZANOWModel.Лекарства_и_их_заменители" />
       </Diagram>
     </edmx:Diagrams>
