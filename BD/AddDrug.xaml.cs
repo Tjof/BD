@@ -92,15 +92,15 @@ namespace BD
             if (MessageBox.Show("Подтверждение", "Вы уверены, что хотите внести изменения в базу данных?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 var drug = DataGrid.SelectedItem as Лекарство;
-                try
+                var findDrug = Drugss.FirstOrDefault(p => p.id_лекарство == drug.id_лекарство);
+                if (findDrug == null)
                 {
                     Drugss.Add(drug);
                     drugs.Лекарство2.Add(drug);
                     model.SaveChanges();
                 }
-                catch (System.Data.Entity.Infrastructure.DbUpdateException)
+                else
                 {
-                    Drugss.Remove(drug);
                     MessageBox.Show("Ошибка", "Проверьте правильность вводимых данных", MessageBoxButton.OK);
                 }
             }

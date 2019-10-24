@@ -51,6 +51,11 @@ namespace BD
             // Сортируем остановки в таблице по полю Порядок
             DataGrid2.Items.SortDescriptions.Clear();
             DataGrid2.Items.SortDescriptions.Add(new SortDescription("Порядок", ListSortDirection.Ascending));
+
+            foreach (DataGridColumn sort in DataGrid2.Columns)
+            {
+                sort.CanUserSort = false;
+            }
         }
 
         public ObservableCollection<МаршрутыОстановки> Stopss
