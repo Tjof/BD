@@ -24,8 +24,8 @@
         </DockPanel>
         <DockPanel DockPanel.Dock="Top" Height="50">
             <StackPanel Orientation="Horizontal">
-                <Button x:Name="Add" Content="Добавить заменитель" IsEnabled="False" Click="AddStop" Width="175"/>
-                <Button x:Name="Delete" Content="Удалить заменитель" IsEnabled="False" Click="DeleteStop" Width="160"/>
+                <Button x:Name="Add" Content="Добавить заменитель" IsEnabled="False" Click="AddDrugs" Width="175"/>
+                <Button x:Name="Delete" Content="Удалить заменитель" IsEnabled="False" Click="DeleteDrug" Width="160"/>
             </StackPanel>
         </DockPanel>
         <DockPanel DockPanel.Dock="Bottom">

@@ -103,17 +103,21 @@ namespace BD
         {
             if (MessageBox.Show("Подтверждение", "Вы уверены, что хотите внести изменения в базу данных?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
+                МаршрутыОстановки a = new МаршрутыОстановки
+                {
+                    Остановки = DataGrid.SelectedItem as Остановки,
+                    Транспортные_маршруты = route,
+                    Порядок = 11
+                };
                 try
                 {
-                    МаршрутыОстановки a = new МаршрутыОстановки();
-                    a.Остановки = DataGrid.SelectedItem as Остановки;
-                    a.Транспортные_маршруты = route;
-                    a.Порядок = 10;
                     Stopss.Add(a);
+                    model.МаршрутыОстановки.Add(a);
                     model.SaveChanges();
                 }
                 catch (System.Data.Entity.Infrastructure.DbUpdateException)
                 {
+                    Stopss.Remove(a);
                     MessageBox.Show("Ошибка", "Проверьте правильность вводимых данных", MessageBoxButton.OK);
                 }
             }
@@ -125,6 +129,7 @@ namespace BD
             {
                 try
                 {
+                    model.МаршрутыОстановки.Remove(DataGrid2.SelectedItem as МаршрутыОстановки);
                     Stopss.Remove(DataGrid2.SelectedItem as МаршрутыОстановки);
                     model.SaveChanges();
                 }
