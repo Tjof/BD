@@ -28,7 +28,6 @@ namespace BD
             this.model = model;
 
             Drugss = new ObservableCollection<Лекарство>(drugs.Лекарство2.ToList());
-
             DataGrid.ItemsSource = a;
             DataGrid2.ItemsSource = Drugss;
 
@@ -36,12 +35,12 @@ namespace BD
             {
                 Title = "Добавление лекарства";
                 AddEdit.Content = "Добавить";
+                DrugName.Focus();
             }
             else
             {
                 Title = "Изменение лекарства";
                 AddEdit.Content = "Изменить";
-                DrugName.IsEnabled = true;
             }
 
         }
@@ -92,18 +91,16 @@ namespace BD
         {
             if (MessageBox.Show("Подтверждение", "Вы уверены, что хотите внести изменения в базу данных?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                Лекарство a = new Лекарство
-                {
-                   //Лекарство2 = (DataGrid.SelectedItem as Лекарство)
-                };
+                var drug = DataGrid.SelectedItem as Лекарство;
                 try
                 {
-                    Drugss.Add(DataGrid.SelectedItem as Лекарство);
-                    model.Лекарство.Add(DataGrid.SelectedItem as Лекарство);
+                    Drugss.Add(drug);
+                    drugs.Лекарство2.Add(drug);
                     model.SaveChanges();
                 }
                 catch (System.Data.Entity.Infrastructure.DbUpdateException)
                 {
+                    Drugss.Remove(drug);
                     MessageBox.Show("Ошибка", "Проверьте правильность вводимых данных", MessageBoxButton.OK);
                 }
             }
@@ -113,10 +110,11 @@ namespace BD
         {
             if (MessageBox.Show("Подтверждение", "Вы уверены, что хотите внести изменения в базу данных?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
+                var drug = DataGrid2.SelectedItem as Лекарство;
                 try
                 {
-                    //model.Лекарство.Remove(DataGrid2.SelectedItem as Лекарство);
-                    Drugss.Remove(DataGrid2.SelectedItem as Лекарство);
+                    drugs.Лекарство2.Remove(drug);
+                    Drugss.Remove(drug);
                     model.SaveChanges();
                 }
                 catch (System.Data.Entity.Infrastructure.DbUpdateException)
