@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -22,7 +23,6 @@ namespace BD
         public Main()
         {
             InitializeComponent();
-           // grid.ActualWidth
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
@@ -120,17 +120,17 @@ namespace BD
             transportMode.Show();
         }
 
-        private void Rabota(object sender, RoutedEventArgs e)
+        private void WorkingWithHelp(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void Soderzhanie(object sender, RoutedEventArgs e)
+        private void ClickContent(object sender, RoutedEventArgs e)
         {
-
+            Help.ShowHelp(null, "Help.chm");
         }
 
-        private void O_programme(object sender, RoutedEventArgs e)
+        private void AboutTheProgram(object sender, RoutedEventArgs e)
         {
             AboutTheProgram aboutTheProgram = new AboutTheProgram()
             {

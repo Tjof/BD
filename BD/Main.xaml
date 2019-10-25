@@ -25,9 +25,9 @@
             <MenuItem Header="Виды транспорта" Click="TransportMode"/>
         </MenuItem>
         <MenuItem Header="Справка" Height="40" Width="90" FontFamily="Showcard Gothic" FontSize="18">
-            <MenuItem Header="Как работать со справкой" Click="Rabota"/>
-            <MenuItem Header="Содержание" Click="Soderzhanie"/>
-            <MenuItem Header="О программе" Click="O_programme"/>
+            <MenuItem Header="Как работать со справкой" Click="WorkingWithHelp"/>
+            <MenuItem Header="Содержание" Click="ClickContent"/>
+            <MenuItem Header="О программе" Click="AboutTheProgram"/>
         </MenuItem>
 
     </Menu>
