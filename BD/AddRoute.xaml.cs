@@ -10,6 +10,8 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Collections.Generic;
 using System.Data;
+using BD.Services;
+using System;
 
 namespace BD
 {
@@ -21,19 +23,23 @@ namespace BD
         BAZANOWEntities model;
         Транспортные_маршруты route;
         ObservableCollection<МаршрутыОстановки> stops;
+        ObservableCollection<Остановки> stopsss;
 
         public AddRoute(BAZANOWEntities model, Транспортные_маршруты route)
         {
             InitializeComponent();
             this.route = route;
             DataContext = route;
-            var a = model.Остановки.ToArray();
+            //var a = model.Остановки.ToArray();
             this.model = model;
 
-            Stopss = new ObservableCollection<МаршрутыОстановки>(route.МаршрутыОстановки.ToList());
+            StopsRoute = new ObservableCollection<МаршрутыОстановки>(route.МаршрутыОстановки.ToList());
 
-            DataGrid.ItemsSource = a;
-            DataGrid2.ItemsSource = Stopss;
+            var a = StopsRoute.Select(s => s.Остановки);
+            AllStops = new ObservableCollection<Остановки>(model.Остановки.ToArray().Except(a, new ОстановкиComaprer()).ToArray());
+
+            DataGrid.ItemsSource = AllStops;
+            DataGrid2.ItemsSource = StopsRoute;
             ComboBoxTransportMod.ItemsSource = model.Виды_Транспорта.ToArray();
 
             if (route.id_маршрута == 0)
@@ -58,7 +64,16 @@ namespace BD
             }
         }
 
-        public ObservableCollection<МаршрутыОстановки> Stopss
+        public ObservableCollection<Остановки> AllStops
+        {
+            get => stopsss;
+            set
+            {
+                stopsss = value;
+            }
+        }
+
+        public ObservableCollection<МаршрутыОстановки> StopsRoute
         {
             get => stops;
             set
@@ -112,7 +127,7 @@ namespace BD
         {
             if (MessageBox.Show("Подтверждение", "Вы уверены, что хотите внести изменения в базу данных?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                int maxp = Stopss.Max(p => p.Порядок);
+                int maxp = StopsRoute.Max(p => p.Порядок);
                 МаршрутыОстановки stop = new МаршрутыОстановки
                 {
                     Остановки = DataGrid.SelectedItem as Остановки,
@@ -121,14 +136,14 @@ namespace BD
                 };
                 try
                 {
-                    Stopss.Add(stop);
-                    model.МаршрутыОстановки.Add(stop);
+                    AllStops.Remove(DataGrid.SelectedItem as Остановки);
+                    StopsRoute.Add(stop);
+                    route.МаршрутыОстановки.Add(stop);
                     model.SaveChanges();
                 }
-                catch (System.Data.Entity.Infrastructure.DbUpdateException)
+                catch (System.Data.Entity.Infrastructure.DbUpdateException ex)
                 {
-                    Stopss.Remove(stop);
-                    MessageBox.Show("Ошибка", "Проверьте правильность вводимых данных", MessageBoxButton.OK);
+                    MessageBox.Show("Ошибка", "Проверьте правильность вводимых данных" + Environment.NewLine+ ex.Message, MessageBoxButton.OK);
                 }
             }
         }
@@ -137,16 +152,12 @@ namespace BD
         {
             if (MessageBox.Show("Подтверждение", "Вы уверены, что хотите внести изменения в базу данных?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                int p = (DataGrid2.SelectedItem as МаршрутыОстановки).Порядок;
-                foreach (var items in Stopss)
-                {
-                    if (items.Порядок > p)
-                        items.Порядок = items.Порядок - 1;
-                }
+                Остановки stop = (DataGrid2.SelectedItem as МаршрутыОстановки).Остановки;
                 try
                 {
-                    model.МаршрутыОстановки.Remove(DataGrid2.SelectedItem as МаршрутыОстановки);
-                    Stopss.Remove(DataGrid2.SelectedItem as МаршрутыОстановки);
+                    route.МаршрутыОстановки.Remove(DataGrid2.SelectedItem as МаршрутыОстановки);
+                    StopsRoute.Remove(DataGrid2.SelectedItem as МаршрутыОстановки);
+                    AllStops.Add(stop);
                     model.SaveChanges();
                 }
                 catch (System.Data.Entity.Infrastructure.DbUpdateException)
@@ -179,23 +190,33 @@ namespace BD
         private void UpStop(object sender, RoutedEventArgs e)
         {
             var p = DataGrid2.SelectedItem as МаршрутыОстановки;
-            p.Порядок = p.Порядок - 1;
-            DataGridRow row = (DataGridRow)DataGrid2.ItemContainerGenerator.ContainerFromIndex(DataGrid2.SelectedIndex - 1);
-            var p2 = row.Item as МаршрутыОстановки;
-            p2.Порядок = p2.Порядок + 1;
+            if (p.Порядок != 1)
+            {
+                DataGridRow row = (DataGridRow)DataGrid2.ItemContainerGenerator.ContainerFromIndex(DataGrid2.SelectedIndex - 1);
+                var p2 = row.Item as МаршрутыОстановки;
+                var tmp = p.Порядок;
+                p.Порядок = p2.Порядок;
+                p2.Порядок = tmp;
+            }
             model.SaveChanges();
-            CollectionViewSource.GetDefaultView(Stopss).Refresh();
+            CollectionViewSource.GetDefaultView(StopsRoute).Refresh();
         }
 
         private void DownStop(object sender, RoutedEventArgs e)
         {
             var p = DataGrid2.SelectedItem as МаршрутыОстановки;
-            p.Порядок = p.Порядок + 1;
-            DataGridRow row = (DataGridRow)DataGrid2.ItemContainerGenerator.ContainerFromIndex(DataGrid2.SelectedIndex + 1);
-            var p2 = row.Item as МаршрутыОстановки;
-            p2.Порядок = p2.Порядок - 1;
+            int maxp = StopsRoute.Max(s => s.Порядок);
+            if (p.Порядок != maxp)
+            {
+                DataGridRow row = (DataGridRow)DataGrid2.ItemContainerGenerator.ContainerFromIndex(DataGrid2.SelectedIndex + 1);
+                var p2 = row.Item as МаршрутыОстановки;
+                var tmp = p.Порядок;
+                p.Порядок = p2.Порядок;
+                p2.Порядок = tmp;
+            }
             model.SaveChanges();
-            CollectionViewSource.GetDefaultView(Stopss).Refresh();
+            CollectionViewSource.GetDefaultView(StopsRoute).Refresh();
         }
+
     }
 }

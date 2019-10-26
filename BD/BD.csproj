@@ -198,6 +198,7 @@
     <Compile Include="Routes.xaml.cs">
       <DependentUpon>Routes.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Services\ОстановкиComaprer.cs" />
     <Compile Include="Stops.xaml.cs">
       <DependentUpon>Stops.xaml</DependentUpon>
     </Compile>
