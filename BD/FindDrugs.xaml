@@ -9,11 +9,11 @@
         >
     <DockPanel>
         <DockPanel DockPanel.Dock="Top">
-            <TextBlock x:Name="DrugName" Text="{Binding Название_лекарство}" FontSize="28"/>
+            <TextBlock x:Name="DrugName" Text="{Binding Лекарство.Название_лекарствa}" FontSize="28"/>
         </DockPanel>
         <DockPanel>
             <StackPanel>
-                <TextBlock x:Name="DrugstoreName" Text="{Binding Название}" FontSize="21"/>
+                <TextBlock x:Name="DrugstoreName" Text="{Binding Аптеки.Название}" FontSize="21"/>
             </StackPanel>
         </DockPanel>
     </DockPanel>

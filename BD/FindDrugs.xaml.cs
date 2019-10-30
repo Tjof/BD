@@ -21,11 +21,13 @@ namespace BD
     public partial class FindDrugs : Window
     {
         BAZANOWEntities model;
+
         public FindDrugs(BAZANOWEntities model, Лекарство drug, Остановки stop)
         {
             InitializeComponent();
+            this.model = model;
             DrugName.Text = drug.Название_лекарства;
-            var search = model.Лекарство.Include("Ассортимент_товара").Include("Аптеки").Select(x=> x.Ассортимент_товара == drug.Ассортимент_товара);
+            var search = model.Ассортимент_товара.Include("Аптеки").Include("Лекарство").Select(x=> x.id_лекарство == drug.id_лекарство);
             DataContext = search;
         }
     }

@@ -22,7 +22,7 @@ namespace BD
             DataContext = this;
             model = new BAZANOWEntities();
             model.Аптеки.Load();
-            Drugstores = model.Аптеки.Local;// Include("Улицы").Include("Остановки").Local;
+            Drugstores = model.Аптеки.Local;
         }
 
         public ObservableCollection<Аптеки> Drugstores
