@@ -25,11 +25,10 @@ namespace BD
         public SearchMenu()
         {
             InitializeComponent();
+            DataContext = model;
             model = new BAZANOWEntities();
-            //model.Лекарство.Load();
-            //model.Остановки.Load();
-            comboBox_drugs.ItemsSource = model.Лекарство.ToArray();
-            comboBox_stops.ItemsSource = model.Остановки.ToArray();
+            comboBox_drugs.ItemsSource = model.Лекарство.ToList();
+            comboBox_stops.ItemsSource = model.Остановки.ToList();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

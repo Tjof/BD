@@ -12,8 +12,26 @@
             <TextBlock x:Name="DrugName" Text="{Binding Лекарство.Название_лекарствa}" FontSize="28"/>
         </DockPanel>
         <DockPanel>
-            <StackPanel>
-                <TextBlock x:Name="DrugstoreName" Text="{Binding Аптеки.Название}" FontSize="21"/>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Width="200">
+                    <TextBlock x:Name="DrugstoreName" Text="{Binding Аптеки.Название}" FontSize="21" Margin="10"/>
+                    <DockPanel>
+                        <TextBlock x:Name="NomberHouse" Text="{Binding }" FontSize="21" DockPanel.Dock="Right" Width="50" Margin="0,0,10,0"/>
+                        <TextBlock x:Name="Street" Text="{Binding }" FontSize="21" Margin="10,0,0,0"/>
+                    </DockPanel>
+                    <!-- Сюда добавить как-то "Работает до/Откроется в" -->
+                </StackPanel>
+                <StackPanel Width="200">
+                    <!-- доделать вот туть ехать до остановки -->
+                    <DockPanel Margin="10">
+                        <TextBlock x:Name="NomberRoute" Text="{Binding Транспортные_маршруты.}" FontSize="21" DockPanel.Dock="Right" Width="50" Margin="0,0,10,0"/>
+                        <TextBlock x:Name="TransportMode" Text="{Binding Виды_Транспорта.Вид_транспорта}" FontSize="21"/>
+                    </DockPanel>
+                    <!-- и вот туть остановок до цели -->
+                </StackPanel>
+                <StackPanel Width="91">
+                    <TextBlock x:Name="Price" Text="{Binding Цена}" FontSize="21" Margin="10,40,10,0"/>
+                </StackPanel>
             </StackPanel>
         </DockPanel>
     </DockPanel>

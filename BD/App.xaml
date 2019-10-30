@@ -6,6 +6,7 @@
     <Application.Resources>
         <Style TargetType="MenuItem">
             <Setter Property="Background" Value="#FFF8E9"/>
+            <Setter Property="FontSize" Value="21"/>
         </Style>
         <Style TargetType="Button">
             <Setter Property="Width" Value="100"/>

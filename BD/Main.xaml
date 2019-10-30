@@ -6,15 +6,15 @@
         xmlns:local="clr-namespace:BD"
         mc:Ignorable="d"
         Title="Главная страница" Height="40" 
-        WindowStartupLocation="CenterScreen" Width="297.465" WindowStyle="None" Background="Transparent" BorderThickness="0" BorderBrush="Transparent" ResizeMode="NoResize">
+        WindowStartupLocation="CenterScreen" Width="392" WindowStyle="None" Background="Transparent" BorderThickness="0" BorderBrush="Transparent" ResizeMode="NoResize">
 
     <Menu Height="40" VerticalAlignment="Top" Background="#FFF8E7" x:Name="menu">
-        <MenuItem Header="Файл" Height="40" Width="76" FontFamily="Showcard Gothic" FontSize="18">
+        <MenuItem Header="Файл" Height="40" Width="Auto" FontFamily="Showcard Gothic" FontSize="28">
             <MenuItem Header="Поиск лекарства" Click="Poisk_Lekarstva"/>
             <MenuItem Header="Смена пароля" Click="Smena_Pass"/>
-            <MenuItem Header="Выход"  FontFamily="Showcard Gothic" FontSize="18" Click="Exit_Click"/>
+            <MenuItem Header="Выход"  FontFamily="Showcard Gothic" Click="Exit_Click"/>
         </MenuItem>
-        <MenuItem Header="Справочники" Height="40" Width="130" FontFamily="Showcard Gothic" FontSize="18">
+        <MenuItem Header="Справочники" Height="40" Width="Auto" FontFamily="Showcard Gothic" FontSize="28">
             <MenuItem Header="Аптеки" Click="Apteki" />
             <MenuItem Header="Улицы" Click="Street"/>
             <MenuItem Header="Ассортимент товара" Click="Assortiment"/>
@@ -24,7 +24,7 @@
             <MenuItem Header="Формы упаковки" Click="Formiupakovki"/>
             <MenuItem Header="Виды транспорта" Click="TransportMode"/>
         </MenuItem>
-        <MenuItem Header="Справка" Height="40" Width="90" FontFamily="Showcard Gothic" FontSize="18">
+        <MenuItem Header="Справка" Height="40" Width="Auto" FontFamily="Showcard Gothic" FontSize="28">
             <MenuItem Header="Как работать со справкой" Click="WorkingWithHelp"/>
             <MenuItem Header="Содержание" Click="ClickContent"/>
             <MenuItem Header="О программе" Click="AboutTheProgram"/>
