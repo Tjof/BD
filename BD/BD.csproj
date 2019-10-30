@@ -126,8 +126,11 @@
     <Compile Include="Assortment.xaml.cs">
       <DependentUpon>Assortment.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FindCure.xaml.cs">
-      <DependentUpon>FindCure.xaml</DependentUpon>
+    <Compile Include="SearchMenu.xaml.cs">
+      <DependentUpon>SearchMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FindDrugs.xaml.cs">
+      <DependentUpon>FindDrugs.xaml</DependentUpon>
     </Compile>
     <Compile Include="MessageBox.xaml.cs">
       <DependentUpon>MessageBox.xaml</DependentUpon>
@@ -243,7 +246,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="FindCure.xaml">
+    <Page Include="SearchMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FindDrugs.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

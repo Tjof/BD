@@ -1,4 +1,4 @@
-﻿<Window x:Class="BD.FindCure"
+﻿<Window x:Class="BD.SearchMenu"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -31,7 +31,7 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <Button x:Name="button" Content="Найти" HorizontalAlignment="Left" Height="40" Margin="410,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="160" FontSize="20" BorderBrush="Black"/>
+        <Button x:Name="button" Content="Найти" HorizontalAlignment="Left" Height="40" Margin="410,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="160" FontSize="20" BorderBrush="Black" Click="Button_Click"/>
 
     </Grid>
 </Window>

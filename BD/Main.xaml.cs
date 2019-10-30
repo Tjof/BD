@@ -32,11 +32,11 @@ namespace BD
 
         private void Poisk_Lekarstva(object sender, RoutedEventArgs e)
         {
-            FindCure findCure = new FindCure
+            SearchMenu searchMenu = new SearchMenu
             {
                 Owner = this
             };
-            findCure.Show();
+            searchMenu.Show();
         }
 
         private void Smena_Pass(object sender, RoutedEventArgs e)
