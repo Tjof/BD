@@ -5,32 +5,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BD"
         mc:Ignorable="d"
-        Title="FindDrugs" Height="190" Width="500"
-        >
+        Title="Поиск лекарства" Height="175" Width="500"
+        MaxWidth="500" MaxHeight="461">
     <DockPanel>
         <DockPanel DockPanel.Dock="Top">
-            <TextBlock x:Name="DrugName" Text="{Binding Лекарство.Название_лекарствa}" FontSize="28"/>
+            <TextBlock x:Name="DrugName" Text="{Binding Лекарство.Название_лекарствa}" FontSize="24"/>
         </DockPanel>
         <DockPanel>
             <StackPanel Orientation="Horizontal">
                 <StackPanel Width="200">
-                    <TextBlock x:Name="DrugstoreName" Text="{Binding Аптеки.Название}" FontSize="21" Margin="10"/>
+                    <TextBlock x:Name="DrugstoreName" Text="{Binding Аптеки.Название}" FontSize="18" Margin="10"/>
                     <DockPanel>
-                        <TextBlock x:Name="NomberHouse" Text="{Binding }" FontSize="21" DockPanel.Dock="Right" Width="50" Margin="0,0,10,0"/>
-                        <TextBlock x:Name="Street" Text="{Binding }" FontSize="21" Margin="10,0,0,0"/>
+                        <TextBlock x:Name="NomberHouse" Text="{Binding Аптеки.Номер_дома}" FontSize="18" DockPanel.Dock="Right" Width="50" Margin="0,0,10,0"/>
+                        <TextBlock x:Name="Street" Text="{Binding Аптеки.Улицы.Название_улицы}" FontSize="18" Margin="10,0,0,0"/>
                     </DockPanel>
+                    <StackPanel>
+                        <TextBlock Text="Время работы:" FontSize="18" Margin="10"/>
+                    </StackPanel>
                     <!-- Сюда добавить как-то "Работает до/Откроется в" -->
                 </StackPanel>
                 <StackPanel Width="200">
                     <!-- доделать вот туть ехать до остановки -->
                     <DockPanel Margin="10">
-                        <TextBlock x:Name="NomberRoute" Text="{Binding Транспортные_маршруты.}" FontSize="21" DockPanel.Dock="Right" Width="50" Margin="0,0,10,0"/>
-                        <TextBlock x:Name="TransportMode" Text="{Binding Виды_Транспорта.Вид_транспорта}" FontSize="21"/>
+                        <TextBlock x:Name="TransportMode" Text="{Binding Виды_Транспорта.Вид_транспорта}" FontSize="18" DockPanel.Dock="Right" Width="120" />
+                        <TextBlock x:Name="NomberRoute" Text="{Binding Транспортные_маршруты.Номер_маршрута}" FontSize="18" Margin="10,0,0,0"/>
                     </DockPanel>
                     <!-- и вот туть остановок до цели -->
                 </StackPanel>
                 <StackPanel Width="91">
-                    <TextBlock x:Name="Price" Text="{Binding Цена}" FontSize="21" Margin="10,40,10,0"/>
+                    <TextBlock x:Name="Price" Text="{Binding Цена}" FontSize="18" Margin="10,40,10,0"/>
                 </StackPanel>
             </StackPanel>
         </DockPanel>

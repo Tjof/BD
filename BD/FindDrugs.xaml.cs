@@ -27,8 +27,12 @@ namespace BD
             InitializeComponent();
             this.model = model;
             DrugName.Text = drug.Название_лекарства;
-            var search = model.Ассортимент_товара.Include("Аптеки").Include("Лекарство").Select(x=> x.id_лекарство == drug.id_лекарство);
+            var search = model.Ассортимент_товара
+                .Where(x => x.id_лекарство == drug.id_лекарство)
+                .ToList();
+            //var search = model.Ассортимент_товара.Where(at => at.id_лекарство == drug.id_лекарство);
             DataContext = search;
+
         }
     }
 }

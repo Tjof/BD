@@ -1,18 +1,7 @@
 ﻿using BD.Model;
-using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace BD
 {
@@ -22,13 +11,38 @@ namespace BD
     public partial class SearchMenu : Window
     {
         BAZANOWEntities model;
+        ObservableCollection<Лекарство> _drug;
+        ObservableCollection<Остановки> _stop;
         public SearchMenu()
         {
             InitializeComponent();
-            DataContext = model;
+            DataContext = this;
             model = new BAZANOWEntities();
-            comboBox_drugs.ItemsSource = model.Лекарство.ToList();
-            comboBox_stops.ItemsSource = model.Остановки.ToList();
+
+            model.Лекарство.Load();
+            model.Остановки.Load();
+            Drug = model.Лекарство.Local;
+            Stop = model.Остановки.Local;
+            comboBox_drugs.ItemsSource = Drug;
+            comboBox_stops.ItemsSource = Stop;
+        }
+
+        public ObservableCollection<Лекарство> Drug
+        {
+            get => _drug;
+            set
+            {
+                _drug = value;
+            }
+        }
+
+        public ObservableCollection<Остановки> Stop
+        {
+            get => _stop;
+            set
+            {
+                _stop = value;
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
