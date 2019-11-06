@@ -25,9 +25,10 @@
                     <!-- Сюда добавить как-то "Работает до/Откроется в" -->
                 </StackPanel>
                 <StackPanel Width="200">
+                    <TextBlock x:Name="Stop" Text="{Binding Аптеки.Остановки.Название_остановки}" FontSize="18" Margin="10" />
                     <!-- доделать вот туть ехать до остановки -->
                     <DockPanel Margin="10">
-                        <TextBlock x:Name="TransportMode" Text="{Binding Виды_Транспорта.Вид_транспорта}" FontSize="18" DockPanel.Dock="Right" Width="120" />
+                        <TextBlock x:Name="TransportMode" Text="{Binding Виды_Транспорта.Название_транспорта}" FontSize="18" DockPanel.Dock="Right" Width="120" />
                         <TextBlock x:Name="NomberRoute" Text="{Binding Транспортные_маршруты.Номер_маршрута}" FontSize="18" Margin="10,0,0,0"/>
                     </DockPanel>
                     <!-- и вот туть остановок до цели -->

@@ -24,13 +24,17 @@ namespace BD
 
         public FindDrugs(BAZANOWEntities model, Лекарство drug, Остановки stop)
         {
+
             InitializeComponent();
             this.model = model;
             DrugName.Text = drug.Название_лекарства;
             var search = model.Ассортимент_товара
                 .Where(x => x.id_лекарство == drug.id_лекарство)
-                .ToList();
-            //var search = model.Ассортимент_товара.Where(at => at.id_лекарство == drug.id_лекарство);
+                .FirstOrDefault();//verni ToList()
+            //var a = model.Транспортные_маршруты
+            //    .Select(m => m.МаршрутыОстановки)
+            //    .Where(x => x.
+                //var search = model.Ассортимент_товара.Where(at => at.id_лекарство == drug.id_лекарство);
             DataContext = search;
 
         }
