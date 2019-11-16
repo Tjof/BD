@@ -126,6 +126,9 @@
     <Compile Include="Assortment.xaml.cs">
       <DependentUpon>Assortment.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\GetRoutes_Result.cs">
+      <DependentUpon>BAZANOW.tt</DependentUpon>
+    </Compile>
     <Compile Include="SearchMenu.xaml.cs">
       <DependentUpon>SearchMenu.xaml</DependentUpon>
     </Compile>
@@ -325,6 +328,7 @@
       <DependentUpon>BAZANOW.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\BD.Model.GetRoutes_Result.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

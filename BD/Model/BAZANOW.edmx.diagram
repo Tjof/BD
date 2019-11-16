@@ -11,7 +11,7 @@
         <EntityTypeShape EntityType="BAZANOWModel.МаршрутыОстановки" Width="2" PointX="5.5" PointY="8.625" />
         <EntityTypeShape EntityType="BAZANOWModel.Объекты" Width="1.5" PointX="7.75" PointY="1.375" />
         <EntityTypeShape EntityType="BAZANOWModel.Остановки" Width="1.5" PointX="3" PointY="6.625" />
-        <EntityTypeShape EntityType="BAZANOWModel.Пользователи" Width="1.5" PointX="7.75" PointY="8.375" />
+        <EntityTypeShape EntityType="BAZANOWModel.Пользователи" Width="1.5" PointX="12.875" PointY="1.5" />
         <EntityTypeShape EntityType="BAZANOWModel.ПользователиОбъекты" Width="1.5" PointX="10" PointY="1" />
         <EntityTypeShape EntityType="BAZANOWModel.Транспортные_маршруты" Width="1.875" PointX="3" PointY="9.75" />
         <EntityTypeShape EntityType="BAZANOWModel.Улицы" Width="1.5" PointX="0.75" PointY="3.125" />

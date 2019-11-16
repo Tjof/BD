@@ -12,6 +12,8 @@ namespace BD.Model
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class BAZANOWEntities : DbContext
     {
@@ -37,5 +39,18 @@ namespace BD.Model
         public virtual DbSet<Улицы> Улицы { get; set; }
         public virtual DbSet<Формы_упаковки> Формы_упаковки { get; set; }
         public virtual DbSet<Лекарство> Лекарство { get; set; }
+    
+        public virtual ObjectResult<GetRoutes_Result> GetRoutes(Nullable<int> id_grud, Nullable<int> id_ost)
+        {
+            var id_grudParameter = id_grud.HasValue ?
+                new ObjectParameter("id_grud", id_grud) :
+                new ObjectParameter("id_grud", typeof(int));
+    
+            var id_ostParameter = id_ost.HasValue ?
+                new ObjectParameter("id_ost", id_ost) :
+                new ObjectParameter("id_ost", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetRoutes_Result>("GetRoutes", id_grudParameter, id_ostParameter);
+        }
     }
 }

@@ -3,40 +3,56 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Model="clr-namespace:BD.Model"
         xmlns:local="clr-namespace:BD"
         mc:Ignorable="d"
-        Title="Поиск лекарства" Height="175" Width="500"
-        MaxWidth="500" MaxHeight="461">
+        Title="Поиск лекарства" Height="500" Width="500"
+        MaxWidth="500" MaxHeight="500">
     <DockPanel>
-        <DockPanel DockPanel.Dock="Top">
-            <TextBlock x:Name="DrugName" Text="{Binding Лекарство.Название_лекарствa}" FontSize="24"/>
-        </DockPanel>
-        <DockPanel>
-            <StackPanel Orientation="Horizontal">
-                <StackPanel Width="200">
-                    <TextBlock x:Name="DrugstoreName" Text="{Binding Аптеки.Название}" FontSize="18" Margin="10"/>
-                    <DockPanel>
-                        <TextBlock x:Name="NomberHouse" Text="{Binding Аптеки.Номер_дома}" FontSize="18" DockPanel.Dock="Right" Width="50" Margin="0,0,10,0"/>
-                        <TextBlock x:Name="Street" Text="{Binding Аптеки.Улицы.Название_улицы}" FontSize="18" Margin="10,0,0,0"/>
-                    </DockPanel>
-                    <StackPanel>
-                        <TextBlock Text="Время работы:" FontSize="18" Margin="10"/>
-                    </StackPanel>
-                    <!-- Сюда добавить как-то "Работает до/Откроется в" -->
-                </StackPanel>
-                <StackPanel Width="200">
-                    <TextBlock x:Name="Stop" Text="{Binding Аптеки.Остановки.Название_остановки}" FontSize="18" Margin="10" />
-                    <!-- доделать вот туть ехать до остановки -->
-                    <DockPanel Margin="10">
-                        <TextBlock x:Name="TransportMode" Text="{Binding Виды_Транспорта.Название_транспорта}" FontSize="18" DockPanel.Dock="Right" Width="120" />
-                        <TextBlock x:Name="NomberRoute" Text="{Binding Транспортные_маршруты.Номер_маршрута}" FontSize="18" Margin="10,0,0,0"/>
-                    </DockPanel>
-                    <!-- и вот туть остановок до цели -->
-                </StackPanel>
-                <StackPanel Width="91">
-                    <TextBlock x:Name="Price" Text="{Binding Цена}" FontSize="18" Margin="10,40,10,0"/>
-                </StackPanel>
-            </StackPanel>
-        </DockPanel>
+        <TextBlock DockPanel.Dock="Top" x:Name="DrugName" Text="{Binding Лекарство.Название_лекарствa}" FontSize="24"/>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <ItemsControl ItemsSource="{Binding .}" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderThickness="0.5" BorderBrush="Gray" Margin="2">
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Width="200">
+                                    <TextBlock x:Name="DrugstoreName" Text="{Binding Название}" FontSize="16" Margin="10"/>
+                                    <DockPanel>
+                                        <TextBlock x:Name="NomberHouse" Text="{Binding Номер_дома}" FontSize="16" DockPanel.Dock="Right" Width="50" Margin="0,0,10,0"/>
+                                        <TextBlock x:Name="Street" Text="{Binding Название_улицы}" FontSize="16" Margin="10,0,0,0"/>
+                                    </DockPanel>
+                                    <DockPanel>
+                                        <TextBlock x:Name="a1" Text="{Binding Время_начала_работы, StringFormat={}С {0}}" FontSize="16" Width="60" Margin="10,0,0,0" />
+                                        <TextBlock x:Name="a2" Text="{Binding Время_окончания_работы, StringFormat={}до {0}}" FontSize="16" Margin="0,0,10,0"/>
+                                    </DockPanel>
+                                </StackPanel>
+                                <ItemsControl ItemsSource="{Binding Лекарства}" >
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding Название_формы}"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                                <ItemsControl ItemsSource="{Binding Маршруты}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border BorderThickness="0.5" BorderBrush="Gray">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding Номер_маршрута}"/>
+                                                    <TextBlock Text="{Binding Вид_транспорта}"/>
+                                                </StackPanel>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
     </DockPanel>
 </Window>

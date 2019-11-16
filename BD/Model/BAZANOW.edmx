@@ -277,6 +277,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="GetRoutes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_grud" Type="int" Mode="In" />
+          <Parameter Name="id_ost" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="Хранилище BAZANOWModelContainer">
           <EntitySet Name="Аптеки" EntityType="Self.Аптеки" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ассортимент товара" EntityType="Self.Ассортимент товара" Schema="dbo" store:Type="Tables" />
@@ -409,6 +413,10 @@
             <End Role="Лекарство" EntitySet="Лекарство" />
             <End Role="Лекарство1" EntitySet="Лекарство" />
           </AssociationSet>
+          <FunctionImport Name="GetRoutes" ReturnType="Collection(BAZANOWModel.GetRoutes_Result)">
+            <Parameter Name="id_grud" Mode="In" Type="Int32" />
+            <Parameter Name="id_ost" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="Аптеки">
           <Key>
@@ -676,6 +684,19 @@
           <End Type="BAZANOWModel.Лекарство" Role="Лекарство" Multiplicity="*" />
           <End Type="BAZANOWModel.Лекарство" Role="Лекарство1" Multiplicity="*" />
         </Association>
+        <ComplexType Name="GetRoutes_Result">
+          <Property Type="String" Name="Название_лекарства" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Название" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Название_улицы" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Номер_дома" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Время_начала_работы" Nullable="false" MaxLength="5" />
+          <Property Type="String" Name="Время_окончания_работы" Nullable="false" MaxLength="5" />
+          <Property Type="String" Name="Название_остановки" Nullable="false" MaxLength="55" />
+          <Property Type="String" Name="Номер_маршрута" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="Вид_транспорта" Nullable="false" MaxLength="55" />
+          <Property Type="String" Name="Цена" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="Название_формы" Nullable="false" MaxLength="25" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -802,6 +823,23 @@
               <ScalarProperty Name="id_лекарство" ColumnName="id_лекарство" />
             </EndProperty>
           </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="GetRoutes" FunctionName="Хранилище BAZANOWModel.GetRoutes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BAZANOWModel.GetRoutes_Result">
+                <ScalarProperty Name="Название_лекарства" ColumnName="Название лекарства" />
+                <ScalarProperty Name="Название" ColumnName="Название" />
+                <ScalarProperty Name="Название_улицы" ColumnName="Название улицы" />
+                <ScalarProperty Name="Номер_дома" ColumnName="Номер дома" />
+                <ScalarProperty Name="Время_начала_работы" ColumnName="Время начала работы" />
+                <ScalarProperty Name="Время_окончания_работы" ColumnName="Время окончания работы" />
+                <ScalarProperty Name="Название_остановки" ColumnName="Название остановки" />
+                <ScalarProperty Name="Номер_маршрута" ColumnName="Номер маршрута" />
+                <ScalarProperty Name="Вид_транспорта" ColumnName="Вид транспорта" />
+                <ScalarProperty Name="Цена" ColumnName="Цена" />
+                <ScalarProperty Name="Название_формы" ColumnName="Название формы" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
