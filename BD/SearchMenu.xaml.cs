@@ -50,8 +50,7 @@ namespace BD
             var drug = comboBox_drugs.SelectedItem as Лекарство;
             var stop = comboBox_stops.SelectedItem as Остановки;
             FindDrugs findDrugs = new FindDrugs(model, drug, stop);
-            findDrugs.ShowDialog();
-            this.Close();
+            findDrugs.Show();
         }
     }
 }
