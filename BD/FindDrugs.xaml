@@ -18,15 +18,13 @@
 
                                 <Border BorderThickness="0.5" BorderBrush="Gray">
                                     <StackPanel Background="#11B856" >
-                                        <TextBlock Foreground="White" Text="{Binding Название, StringFormat={}Аптека: {0}}" FontSize="16" Margin="5,0,0,0"/>
+                                        <TextBlock Foreground="White" Text="{Binding Название, StringFormat={}Аптека: {0}}" FontSize="18" Margin="5,0,0,0"/>
                                         <Grid>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition/>
-                                                <ColumnDefinition Width="30"/>
-                                                <ColumnDefinition Width="100"/>
-                                                <ColumnDefinition Width="80"/>
+                                                <ColumnDefinition Width="250"/>
                                             </Grid.ColumnDefinitions>
-                                            <TextBlock>
+                                            <TextBlock Foreground="White" FontSize="18" Margin="5,0,0,0">
                                                 <TextBlock.Text>
                                                     <MultiBinding StringFormat="{}Адрес: {0} {1}">
                                                         <Binding Path="Название_улицы" />
@@ -34,40 +32,50 @@
                                                     </MultiBinding>
                                                 </TextBlock.Text>
                                             </TextBlock>
-                                            <TextBlock Foreground="White" Text="{Binding Время_начала_работы, StringFormat={}Время работы: {0}}" Grid.Column="2" FontSize="16" HorizontalAlignment="Right"/>
-                                            <TextBlock Foreground="White" Text="{Binding Время_окончания_работы, StringFormat={} - {0}}" Grid.Column="3" HorizontalAlignment="Left" Margin="0,0,15,0" FontSize="16"/>
+                                            <TextBlock Grid.Column="1" Foreground="White" FontSize="18" HorizontalAlignment="Right" Margin="0,0,15,0">
+                                                <TextBlock.Text>
+                                                    <MultiBinding StringFormat="{}Время работы: {0} - {1}">
+                                                        <Binding Path="Время_начала_работы"/>
+                                                        <Binding Path="Время_окончания_работы"/>
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
                                         </Grid>
                                     </StackPanel>
                                 </Border>
 
-                                <TextBlock Text="Данные по лекарству:" FontSize="16"/>
+                                <TextBlock Text="Данные по лекарству:" FontSize="18" Margin="5,0,0,0"/>
                                 <ItemsControl ItemsSource="{Binding Лекарства}" >
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal" Margin="20,0,0,3">
-                                                <TextBlock Text="{Binding Название_формы, StringFormat={}Форма упаковки: {0}}" FontSize="14" Width="200"/>
-                                                <TextBlock Text="{Binding Цена, StringFormat={}Цена: {0}}" FontSize="14"/>
+                                                <TextBlock Text="{Binding Название_формы, StringFormat={}Форма упаковки: {0}}" FontSize="16" Width="240"/>
+                                                <TextBlock Text="{Binding Цена, StringFormat={}Цена: {0}}" FontSize="16"/>
                                             </StackPanel>
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>
 
                                 <StackPanel Background="#FFF8E9">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="120"/>
-                                            <ColumnDefinition/>
-                                        </Grid.ColumnDefinitions>
-                                        <TextBlock Text="Как добраться:" FontSize="16" Margin="5,0,0,0"/>
-                                        <TextBlock Text="{Binding Название_остановки, StringFormat={}Конечная остановка: {0}}" Grid.Column="1" HorizontalAlignment="Right" FontSize="16" Margin="0,0,15,0"/>
-                                    </Grid>
+                                    <TextBlock Text="{Binding Название_остановки, StringFormat={}Выйти на остановке: {0}}" FontSize="18" Margin="5,0,0,0"/>
                                     <ItemsControl ItemsSource="{Binding Маршруты}">
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
-                                                <StackPanel Orientation="Horizontal" Margin="20,0,0,3">
-                                                    <TextBlock Text="{Binding Номер_маршрута, StringFormat={}Маршрут: {0}}" FontSize="14" Width="115"/>
-                                                    <TextBlock Text="{Binding Вид_транспорта}" FontSize="14"/>
-                                                </StackPanel>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="220"/>
+                                                        <ColumnDefinition/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBlock FontSize="16" Margin="20,0,0,3">
+                                                        <TextBlock.Text>
+                                                            <MultiBinding StringFormat="{}Маршрут: {0} {1}">
+                                                                <Binding Path="Номер_маршрута" />
+                                                                <Binding Path="Вид_транспорта" />
+                                                            </MultiBinding>
+                                                        </TextBlock.Text>
+                                                    </TextBlock>
+                                                    <TextBlock Text="{Binding Разница, StringFormat={}Остановок до аптеки: {0}}" FontSize="16" Grid.Column="1"/>
+                                                </Grid>
                                             </DataTemplate>
                                         </ItemsControl.ItemTemplate>
                                     </ItemsControl>

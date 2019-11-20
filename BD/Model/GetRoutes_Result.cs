@@ -13,8 +13,10 @@ namespace BD.Model
     
     public partial class GetRoutes_Result
     {
-        public string Название_лекарства { get; set; }
         public string Название { get; set; }
+        public string Цена { get; set; }
+        public Nullable<int> Разница { get; set; }
+        public string Название_лекарства { get; set; }
         public string Название_улицы { get; set; }
         public string Номер_дома { get; set; }
         public string Время_начала_работы { get; set; }
@@ -22,7 +24,7 @@ namespace BD.Model
         public string Название_остановки { get; set; }
         public string Номер_маршрута { get; set; }
         public string Вид_транспорта { get; set; }
-        public string Цена { get; set; }
         public string Название_формы { get; set; }
+        public int Порядок { get; set; }
     }
 }

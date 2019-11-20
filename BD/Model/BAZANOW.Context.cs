@@ -52,5 +52,18 @@ namespace BD.Model
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetRoutes_Result>("GetRoutes", id_grudParameter, id_ostParameter);
         }
+    
+        public virtual ObjectResult<GetRoutes_Result> GetRoutes1(Nullable<int> id_grud, Nullable<int> id_ost)
+        {
+            var id_grudParameter = id_grud.HasValue ?
+                new ObjectParameter("id_grud", id_grud) :
+                new ObjectParameter("id_grud", typeof(int));
+    
+            var id_ostParameter = id_ost.HasValue ?
+                new ObjectParameter("id_ost", id_ost) :
+                new ObjectParameter("id_ost", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetRoutes_Result>("GetRoutes1", id_grudParameter, id_ostParameter);
+        }
     }
 }
