@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using BD.Class;
+using BD.Model;
+using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace BD
 {
@@ -19,9 +11,25 @@ namespace BD
     /// </summary>
     public partial class Repass : Window
     {
+        BAZANOWEntities model;
         public Repass()
         {
             InitializeComponent();
+            model = new BAZANOWEntities();
+
+        }
+
+        private void ChangePassword_Click(object sender, RoutedEventArgs e)
+        {
+            string login = Users.Login;
+            var user = model.Пользователи.Where(x => x.login == login);
+
+            if (MessageBox.Show("Подтверждение", "Вы уверены, что хотите сменить пароль?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                
+
+            }
+
         }
     }
 }

@@ -5,17 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BD"
         mc:Ignorable="d"
-        Title="Поиск лекарства" Height="188" Width="600">
+        Title="Поиск лекарства" Height="180" Width="500">
     <Grid Background="#FFFFFF" Margin="0,0,2,3">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="95*"/>
+            <RowDefinition Height="60*"/>
+            <RowDefinition Height="60*"/>
             <RowDefinition Height="60*"/>
         </Grid.RowDefinitions>
-        <Label x:Name="label" Content="Выберите лекарство:" HorizontalAlignment="Left" Height="32" Margin="10,10,0,0" VerticalAlignment="Top" Width="201" FontFamily="Times New Roman" FontSize="20" FontWeight="Bold"/>
-        <ComboBox x:Name="comboBox_drugs" DisplayMemberPath="Название_лекарства" HorizontalAlignment="Left" Margin="254,10,0,0" VerticalAlignment="Top" Width="315" Height="32"/>
-        <Label x:Name="label_Copy1" Content="Выберите остановку:" HorizontalAlignment="Left" Height="32" Margin="10,53,0,0" VerticalAlignment="Top" Width="201" FontFamily="Times New Roman" FontSize="20" FontWeight="Bold" RenderTransformOrigin="0.513,1.275"/>
-        <ComboBox x:Name="comboBox_stops" DisplayMemberPath="Название_остановки" HorizontalAlignment="Left" Margin="254,53,0,0" VerticalAlignment="Top" Width="315" Height="32"/>
-        <Button x:Name="button" Content="Найти" HorizontalAlignment="Left" Height="40" Margin="410,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="160" FontSize="20" BorderBrush="Black" Click="Button_Click"/>
+
+        <Label Content="Выберите лекарство:" FontSize="16" VerticalAlignment="Center" />
+        <Label Content="Выберите остановку:" Grid.Row="1" FontSize="16" VerticalAlignment="Center"/>
+        <ComboBox x:Name="comboBox_drugs" DisplayMemberPath="Название_лекарства" Grid.Column="1" Margin="10"/>
+        <ComboBox x:Name="comboBox_stops" DisplayMemberPath="Название_остановки" Grid.Column="1" Grid.Row="1" Margin="10"/>
+        <Button x:Name="button" Content="Найти" Grid.Column="1" Grid.Row="2" Width="130" HorizontalAlignment="Right" Click="Button_Click" Margin="0,0,10,0"/>
 
     </Grid>
 </Window>

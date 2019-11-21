@@ -5,25 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BD"
         mc:Ignorable="d"
-        Title="Смена пароля" Height="238.238" Width="412.351">
-    <Grid Background="#FFE8C9">
+        Title="Смена пароля" Height="230" Width="450">
+    <Grid Background="#FFFFFF">
         <Grid.RowDefinitions>
             <RowDefinition Height="25*"/>
             <RowDefinition Height="25*"/>
             <RowDefinition Height="25*"/>
-            <RowDefinition Height="29*"/>
+            <RowDefinition Height="25*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="195*"/>
-            <ColumnDefinition Width="209*"/>
+            <ColumnDefinition Width="190"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <PasswordBox x:Name="passwordBox" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="189" Height="30" FontSize="16" Grid.Column="1"/>
-        <Label x:Name="label" Content="Введите старый пароль:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="175" Height="30" FontFamily="Times New Roman" FontSize="16"/>
-        <Label x:Name="label_Copy" Content="Введите новый пароль:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="175" Height="30" FontFamily="Times New Roman" FontSize="16" Grid.Row="1"/>
-        <PasswordBox x:Name="passwordBox_Copy" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="189" Height="30" FontSize="16" Grid.Column="1" Grid.Row="1"/>
-        <PasswordBox x:Name="passwordBox_Copy1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="189" Height="30" FontSize="16" Grid.Column="1" Grid.Row="2"/>
-        <Label x:Name="label_Copy1" Content="Повторите пароль:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="175" Height="30" FontFamily="Times New Roman" FontSize="16" Grid.Row="2"/>
-        <Button x:Name="button" Grid.ColumnSpan="2" Content="Сменить пароль" Height="38" Margin="82,10,83,0" Grid.Row="3" VerticalAlignment="Top" Width="Auto"/>
+        <PasswordBox x:Name="OldPassword" Margin="10" FontSize="16" Grid.Column="1"/>
+        <Label Content="Введите старый пароль:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="175" Height="30" FontFamily="Times New Roman" FontSize="16"/>
+        <Label Content="Введите новый пароль:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="175" Height="30" FontFamily="Times New Roman" FontSize="16" Grid.Row="1"/>
+        <PasswordBox x:Name="NewPassword" Margin="10" FontSize="16" Grid.Column="1" Grid.Row="1"/>
+        <PasswordBox x:Name="RepeatNewPassword" Margin="10" FontSize="16" Grid.Column="1" Grid.Row="2"/>
+        <Label Content="Повторите пароль:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="175" Height="30" FontFamily="Times New Roman" FontSize="16" Grid.Row="2"/>
+        <Button x:Name="ChangePassword" Grid.ColumnSpan="2" Content="Сменить пароль" Grid.Row="3" Width="200" Click="ChangePassword_Click"/>
 
     </Grid>
 </Window>

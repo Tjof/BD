@@ -5,16 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BD"
         mc:Ignorable="d"
-        Title="Авторизация" Height="172" Width="363"
+        Title="Авторизация" Height="180" Width="400"
         WindowStartupLocation="CenterScreen">
-    <Grid Background="#FFE8E9" >
+    <Grid Background="#FFFFFF" >
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="120"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <TextBox x:Name="tbLogin" HorizontalAlignment="Left" Height="27" Margin="107,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="233" BorderBrush="Black" FontFamily="Times New Roman" FontSize="20" Background="#FFF1F0E6"/>
-        <Label x:Name="label" Content="Логин" HorizontalAlignment="Left" Height="27" Margin="10,10,0,0" VerticalAlignment="Top" Width="66" FontFamily="Swis721 BlkEx BT" FontWeight="Bold" FontSize="16"/>
-        <Label x:Name="label1" Content="Пароль" HorizontalAlignment="Left" Height="27" Margin="10,50,0,0" VerticalAlignment="Top" Width="74" FontWeight="Bold" FontSize="16" FontFamily="Swis721 BlkEx BT"/>
-        <PasswordBox x:Name="passwordBox" HorizontalAlignment="Left" Height="27" Margin="107,50,0,0" VerticalAlignment="Top" Width="233" FontSize="16" PasswordChar="*" BorderBrush="Black" Background="#FFF1F0E6"/>
-        <Button IsDefault="True" x:Name="authorization" Content="Войти" HorizontalAlignment="Left" Height="42" Margin="211,84,0,0" VerticalAlignment="Top" Width="129" BorderBrush="Black" Foreground="Black" Click="Authorization_Click" Background="#FFF1F0E6"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60*"/>
+            <RowDefinition Height="60*"/>
+            <RowDefinition Height="60*"/>
+        </Grid.RowDefinitions>
+        <Label Content="Логин:" VerticalAlignment="Center" FontSize="16" Margin="10,0,0,0"/>
+        <Label Content="Пароль:" Grid.Row="1" VerticalAlignment="Center" FontSize="16" Margin="10,0,0,0"/>
+        <TextBox x:Name="tbLogin" Grid.Column="1" Margin="10" BorderBrush="Black"/>
+        <PasswordBox x:Name="passwordBox" PasswordChar="*" BorderBrush="Black" Grid.Column="1" Grid.Row="1" Margin="10"/>
+        <Button IsDefault="True" x:Name="authorization" Content="Войти" Click="Authorization_Click" Grid.Column="1" Grid.Row="2" Width="140" HorizontalAlignment="Right" Margin="0,0,10,0"/>
     </Grid>
 </Window>

@@ -120,6 +120,7 @@
       <DependentUpon>AddRoute.xaml</DependentUpon>
     </Compile>
     <Compile Include="Class\RegexClass.cs" />
+    <Compile Include="Class\Users.cs" />
     <Compile Include="Drugstore.xaml.cs">
       <DependentUpon>Drugstore.xaml</DependentUpon>
     </Compile>

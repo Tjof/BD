@@ -1,4 +1,5 @@
 ﻿using BD.Model;
+using BD.Class;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -25,47 +26,27 @@ namespace BD
         public Login()
         {
             InitializeComponent();
+            tbLogin.Focus();
         }
 
         private void Authorization_Click(object sender, RoutedEventArgs e)
         {
-
-            /*using (SqlConnection connection = new SqlConnection("Data Source=tcp:ZLOY,49172;Initial Catalog=TVOYABAZA;Integrated Security=True"))
-            {
-                SqlCommand command = new SqlCommand("select * from [dbo].[Аптеки] where Название=@apt", connection);
-                command.Parameters.Add(new SqlParameter("@apt", "dsfkgsfjk"));
-                var reader = command.ExecuteReader();
-                if( reader.Read())
-                {
-                    var result = Convert.ToString( reader["Название"]);
-                }
-                else
-                {
-
-                }
-                //while(reader.Read())
-
-            }*/
             using (BAZANOWEntities entities = new BAZANOWEntities())
             {
                 var res =  entities.Пользователи.FirstOrDefault(a => a.login == tbLogin.Text && a.pass == passwordBox.Password);
                 if(res == null)
                 {
-                    System.Windows.MessageBox.Show("Неверный логин или пароль", "Ошибочка ;(", MessageBoxButton.OK, MessageBoxImage.Hand);
+                    MessageBox.Show("Неверный логин или пароль", "Ошибочка ;(", MessageBoxButton.OK);
                 }
                 else
                 {
-                    Main glavnaya = new Main();
-                    glavnaya.Show();
+                    Users.Login = tbLogin.Text;
+                    Main main = new Main();
+                    main.Show();
                     this.Close();
                 }
 
             }
-
-
-
-
-                
         }
     }
 }
