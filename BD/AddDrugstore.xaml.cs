@@ -41,17 +41,18 @@ namespace BD
         {
             if (MessageBox.Show("Подтверждение", "Вы уверены, что хотите внести изменения в базу данных?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                if (RegexClass.RegexDrugstore(DrugstoreName.Text, WorkStartingTime.Text, WorkEndingTime.Text)) {
+                if (RegexClass.RegexDrugstore(DrugstoreName.Text, WorkStartingTime.Text, WorkEndingTime.Text))
+                {
                     try
                     {
-                        foreach(FrameworkElement element in elementsGrid.Children)
+                        foreach (FrameworkElement element in elementsGrid.Children)
                         {
-                            if( element is TextBox)
+                            if (element is TextBox)
                                 element.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
                             else if (element is ComboBox)
                                 element.GetBindingExpression(ComboBox.SelectedItemProperty)?.UpdateSource();
                         }
-                        if (drugstore.id_аптеки == 0 )
+                        if (drugstore.id_аптеки == 0)
                         {
                             model.Аптеки.Add(drugstore);
                         }
@@ -69,7 +70,8 @@ namespace BD
                         this.Close();
                     }
                 }
-                else {
+                else
+                {
                     MessageBox.Show("Ошибка", "Проверьте правильность вводимых данных", MessageBoxButton.OK);
                 }
             }

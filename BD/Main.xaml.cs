@@ -1,36 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BD.Class;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Forms;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace BD
 {
-    /// <summary>
-    /// Логика взаимодействия для Main.xaml
-    /// </summary>
     public partial class Main : Window
     {
         public Main()
         {
             InitializeComponent();
+            Users users = new Users();
+            users.Read(Handbooks);
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            System.Environment.Exit(0);
         }
 
-        private void Poisk_Lekarstva(object sender, RoutedEventArgs e)
+        private void FindDrugsClick(object sender, RoutedEventArgs e)
         {
             SearchMenu searchMenu = new SearchMenu
             {
@@ -39,7 +27,7 @@ namespace BD
             searchMenu.Show();
         }
 
-        private void Smena_Pass(object sender, RoutedEventArgs e)
+        private void PasswordChangeClick(object sender, RoutedEventArgs e)
         {
             Repass repass= new Repass
             {
@@ -48,7 +36,7 @@ namespace BD
             repass.Show();
         }
 
-        private void Apteki(object sender, RoutedEventArgs e)
+        private void DrugstoresClick(object sender, RoutedEventArgs e)
         {
             Drugstore apteki = new Drugstore
             {
@@ -57,7 +45,7 @@ namespace BD
             apteki.Show();
         }
 
-        private void Street(object sender, RoutedEventArgs e)
+        private void StreetsClick(object sender, RoutedEventArgs e)
         {
             Streets streets = new Streets()
             {
@@ -66,7 +54,7 @@ namespace BD
             streets.Show();
         }
 
-        private void Assortiment(object sender, RoutedEventArgs e)
+        private void AssortmentClick(object sender, RoutedEventArgs e)
         {
             Assortment Assortiment = new Assortment()
             {
@@ -75,7 +63,7 @@ namespace BD
             Assortiment.Show();
         }
 
-        private void Ostanovki(object sender, RoutedEventArgs e)
+        private void StopsClick(object sender, RoutedEventArgs e)
         {
             Stops ostanovki = new Stops()
             {
@@ -84,7 +72,7 @@ namespace BD
             ostanovki.Show();
         }
 
-        private void Marshruti(object sender, RoutedEventArgs e)
+        private void RoutesClick(object sender, RoutedEventArgs e)
         {
             Routes marshruti = new Routes()
             {
@@ -93,7 +81,7 @@ namespace BD
             marshruti.Show();
         }
 
-        private void Lekarstvo(object sender, RoutedEventArgs e)
+        private void DrugsClick(object sender, RoutedEventArgs e)
         {
             Drugs lekarstva = new Drugs()
             {
@@ -102,7 +90,7 @@ namespace BD
             lekarstva.Show();
         }
 
-        private void Formiupakovki(object sender, RoutedEventArgs e)
+        private void PackingFormsClick(object sender, RoutedEventArgs e)
         {
             PackingForm formi_Upakovki = new PackingForm()
             {
@@ -111,7 +99,7 @@ namespace BD
             formi_Upakovki.Show();
         }
 
-        private void TransportMode(object sender, RoutedEventArgs e)
+        private void TransportModeClick(object sender, RoutedEventArgs e)
         {
             TransportMode transportMode = new TransportMode()
             {

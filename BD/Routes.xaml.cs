@@ -1,4 +1,5 @@
-﻿using BD.Model;
+﻿using BD.Class;
+using BD.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -34,6 +35,8 @@ namespace BD
             model = new BAZANOWEntities();
             model.Транспортные_маршруты.Load();
             Routess = model.Транспортные_маршруты.Local;
+            Users users = new Users();
+            users.Write(Add);
         }
 
         public ObservableCollection<Транспортные_маршруты> Routess
@@ -90,8 +93,8 @@ namespace BD
         {
             if (DataGrid.SelectedItem != null)
             {
-                Edit.IsEnabled = true;
-                Delete.IsEnabled = true;
+                Users users = new Users();
+                users.EditDelete(Edit, Delete);
             }
         }
     }

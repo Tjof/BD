@@ -8,21 +8,21 @@
         Title="Главная страница" Height="40" 
         WindowStartupLocation="CenterScreen" Width="344" WindowStyle="None" Background="Transparent" BorderThickness="0" BorderBrush="Transparent" ResizeMode="NoResize">
 
-    <Menu Height="40" VerticalAlignment="Top" Background="#FFFFFF" x:Name="menu">
+    <Menu x:Name="Menu" Height="40" VerticalAlignment="Top" Background="#FFFFFF">
         <MenuItem Header="Файл" Height="40" Width="Auto" FontSize="24">
-            <MenuItem Header="Поиск лекарства" Click="Poisk_Lekarstva"/>
-            <MenuItem Header="Смена пароля" Click="Smena_Pass"/>
+            <MenuItem Header="Поиск лекарства" Click="FindDrugsClick"/>
+            <MenuItem Header="Смена пароля" Click="PasswordChangeClick"/>
             <MenuItem Header="Выход" Click="Exit_Click"/>
         </MenuItem>
-        <MenuItem Header="Справочники" Height="40" Width="Auto" FontSize="24">
-            <MenuItem Header="Аптеки" Click="Apteki" />
-            <MenuItem Header="Улицы" Click="Street"/>
-            <MenuItem Header="Ассортимент товара" Click="Assortiment"/>
-            <MenuItem Header="Остановки" Click="Ostanovki"/>
-            <MenuItem Header="Транспортные маршруты" Click="Marshruti"/>
-            <MenuItem Header="Лекарство" Click="Lekarstvo"/>
-            <MenuItem Header="Формы упаковки" Click="Formiupakovki"/>
-            <MenuItem Header="Виды транспорта" Click="TransportMode"/>
+        <MenuItem x:Name="Handbooks" Header="Справочники" Height="40" Width="Auto" FontSize="24">
+            <MenuItem x:Name="Drugstores" Header="Аптеки" Click="DrugstoresClick"/>
+            <MenuItem x:Name="Streets" Header="Улицы" Click="StreetsClick"/>
+            <MenuItem x:Name="Assortment" Header="Ассортимент товара" Click="AssortmentClick"/>
+            <MenuItem x:Name="Stops" Header="Остановки" Click="StopsClick"/>
+            <MenuItem x:Name="Routes" Header="Транспортные маршруты" Click="RoutesClick"/>
+            <MenuItem x:Name="Drugs" Header="Лекарство" Click="DrugsClick"/>
+            <MenuItem x:Name="PackingForms" Header="Формы упаковки" Click="PackingFormsClick"/>
+            <MenuItem x:Name="TransportMode" Header="Виды транспорта" Click="TransportModeClick"/>
         </MenuItem>
         <MenuItem Header="Справка" Height="40" Width="Auto" FontSize="24">
             <MenuItem Header="Как работать со справкой" Click="WorkingWithHelp"/>

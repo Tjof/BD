@@ -1,4 +1,5 @@
-﻿using BD.Model;
+﻿using BD.Class;
+using BD.Model;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -27,6 +28,8 @@ namespace BD
             model.Виды_Транспорта.Load();
             TransportModes = model.Виды_Транспорта.Local;
             DataGrid.ItemsSource = TransportModes;
+            Users users = new Users();
+            users.Write(Add);
         }
 
         public ObservableCollection<Виды_Транспорта> TransportModes
@@ -136,8 +139,8 @@ namespace BD
         {
             if (DataGrid.SelectedItem != null)
             {
-                Edit.IsEnabled = true;
-                Delete.IsEnabled = true;
+                Users users = new Users();
+                users.EditDelete(Edit, Delete);
                 TransportModeNameEdit.IsEnabled = false;
                 AddEditTransportMode.IsEnabled = false;
                 TransportModeNameEdit.Text = (DataGrid.SelectedItem as Виды_Транспорта).Вид_транспорта;

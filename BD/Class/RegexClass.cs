@@ -91,5 +91,20 @@ namespace BD.Class
                 return false;
             }
         }
+
+        public static bool RegexPass(string pass)
+        {
+            string s = pass;
+            Regex regexDistrict = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9])\S{6,}$");
+            MatchCollection matches = regexDistrict.Matches(s);
+            if (matches.Count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

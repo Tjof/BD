@@ -1,4 +1,5 @@
-﻿using BD.Model;
+﻿using BD.Class;
+using BD.Model;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
@@ -23,6 +24,8 @@ namespace BD
             model = new BAZANOWEntities();
             model.Остановки.Load();
             Stopss = model.Остановки.Local;
+            Users users = new Users();
+            users.Write(Add);
         }
 
         public ObservableCollection<Остановки> Stopss
@@ -84,8 +87,8 @@ namespace BD
         {
             if (DataGrid.SelectedItem != null)
             {
-                Edit.IsEnabled = true;
-                Delete.IsEnabled = true;
+                Users users = new Users();
+                users.EditDelete(Edit, Delete);
             }
         }
     }

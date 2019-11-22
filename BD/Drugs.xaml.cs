@@ -1,4 +1,5 @@
-﻿using BD.Model;
+﻿using BD.Class;
+using BD.Model;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data.Entity;
@@ -24,6 +25,8 @@ namespace BD
             model = new BAZANOWEntities();
             model.Лекарство.Load();
             Drugss = CollectionViewSource.GetDefaultView(model.Лекарство.Local);
+            Users users = new Users();
+            users.Write(Add);
         }
 
         private void ButtonClose(object sender, RoutedEventArgs e)
@@ -76,8 +79,8 @@ namespace BD
         {
             if (DataGrid.SelectedItem != null)
             {
-                Edit.IsEnabled = true;
-                Delete.IsEnabled = true;
+                Users users = new Users();
+                users.EditDelete(Edit, Delete);
             }
         }
     }

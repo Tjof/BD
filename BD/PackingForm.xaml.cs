@@ -1,4 +1,5 @@
-﻿using BD.Model;
+﻿using BD.Class;
+using BD.Model;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -27,6 +28,8 @@ namespace BD
             model.Формы_упаковки.Load();
             PackingForms = model.Формы_упаковки.Local;
             DataGrid.ItemsSource = PackingForms;
+            Users users = new Users();
+            users.Write(Add);
         }
 
         public ObservableCollection<Формы_упаковки> PackingForms
@@ -136,8 +139,8 @@ namespace BD
         {
             if (DataGrid.SelectedItem != null)
             {
-                Edit.IsEnabled = true;
-                Delete.IsEnabled = true;
+                Users users = new Users();
+                users.EditDelete(Edit, Delete);
                 PackingFormNameEdit.IsEnabled = false;
                 AddEditPackingform.IsEnabled = false;
                 PackingFormNameEdit.Text = (DataGrid.SelectedItem as Формы_упаковки).Название_формы;

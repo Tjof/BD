@@ -1,4 +1,5 @@
-﻿using BD.Model;
+﻿using BD.Class;
+using BD.Model;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Windows;
@@ -22,6 +23,8 @@ namespace BD
             model = new BAZANOWEntities();
             model.Ассортимент_товара.Load();
             Assortments = model.Ассортимент_товара.Local;
+            Users users = new Users();
+            users.Write(Add);
         }
 
         public ObservableCollection<Ассортимент_товара> Assortments
@@ -78,8 +81,8 @@ namespace BD
         {
             if (DataGrid.SelectedItem != null)
             {
-                Edit.IsEnabled = true;
-                Delete.IsEnabled = true;
+                Users users = new Users();
+                users.EditDelete(Edit, Delete);
             }
         }
     }
