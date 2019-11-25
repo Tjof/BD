@@ -9,84 +9,101 @@
         Title="Поиск лекарства" Height="500" Width="600" MinHeight="500" MinWidth="600">
     <DockPanel>
         <TextBlock DockPanel.Dock="Top" x:Name="DrugName" Text="{Binding Лекарство.Название_лекарствa, StringFormat={}Лекарство: {0}}" FontSize="24" Margin="15"/>
-        <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <ItemsControl ItemsSource="{Binding .}" x:Name="mycontrolName" ScrollViewer.VerticalScrollBarVisibility="Visible">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Border BorderThickness="0.5" BorderBrush="Gray" Margin="2">
-                            <StackPanel Orientation="Vertical">
+        <DockPanel>
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel>
+                    <ItemsControl ItemsSource="{Binding .}" x:Name="mycontrolName" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderThickness="0.5" BorderBrush="Gray" Margin="2">
 
-                                <Border BorderThickness="0.5" BorderBrush="Gray">
-                                    <StackPanel Background="#11B856" >
-                                        <TextBlock Foreground="White" Text="{Binding Название, StringFormat={}Аптека: {0}}" FontSize="18" Margin="5,0,0,0"/>
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition/>
-                                                <ColumnDefinition Width="250"/>
-                                            </Grid.ColumnDefinitions>
-                                            <TextBlock Foreground="White" FontSize="18" Margin="5,0,0,0">
-                                                <TextBlock.Text>
-                                                    <MultiBinding StringFormat="{}Адрес: {0} {1}">
-                                                        <Binding Path="Название_улицы" />
-                                                        <Binding Path="Номер_дома" />
-                                                    </MultiBinding>
-                                                </TextBlock.Text>
-                                            </TextBlock>
-                                            <TextBlock Grid.Column="1" Foreground="White" FontSize="18" HorizontalAlignment="Right" Margin="0,0,15,0">
-                                                <TextBlock.Text>
-                                                    <MultiBinding StringFormat="{}Время работы: {0} - {1}">
-                                                        <Binding Path="Время_начала_работы"/>
-                                                        <Binding Path="Время_окончания_работы"/>
-                                                    </MultiBinding>
-                                                </TextBlock.Text>
-                                            </TextBlock>
-                                        </Grid>
-                                    </StackPanel>
-                                </Border>
-
-                                <TextBlock Text="Данные по лекарству:" FontSize="18" Margin="5,0,0,0"/>
-                                <ItemsControl ItemsSource="{Binding Лекарства}" >
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackPanel Orientation="Horizontal" Margin="20,0,0,3">
-                                                <TextBlock Text="{Binding Название_формы, StringFormat={}Форма упаковки: {0}}" FontSize="16" Width="240"/>
-                                                <TextBlock Text="{Binding Цена, StringFormat={}Цена: {0} руб.}" FontSize="16"/>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
-
-                                <StackPanel Background="#FFF8E9">
-                                    <TextBlock Text="{Binding Название_остановки, StringFormat={}Выйти на остановке: {0}}" FontSize="18" Margin="5,0,0,0"/>
-                                    <ItemsControl ItemsSource="{Binding Маршруты}">
-                                        <ItemsControl.ItemTemplate>
-                                            <DataTemplate>
+                                    <StackPanel Orientation="Vertical">
+                                        <Border BorderThickness="0.5" BorderBrush="Gray">
+                                            <StackPanel Background="#11B856" >
+                                                <TextBlock Foreground="White" Text="{Binding Название, StringFormat={}Аптека: {0}}" FontSize="18" Margin="5,0,0,0"/>
                                                 <Grid>
                                                     <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="300"/>
                                                         <ColumnDefinition/>
+                                                        <ColumnDefinition Width="250"/>
                                                     </Grid.ColumnDefinitions>
-                                                    <TextBlock FontSize="16" Margin="20,0,0,3">
+                                                    <TextBlock Foreground="White" FontSize="18" Margin="5,0,0,0">
                                                         <TextBlock.Text>
-                                                            <MultiBinding StringFormat="{}Маршрут: {0} {1}">
-                                                                <Binding Path="Номер_маршрута" />
-                                                                <Binding Path="Вид_транспорта" />
+                                                            <MultiBinding StringFormat="{}Адрес: {0} {1}">
+                                                                <Binding Path="Название_улицы" />
+                                                                <Binding Path="Номер_дома" />
                                                             </MultiBinding>
                                                         </TextBlock.Text>
                                                     </TextBlock>
-                                                    <TextBlock Text="{Binding Разница, StringFormat={}Остановок до аптеки: {0}}" FontSize="16" Grid.Column="1"/>
+                                                    <TextBlock Grid.Column="1" Foreground="White" FontSize="18" HorizontalAlignment="Right" Margin="0,0,15,0">
+                                                        <TextBlock.Text>
+                                                            <MultiBinding StringFormat="{}Время работы: {0} - {1}">
+                                                                <Binding Path="Время_начала_работы"/>
+                                                                <Binding Path="Время_окончания_работы"/>
+                                                            </MultiBinding>
+                                                        </TextBlock.Text>
+                                                    </TextBlock>
                                                 </Grid>
-                                            </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
-                                    </ItemsControl>
-                                </StackPanel>
+                                            </StackPanel>
+                                        </Border>
 
-                            </StackPanel>
-                        </Border>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </ScrollViewer>
-        <!-- <Button x:Name="Sort" Click="Sort_Click" /> -->
+                                        <TextBlock Text="Данные по лекарству:" FontSize="18" Margin="5,0,0,0"/>
+                                        <ItemsControl ItemsSource="{Binding Лекарства}" >
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal" Margin="20,0,0,3">
+                                                        <TextBlock Text="{Binding Название_формы, StringFormat={}Форма упаковки: {0}}" FontSize="16" Width="240"/>
+                                                        <TextBlock Text="{Binding Цена, StringFormat={}Цена: {0} руб.}" FontSize="16"/>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+
+                                        <StackPanel Background="#FFF8E9">
+                                            <TextBlock Text="{Binding Название_остановки, StringFormat={}Выйти на остановке: {0}}" FontSize="18" Margin="5,0,0,0"/>
+                                            <ItemsControl ItemsSource="{Binding Маршруты}">
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="300"/>
+                                                                <ColumnDefinition/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <TextBlock FontSize="16" Margin="20,0,0,3">
+                                                                <TextBlock.Text>
+                                                                    <MultiBinding StringFormat="{}Маршрут: {0} {1}">
+                                                                        <Binding Path="Номер_маршрута" />
+                                                                        <Binding Path="Вид_транспорта" />
+                                                                    </MultiBinding>
+                                                                </TextBlock.Text>
+                                                            </TextBlock>
+                                                            <TextBlock Text="{Binding Разница, StringFormat={}Остановок до аптеки: {0}}" FontSize="16" Grid.Column="1"/>
+                                                        </Grid>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </StackPanel>
+
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <Border BorderThickness="0.5" BorderBrush="Gray">
+                        <StackPanel DockPanel.Dock="Top" Background="#00BFFF">
+                            <TextBlock Text="Имеются аналоги даного лекарства:" FontSize="18" Margin="5,0,0,0" Foreground="White"/>
+                            <ItemsControl x:Name="Substitutes" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Название_лекарства}" FontSize="16" Margin="20,0,0,0" Foreground="White"/>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </Border>
+                    
+                </StackPanel>
+            </ScrollViewer>
+        </DockPanel>
     </DockPanel>
 </Window>
