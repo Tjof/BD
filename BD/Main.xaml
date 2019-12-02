@@ -5,8 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BD"
         mc:Ignorable="d"
-        Title="Главная страница" Height="40" 
-        WindowStartupLocation="CenterScreen" Width="344" WindowStyle="None" Background="Transparent" BorderThickness="0" BorderBrush="Transparent" ResizeMode="NoResize">
+        Title="Служба 067" Height="80" Width="360" Closing="Window_Closing" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
 
     <Menu x:Name="Menu" Height="40" VerticalAlignment="Top" Background="#FFFFFF">
         <MenuItem Header="Файл" Height="40" Width="Auto" FontSize="24">

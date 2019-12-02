@@ -1,6 +1,7 @@
 ﻿using BD.Class;
 using BD.Model;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Data.Entity;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,6 +26,9 @@ namespace BD
             Assortments = model.Ассортимент_товара.Local;
             Users users = new Users();
             users.Write(Add);
+
+            DataGrid.Items.SortDescriptions.Clear();
+            DataGrid.Items.SortDescriptions.Add(new SortDescription("Лекарство.Название_лекарства", ListSortDirection.Ascending));
         }
 
         public ObservableCollection<Ассортимент_товара> Assortments
@@ -46,6 +50,7 @@ namespace BD
             Ассортимент_товара a = new Ассортимент_товара();
             AddAssortment addAssortment = new AddAssortment(model, a);
             addAssortment.ShowDialog();
+            DataGrid.SelectedItem = a;
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)

@@ -1,22 +1,11 @@
 ﻿using BD.Class;
 using BD.Model;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data.Entity;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace BD
 {
@@ -37,6 +26,9 @@ namespace BD
             Routess = model.Транспортные_маршруты.Local;
             Users users = new Users();
             users.Write(Add);
+
+            DataGrid.Items.SortDescriptions.Clear();
+            DataGrid.Items.SortDescriptions.Add(new SortDescription("Номер_маршрута", ListSortDirection.Ascending));
         }
 
         public ObservableCollection<Транспортные_маршруты> Routess
@@ -58,6 +50,7 @@ namespace BD
             Транспортные_маршруты a = new Транспортные_маршруты();
             AddRoute addRoute = new AddRoute(model, a);
             addRoute.ShowDialog();
+            DataGrid.SelectedItem = a;
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)

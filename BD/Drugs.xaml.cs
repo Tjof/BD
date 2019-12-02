@@ -27,6 +27,9 @@ namespace BD
             Drugss = CollectionViewSource.GetDefaultView(model.Лекарство.Local);
             Users users = new Users();
             users.Write(Add);
+
+            DataGrid.Items.SortDescriptions.Clear();
+            DataGrid.Items.SortDescriptions.Add(new SortDescription("Название_лекарства", ListSortDirection.Ascending));
         }
 
         private void ButtonClose(object sender, RoutedEventArgs e)
@@ -39,6 +42,7 @@ namespace BD
             Лекарство a = new Лекарство();
             AddDrug addDrug = new AddDrug(model, a);
             addDrug.ShowDialog();
+            DataGrid.SelectedItem = a;
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)

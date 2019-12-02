@@ -47,7 +47,7 @@ namespace BD.Class
         public static bool RegexRoute(string RouteName)
         {
             string s = RouteName;
-            Regex regexRoute = new Regex(@"^[0-9][а-яёА-ЯЁ0-9]{2,}$");
+            Regex regexRoute = new Regex(@"^[0-9][а-яёА-ЯЁ0-9]{1,}$");
             MatchCollection matches = regexRoute.Matches(s);
             if (matches.Count > 0)
             {

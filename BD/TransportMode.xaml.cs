@@ -30,6 +30,9 @@ namespace BD
             DataGrid.ItemsSource = TransportModes;
             Users users = new Users();
             users.Write(Add);
+
+            DataGrid.Items.SortDescriptions.Clear();
+            DataGrid.Items.SortDescriptions.Add(new SortDescription("Вид_транспорта", ListSortDirection.Ascending));
         }
 
         public ObservableCollection<Виды_Транспорта> TransportModes
@@ -122,6 +125,7 @@ namespace BD
                             model.SaveChanges();
                             EditAllowed = false;
                             TransportModeNameEdit.Text = String.Empty;
+                            DataGrid.SelectedItem = transportMode;
                             TransportModeNameEdit.IsReadOnly = true;
                             AddEditTransportMode.IsEnabled = false;
                         }

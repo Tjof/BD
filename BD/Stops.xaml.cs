@@ -1,6 +1,7 @@
 ﻿using BD.Class;
 using BD.Model;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Windows;
@@ -26,6 +27,9 @@ namespace BD
             Stopss = model.Остановки.Local;
             Users users = new Users();
             users.Write(Add);
+
+            DataGrid.Items.SortDescriptions.Clear();
+            DataGrid.Items.SortDescriptions.Add(new SortDescription("Название_улицы", ListSortDirection.Ascending));
         }
 
         public ObservableCollection<Остановки> Stopss
@@ -47,6 +51,7 @@ namespace BD
             Остановки a = new Остановки();
             AddEditStop addStop = new AddEditStop(model, a);
             addStop.ShowDialog();
+            DataGrid.SelectedItem = a;
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)

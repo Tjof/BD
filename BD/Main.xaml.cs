@@ -12,7 +12,7 @@ namespace BD
             Users users = new Users();
             users.Read(Handbooks);
         }
-
+        
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
             System.Environment.Exit(0);
@@ -125,6 +125,11 @@ namespace BD
                 Owner = this
             };
             aboutTheProgram.Show();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            System.Environment.Exit(0);
         }
     }
 }

@@ -19,8 +19,8 @@
         </Grid.RowDefinitions>
         <Label Content="Логин:" VerticalAlignment="Center" FontSize="16" Margin="10,0,0,0"/>
         <Label Content="Пароль:" Grid.Row="1" VerticalAlignment="Center" FontSize="16" Margin="10,0,0,0"/>
-        <TextBox x:Name="tbLogin" Grid.Column="1" Margin="10" BorderBrush="Black"/>
-        <PasswordBox x:Name="passwordBox" PasswordChar="*" BorderBrush="Black" Grid.Column="1" Grid.Row="1" Margin="10"/>
+        <TextBox x:Name="tbLogin" Text="admin" Grid.Column="1" Margin="10" BorderBrush="Black"/>
+        <PasswordBox x:Name="passwordBox" Password="admin" PasswordChar="*" BorderBrush="Black" Grid.Column="1" Grid.Row="1" Margin="10"/>
         <Button IsDefault="True" x:Name="authorization" Content="Войти" Click="Authorization_Click" Grid.Column="1" Grid.Row="2" Width="140" HorizontalAlignment="Right" Margin="0,0,10,0"/>
     </Grid>
 </Window>

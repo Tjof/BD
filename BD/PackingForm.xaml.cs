@@ -30,6 +30,9 @@ namespace BD
             DataGrid.ItemsSource = PackingForms;
             Users users = new Users();
             users.Write(Add);
+
+            DataGrid.Items.SortDescriptions.Clear();
+            DataGrid.Items.SortDescriptions.Add(new SortDescription("Название_формы", ListSortDirection.Ascending));
         }
 
         public ObservableCollection<Формы_упаковки> PackingForms
@@ -122,6 +125,7 @@ namespace BD
                             EditAllowed = false;
                             model.SaveChanges();
                             PackingFormNameEdit.Text = String.Empty;
+                            DataGrid.SelectedItem = packingform;
                             PackingFormNameEdit.IsReadOnly = true;
                             AddEditPackingform.IsEnabled = false;
                         }

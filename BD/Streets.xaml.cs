@@ -31,6 +31,10 @@ namespace BD
             DataGrid.ItemsSource = Streetss;
             Users users = new Users();
             users.Write(Add);
+
+            DataGrid.Items.SortDescriptions.Clear();
+            DataGrid.Items.SortDescriptions.Add(new SortDescription("Название_остановки", ListSortDirection.Ascending));
+
         }
 
         public ObservableCollection<Улицы> Streetss
@@ -107,6 +111,7 @@ namespace BD
                                 StreetNameEdit.Text = String.Empty;
                                 StreetNameEdit.IsReadOnly = true;
                                 AddEditStreet.IsEnabled = false;
+
                             }
                             catch (System.Data.Entity.Infrastructure.DbUpdateException)
                             {
@@ -126,6 +131,7 @@ namespace BD
                                 model.SaveChanges();
                                 EditAllowed = false;
                                 StreetNameEdit.Text = String.Empty;
+                                DataGrid.SelectedItem = street;
                                 StreetNameEdit.IsReadOnly = true;
                                 AddEditStreet.IsEnabled = false;
                             }
