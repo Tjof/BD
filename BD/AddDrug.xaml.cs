@@ -33,13 +33,13 @@ namespace BD
 
             if (drugs.id_лекарство == 0)
             {
-                Title = "Добавление лекарства";
+                Title = "Служба 067 - Добавление лекарства";
                 AddEdit.Content = "Добавить";
                 DrugName.Focus();
             }
             else
             {
-                Title = "Изменение лекарства";
+                Title = "Служба 067 - Изменение лекарства";
                 AddEdit.Content = "Изменить";
             }
 

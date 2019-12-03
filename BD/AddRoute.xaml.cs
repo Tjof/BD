@@ -44,13 +44,13 @@ namespace BD
 
             if (route.id_маршрута == 0)
             {
-                Title = "Добавление маршрута";
+                Title = "Служба 067 - Добавление маршрута";
                 AddEdit.Content = "Добавить";
                 RouteNumber.Focus();
             }
             else
             {
-                Title = "Изменение маршрута";
+                Title = "Служба 067 - Изменение маршрута";
                 AddEdit.Content = "Изменить";
             }
 

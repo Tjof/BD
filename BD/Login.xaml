@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BD"
         mc:Ignorable="d"
-        Title="Авторизация" Height="180" Width="400"
+        Title="Служба 067 - Авторизация" Height="180" Width="400"
         WindowStartupLocation="CenterScreen">
     <Grid Background="#FFFFFF" >
         <Grid.ColumnDefinitions>

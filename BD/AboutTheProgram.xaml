@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BD"
         mc:Ignorable="d"
-        Title="О программе" Height="200" Width="400" ResizeMode="NoResize">
+        Title="Служба 067 - О программе" Height="200" Width="400" ResizeMode="NoResize">
     <Grid Background="#FFFFFF">
         <Label x:Name="label1" Content="Программу выполнил студент группы ПИБ-61" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,36" FontFamily="Times New Roman" FontSize="16" />
         <Label x:Name="label2" Content="Тимченко Дмитрий" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" FontFamily="Times New Roman" FontSize="16"/>

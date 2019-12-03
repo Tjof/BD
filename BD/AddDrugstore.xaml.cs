@@ -25,13 +25,13 @@ namespace BD
 
             if (drugstore.id_аптеки == 0)
             {
-                Title = "Добавление аптеки";
+                Title = "Служба 067 - Добавление аптеки";
                 AddEdit.Content = "Добавить";
                 DrugstoreName.Focus();
             }
             else
             {
-                Title = "Редактирование аптеки";
+                Title = "Служба 067 - Редактирование аптеки";
                 AddEdit.Content = "Изменить";
             }
 

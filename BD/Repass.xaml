@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BD"
         mc:Ignorable="d"
-        Title="Смена пароля" Height="230" Width="450">
+        Title="Служба 067 - Смена пароля" Height="230" Width="450">
     <Grid Background="#FFFFFF">
         <Grid.RowDefinitions>
             <RowDefinition Height="25*"/>

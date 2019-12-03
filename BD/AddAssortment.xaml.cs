@@ -27,12 +27,12 @@ namespace BD
 
             if (assortment.id_лекарство == 0)
             {
-                Title = "Добавление нового ассортимента";
+                Title = "Служба 067 - Добавление нового ассортимента";
                 AddEdit.Content = "Добавить";
             }
             else
             {
-                Title = "Редактирование ассортимента";
+                Title = "Служба 067 - Редактирование ассортимента";
                 AddEdit.Content = "Изменить";
                 DrugName.IsEnabled = false;
                 DrugstoreName.IsEnabled = false;

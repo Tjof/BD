@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BD"
         mc:Ignorable="d"
-        Title="Поиск лекарства" Height="180" Width="500">
+        Title="Служба 067 - Поиск лекарства" Height="180" Width="500">
     <Grid Background="#FFFFFF" Margin="0,0,2,3">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
