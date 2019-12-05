@@ -33,7 +33,7 @@ namespace BD
             users.Write(Add);
 
             DataGrid.Items.SortDescriptions.Clear();
-            DataGrid.Items.SortDescriptions.Add(new SortDescription("Название_остановки", ListSortDirection.Ascending));
+            DataGrid.Items.SortDescriptions.Add(new SortDescription("Название_улицы", ListSortDirection.Ascending));
 
         }
 
@@ -97,49 +97,46 @@ namespace BD
 
             if (MessageBox.Show("Подтверждение", "Вы уверены, что хотите внести изменения в базу данных?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                if (RegexClass.RegexStreet(StreetNameEdit.Text))
+                if (DataGrid.SelectedItem != null)
                 {
-                    if (DataGrid.SelectedItem != null)
+                    if (StreetNameEdit != null)
                     {
-                        if (StreetNameEdit != null)
+                        try
                         {
-                            try
-                            {
-                                (DataGrid.SelectedItem as Улицы).Название_улицы = StreetNameEdit.Text;
-                                model.SaveChanges();
-                                CollectionViewSource.GetDefaultView(model.Улицы.Local).Refresh();
-                                StreetNameEdit.Text = String.Empty;
-                                StreetNameEdit.IsReadOnly = true;
-                                AddEditStreet.IsEnabled = false;
+                            (DataGrid.SelectedItem as Улицы).Название_улицы = StreetNameEdit.Text;
+                            model.SaveChanges();
+                            CollectionViewSource.GetDefaultView(model.Улицы.Local).Refresh();
+                            StreetNameEdit.Text = String.Empty;
+                            StreetNameEdit.IsReadOnly = true;
+                            AddEditStreet.IsEnabled = false;
 
-                            }
-                            catch (System.Data.Entity.Infrastructure.DbUpdateException)
-                            {
-                                MessageBox.Show("Ошибка", "Проверьте правильность вводимых данных", MessageBoxButton.OK);
-                            }
+                        }
+                        catch (System.Data.Entity.Infrastructure.DbUpdateException)
+                        {
+                            MessageBox.Show("Ошибка", "Проверьте правильность вводимых данных", MessageBoxButton.OK);
                         }
                     }
-                    else
+                }
+                else
+                {
+                    if (StreetNameEdit != null)
                     {
-                        if (StreetNameEdit != null)
+                        Улицы street = new Улицы();
+                        try
                         {
-                            Улицы street = new Улицы();
-                            try
-                            {
-                                street.Название_улицы = StreetNameEdit.Text;
-                                model.Улицы.Local.Add(street);
-                                model.SaveChanges();
-                                EditAllowed = false;
-                                StreetNameEdit.Text = String.Empty;
-                                DataGrid.SelectedItem = street;
-                                StreetNameEdit.IsReadOnly = true;
-                                AddEditStreet.IsEnabled = false;
-                            }
-                            catch (System.Data.Entity.Infrastructure.DbUpdateException)
-                            {
-                                model.Улицы.Local.Remove(street);
-                                MessageBox.Show("Ошибка", "Проверьте правильность вводимых данных", MessageBoxButton.OK);
-                            }
+                            street.Название_улицы = StreetNameEdit.Text;
+                            model.Улицы.Local.Add(street);
+                            model.SaveChanges();
+                            EditAllowed = false;
+                            StreetNameEdit.Text = String.Empty;
+                            DataGrid.SelectedItem = street;
+                            StreetNameEdit.IsReadOnly = true;
+                            AddEditStreet.IsEnabled = false;
+                        }
+                        catch (System.Data.Entity.Infrastructure.DbUpdateException)
+                        {
+                            model.Улицы.Local.Remove(street);
+                            MessageBox.Show("Ошибка", "Проверьте правильность вводимых данных", MessageBoxButton.OK);
                         }
                     }
                 }
