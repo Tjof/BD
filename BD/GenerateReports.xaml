@@ -1,11 +1,11 @@
-﻿<Window x:Class="BD.SearchMenu"
+﻿<Window x:Class="BD.GenerateReports"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BD"
         mc:Ignorable="d"
-        Title="Служба 067 - Поиск лекарства" Height="180" Width="500">
+        Title="Служба 067 - Формирование отчета" Height="150" Width="500">
     <Grid Background="#FFFFFF">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
@@ -14,14 +14,12 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="60*"/>
             <RowDefinition Height="60*"/>
-            <RowDefinition Height="60*"/>
         </Grid.RowDefinitions>
 
         <Label Content="Выберите лекарство:" FontSize="16" VerticalAlignment="Center" />
-        <Label Content="Выберите остановку:" Grid.Row="1" FontSize="16" VerticalAlignment="Center"/>
         <ComboBox x:Name="comboBox_drugs" DisplayMemberPath="Название_лекарства" Grid.Column="1" Margin="10"/>
-        <ComboBox x:Name="comboBox_stops" DisplayMemberPath="Название_остановки" Grid.Column="1" Grid.Row="1" Margin="10"/>
-        <Button Content="Найти" Grid.Column="1" Grid.Row="2" Width="130" HorizontalAlignment="Right" Click="SearchClick" Margin="0,0,10,0"/>
+        <Button Content="Сформировать отчет" Grid.Column="1" Grid.Row="2" Width="180" HorizontalAlignment="Right" Click="GenerateClick" Margin="0,0,10,0"/>
 
     </Grid>
 </Window>
+

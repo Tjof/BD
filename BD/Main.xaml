@@ -10,6 +10,7 @@
     <Menu x:Name="Menu" Height="40" VerticalAlignment="Top" Background="#FFFFFF">
         <MenuItem Header="Файл" Height="40" Width="Auto" FontSize="24">
             <MenuItem Header="Поиск лекарства" Click="FindDrugsClick"/>
+            <MenuItem Header="Сформировать отчет" Click="Generate_Click"/>
             <MenuItem Header="Смена пароля" Click="PasswordChangeClick"/>
             <MenuItem Header="Выход" Click="Exit_Click"/>
         </MenuItem>

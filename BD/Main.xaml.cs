@@ -131,5 +131,14 @@ namespace BD
         {
             System.Environment.Exit(0);
         }
+
+        private void Generate_Click(object sender, RoutedEventArgs e)
+        {
+            GenerateReports generateReports = new GenerateReports()
+            {
+                Owner = this
+            };
+            generateReports.Show();
+        }
     }
 }
