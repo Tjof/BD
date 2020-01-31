@@ -39,6 +39,7 @@ namespace BD.Model
         public virtual DbSet<Улицы> Улицы { get; set; }
         public virtual DbSet<Формы_упаковки> Формы_упаковки { get; set; }
         public virtual DbSet<Лекарство> Лекарство { get; set; }
+        public virtual DbSet<Статистика_поиска> Статистика_поиска { get; set; }
     
         public virtual ObjectResult<GetRoutes_Result> GetRoutes(Nullable<int> id_grud, Nullable<int> id_ost)
         {

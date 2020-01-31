@@ -1,6 +1,8 @@
 ﻿using BD.Model;
+using System;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
+using System.Linq;
 using System.Windows;
 
 namespace BD
@@ -45,10 +47,30 @@ namespace BD
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void SearchClick(object sender, RoutedEventArgs e)
         {
             var drug = comboBox_drugs.SelectedItem as Лекарство;
             var stop = comboBox_stops.SelectedItem as Остановки;
+
+            Статистика_поиска searchStatistics = new Статистика_поиска();
+            int month = Int32.Parse(DateTime.Today.Month.ToString());
+            var searchElement = model.Статистика_поиска.FirstOrDefault(x => x.id_лекарство == drug.id_лекарство && x.Месяц == month);
+            if (searchElement == null)
+            {
+                Статистика_поиска search = new Статистика_поиска
+                {
+                    id_лекарство = drug.id_лекарство,
+                    Месяц = month,
+                    Запросов = 1
+                };
+                model.Статистика_поиска.Add(search);
+            }
+            else
+            {
+                searchElement.Запросов += 1;
+            }
+            model.SaveChanges();
+
             FindDrugs findDrugs = new FindDrugs(model, drug, stop);
             findDrugs.Show();
         }

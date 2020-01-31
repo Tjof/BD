@@ -95,6 +95,15 @@
           <Property Name="E" Type="bit" Nullable="false" />
           <Property Name="D" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="Статистика поиска">
+          <Key>
+            <PropertyRef Name="id_лекарство" />
+            <PropertyRef Name="Месяц" />
+          </Key>
+          <Property Name="id_лекарство" Type="int" Nullable="false" />
+          <Property Name="Месяц" Type="int" Nullable="false" />
+          <Property Name="Запросов" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Транспортные маршруты">
           <Key>
             <PropertyRef Name="id_маршрута" />
@@ -265,6 +274,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Статистика поиска_Лекарство">
+          <End Role="Лекарство" Type="Self.Лекарство" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Статистика поиска" Type="Self.Статистика поиска" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Лекарство">
+              <PropertyRef Name="id_лекарство" />
+            </Principal>
+            <Dependent Role="Статистика поиска">
+              <PropertyRef Name="id_лекарство" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Транспортные маршруты_Виды Транспорта">
           <End Role="Виды Транспорта" Type="Self.Виды Транспорта" Multiplicity="1" />
           <End Role="Транспортные маршруты" Type="Self.Транспортные маршруты" Multiplicity="*" />
@@ -297,6 +320,7 @@
           <EntitySet Name="Остановки" EntityType="Self.Остановки" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Пользователи" EntityType="Self.Пользователи" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ПользователиОбъекты" EntityType="Self.ПользователиОбъекты" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Статистика поиска" EntityType="Self.Статистика поиска" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Транспортные маршруты" EntityType="Self.Транспортные маршруты" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Улицы" EntityType="Self.Улицы" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Формы упаковки" EntityType="Self.Формы упаковки" Schema="dbo" store:Type="Tables" />
@@ -347,6 +371,10 @@
           <AssociationSet Name="FK_ПользователиОбъекты_Пользователи" Association="Self.FK_ПользователиОбъекты_Пользователи">
             <End Role="Пользователи" EntitySet="Пользователи" />
             <End Role="ПользователиОбъекты" EntitySet="ПользователиОбъекты" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Статистика поиска_Лекарство" Association="Self.FK_Статистика поиска_Лекарство">
+            <End Role="Лекарство" EntitySet="Лекарство" />
+            <End Role="Статистика поиска" EntitySet="Статистика поиска" />
           </AssociationSet>
           <AssociationSet Name="FK_Транспортные маршруты_Виды Транспорта" Association="Self.FK_Транспортные маршруты_Виды Транспорта">
             <End Role="Виды Транспорта" EntitySet="Виды Транспорта" />
@@ -426,6 +454,11 @@
             <Parameter Name="id_grud" Mode="In" Type="Int32" />
             <Parameter Name="id_ost" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="Статистика_поиска" EntityType="BAZANOWModel.Статистика_поиска" />
+          <AssociationSet Name="FK_Статистика_поиска_Лекарство" Association="BAZANOWModel.FK_Статистика_поиска_Лекарство">
+            <End Role="Лекарство" EntitySet="Лекарство" />
+            <End Role="Статистика_поиска" EntitySet="Статистика_поиска" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Аптеки">
           <Key>
@@ -676,6 +709,7 @@
           <NavigationProperty Name="Ассортимент_товара" Relationship="BAZANOWModel.FK_Ассортимент_товара_Лекарство" FromRole="Лекарство" ToRole="Ассортимент_товара" />
           <NavigationProperty Name="Лекарство1" Relationship="BAZANOWModel.Лекарства_и_их_заменители" FromRole="Лекарство" ToRole="Лекарство1" />
           <NavigationProperty Name="Лекарство2" Relationship="BAZANOWModel.Лекарства_и_их_заменители" FromRole="Лекарство1" ToRole="Лекарство" />
+          <NavigationProperty Name="Статистика_поиска" Relationship="BAZANOWModel.FK_Статистика_поиска_Лекарство" FromRole="Лекарство" ToRole="Статистика_поиска" />
         </EntityType>
         <Association Name="FK_Ассортимент_товара_Лекарство">
           <End Type="BAZANOWModel.Лекарство" Role="Лекарство" Multiplicity="1" />
@@ -708,6 +742,30 @@
           <Property Type="String" Name="Название_формы" Nullable="false" MaxLength="25" />
           <Property Type="Int32" Name="Порядок" Nullable="false" />
         </ComplexType>
+        <EntityType Name="Статистика_поиска">
+          <Key>
+            <PropertyRef Name="id_лекарство" />
+            <PropertyRef Name="Месяц" />
+          </Key>
+          <Property Name="id_лекарство" Type="Int32" Nullable="false" />
+          <Property Name="Месяц" Type="Int32" Nullable="false" />
+          <Property Name="Запросов" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Лекарство" Relationship="BAZANOWModel.FK_Статистика_поиска_Лекарство" FromRole="Статистика_поиска" ToRole="Лекарство" />
+        </EntityType>
+        <Association Name="FK_Статистика_поиска_Лекарство">
+          <End Type="BAZANOWModel.Лекарство" Role="Лекарство" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BAZANOWModel.Статистика_поиска" Role="Статистика_поиска" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Лекарство">
+              <PropertyRef Name="id_лекарство" />
+            </Principal>
+            <Dependent Role="Статистика_поиска">
+              <PropertyRef Name="id_лекарство" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -861,6 +919,15 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="Статистика_поиска">
+            <EntityTypeMapping TypeName="BAZANOWModel.Статистика_поиска">
+              <MappingFragment StoreEntitySet="Статистика поиска">
+                <ScalarProperty Name="Запросов" ColumnName="Запросов" />
+                <ScalarProperty Name="Месяц" ColumnName="Месяц" />
+                <ScalarProperty Name="id_лекарство" ColumnName="id_лекарство" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

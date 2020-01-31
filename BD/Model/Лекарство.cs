@@ -20,6 +20,7 @@ namespace BD.Model
             this.Ассортимент_товара = new HashSet<Ассортимент_товара>();
             this.Лекарство1 = new HashSet<Лекарство>();
             this.Лекарство2 = new HashSet<Лекарство>();
+            this.Статистика_поиска = new HashSet<Статистика_поиска>();
         }
     
         public int id_лекарство { get; set; }
@@ -31,5 +32,7 @@ namespace BD.Model
         public virtual ICollection<Лекарство> Лекарство1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Лекарство> Лекарство2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Статистика_поиска> Статистика_поиска { get; set; }
     }
 }

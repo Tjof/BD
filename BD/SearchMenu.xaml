@@ -21,7 +21,7 @@
         <Label Content="Выберите остановку:" Grid.Row="1" FontSize="16" VerticalAlignment="Center"/>
         <ComboBox x:Name="comboBox_drugs" DisplayMemberPath="Название_лекарства" Grid.Column="1" Margin="10"/>
         <ComboBox x:Name="comboBox_stops" DisplayMemberPath="Название_остановки" Grid.Column="1" Grid.Row="1" Margin="10"/>
-        <Button x:Name="button" Content="Найти" Grid.Column="1" Grid.Row="2" Width="130" HorizontalAlignment="Right" Click="Button_Click" Margin="0,0,10,0"/>
+        <Button Content="Найти" Grid.Column="1" Grid.Row="2" Width="130" HorizontalAlignment="Right" Click="SearchClick" Margin="0,0,10,0"/>
 
     </Grid>
 </Window>

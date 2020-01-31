@@ -130,6 +130,9 @@
     <Compile Include="Model\GetRoutes_Result.cs">
       <DependentUpon>BAZANOW.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Статистика_поиска.cs">
+      <DependentUpon>BAZANOW.tt</DependentUpon>
+    </Compile>
     <Compile Include="SearchMenu.xaml.cs">
       <DependentUpon>SearchMenu.xaml</DependentUpon>
     </Compile>
