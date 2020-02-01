@@ -9,7 +9,7 @@ namespace BD.Class
     {
         BAZANOWEntities model;
         public static string Login { get; set; }
-        public void Read(MenuItem Handbooks)
+        public void Read(MenuItem Handbooks, MenuItem GenerateReports)
         {
             model = new BAZANOWEntities();
             var user = model.Пользователи.FirstOrDefault(x => x.login == Login);
@@ -17,6 +17,7 @@ namespace BD.Class
             if (ActiveUser.R == false)
             {
                 Handbooks.IsEnabled = false;
+                GenerateReports.IsEnabled = false;
             }
         }
         public void Write(Button Add)

@@ -10,7 +10,7 @@ namespace BD
         {
             InitializeComponent();
             Users users = new Users();
-            users.Read(Handbooks);
+            users.Read(Handbooks, GenerateReports);
         }
         
         private void Exit_Click(object sender, RoutedEventArgs e)
