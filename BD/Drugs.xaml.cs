@@ -63,6 +63,8 @@ namespace BD
                 {
                     MessageBox.Show("Ошибка", "Удаляемые данные связаны!", MessageBoxButton.OK);
                 }
+                Edit.IsEnabled = false;
+                Delete.IsEnabled = false;
             }
         }
 

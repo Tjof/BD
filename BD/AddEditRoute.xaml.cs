@@ -2,14 +2,10 @@
 using BD.Class;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Data.Entity;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Collections.Generic;
-using System.Data;
 using BD.Services;
 using System;
 
@@ -18,19 +14,18 @@ namespace BD
     /// <summary>
     /// Логика взаимодействия для AD.xaml
     /// </summary>
-    public partial class AddRoute : Window
+    public partial class AddEditRoute : Window
     {
         BAZANOWEntities model;
         Транспортные_маршруты route;
         ObservableCollection<МаршрутыОстановки> stops;
         ObservableCollection<Остановки> stopsss;
 
-        public AddRoute(BAZANOWEntities model, Транспортные_маршруты route)
+        public AddEditRoute(BAZANOWEntities model, Транспортные_маршруты route)
         {
             InitializeComponent();
             this.route = route;
             DataContext = route;
-            //var a = model.Остановки.ToArray();
             this.model = model;
 
             StopsRoute = new ObservableCollection<МаршрутыОстановки>(route.МаршрутыОстановки.ToList());
@@ -98,14 +93,10 @@ namespace BD
                             else if (element is ComboBox)
                                 element.GetBindingExpression(ComboBox.SelectedItemProperty)?.UpdateSource();
                         }
-                        if (route.id_маршрута == 0) //new record
-                        {
+                        if (route.id_маршрута == 0)
                             model.Транспортные_маршруты.Add(route);
-                        }
                         else
-                        {
                             model.Entry(route).State = System.Data.Entity.EntityState.Modified;
-                        }
                         model.SaveChanges();
                         this.Close();
                     }
@@ -127,7 +118,11 @@ namespace BD
         {
             if (MessageBox.Show("Подтверждение", "Вы уверены, что хотите внести изменения в базу данных?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                int maxp = StopsRoute.Max(p => p.Порядок);
+                int maxp;
+                if (StopsRoute.Count == 0)
+                    maxp = 0;
+                else
+                    maxp = StopsRoute.Max(p => p.Порядок);
                 МаршрутыОстановки stop = new МаршрутыОстановки
                 {
                     Остановки = DataGrid.SelectedItem as Остановки,
@@ -140,6 +135,7 @@ namespace BD
                     StopsRoute.Add(stop);
                     route.МаршрутыОстановки.Add(stop);
                     model.SaveChanges();
+                    Add.IsEnabled = false;
                 }
                 catch (System.Data.Entity.Infrastructure.DbUpdateException ex)
                 {
@@ -159,6 +155,7 @@ namespace BD
                     StopsRoute.Remove(DataGrid2.SelectedItem as МаршрутыОстановки);
                     AllStops.Add(stop);
                     model.SaveChanges();
+                    Delete.IsEnabled = false;
                 }
                 catch (System.Data.Entity.Infrastructure.DbUpdateException)
                 {

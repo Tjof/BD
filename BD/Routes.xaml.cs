@@ -48,7 +48,7 @@ namespace BD
         private void ButtonAddRoute(object sender, RoutedEventArgs e)
         {
             Транспортные_маршруты a = new Транспортные_маршруты();
-            AddRoute addRoute = new AddRoute(model, a);
+            AddEditRoute addRoute = new AddEditRoute(model, a);
             addRoute.ShowDialog();
             DataGrid.SelectedItem = a;
         }
@@ -61,6 +61,8 @@ namespace BD
                 {
                     model.Транспортные_маршруты.Local.Remove(DataGrid.SelectedItem as Транспортные_маршруты);
                     model.SaveChanges();
+                    Edit.IsEnabled = false;
+                    Delete.IsEnabled = false;
                 }
                 catch (System.Data.Entity.Infrastructure.DbUpdateException)
                 {
@@ -74,7 +76,7 @@ namespace BD
             Транспортные_маршруты a = DataGrid.SelectedItem as Транспортные_маршруты;
             using (CollectionViewSource.GetDefaultView(Routess).DeferRefresh())
             {
-                AddRoute editStop = new AddRoute(model, a)
+                AddEditRoute editStop = new AddEditRoute(model, a)
                 {
                     Owner = this
                 };

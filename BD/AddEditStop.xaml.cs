@@ -47,14 +47,10 @@ namespace BD
                         else if (element is ComboBox)
                             element.GetBindingExpression(ComboBox.SelectedItemProperty)?.UpdateSource();
                     }
-                    if (stop.id_остановки == 0) //new record
-                    {
+                    if (stop.id_остановки == 0)
                         model.Остановки.Add(stop);
-                    }
                     else
-                    {
                         model.Entry(stop).State = System.Data.Entity.EntityState.Modified;
-                    }
                     model.SaveChanges();
                     this.Close();
                 }
