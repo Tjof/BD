@@ -46,9 +46,12 @@ namespace BD
             workBook = excelApp.Workbooks.Add();
             workSheet = (Excel.Worksheet)workBook.Worksheets.get_Item(1);
 
+            //ширина колонок
             workSheet.Columns[1].ColumnWidth = 14;
             workSheet.Columns[2].ColumnWidth = 20;
+            //размер шрифта для ячеек А1 и А2
             workSheet.get_Range("A1", "A2").Font.Size = 16;
+            //шрифт текста
             workSheet.get_Range("A1", "A2").Font.Name = "Time New Roman";
             workSheet.Range["A1"].Value = "Служба 067";
             workSheet.Range["A2"].Value = "Отчет по лекарству " + drug.Название_лекарства + " за год";
