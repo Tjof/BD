@@ -339,6 +339,12 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>BAZANOW.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="Service 067 Help Admin.chm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Service 067 Help User.chm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Model\BAZANOW.edmx.diagram">
       <DependentUpon>BAZANOW.edmx</DependentUpon>
     </None>
@@ -347,9 +353,6 @@
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Help.chm">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>

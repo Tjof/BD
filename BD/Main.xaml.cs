@@ -115,7 +115,8 @@ namespace BD
 
         private void ClickContent(object sender, RoutedEventArgs e)
         {
-            Help.ShowHelp(null, "Help.chm");
+            Users users = new Users();
+            users.Help();
         }
 
         private void AboutTheProgram(object sender, RoutedEventArgs e)

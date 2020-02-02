@@ -53,6 +53,16 @@ namespace BD.Class
                 Delete.IsEnabled = true;
             }
         }
-        
+
+        public void Help()
+        {
+            model = new BAZANOWEntities();
+            var user = model.Пользователи.FirstOrDefault(x => x.login == Login);
+            var ActiveUser = model.ПользователиОбъекты.FirstOrDefault(x => x.id_пользователя == user.id_пользователя);
+            if (ActiveUser.R == false)
+                System.Windows.Forms.Help.ShowHelp(null, "Service 067 Help User.chm");
+            else
+                System.Windows.Forms.Help.ShowHelp(null, "Service 067 Help Admin.chm");
+        }
     }
 }
