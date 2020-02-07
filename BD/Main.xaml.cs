@@ -1,18 +1,26 @@
 ﻿using BD.Class;
 using System.Windows;
-using System.Windows.Forms;
+using System.Windows.Input;
 
 namespace BD
 {
     public partial class Main : Window
     {
+        public static RoutedCommand Help_command = new RoutedCommand();
+
         public Main()
         {
             InitializeComponent();
             Users users = new Users();
             users.Read(Handbooks, GenerateReports);
         }
-        
+
+        private void Some_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            Users users = new Users();
+            users.Help();
+        }
+
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
             System.Environment.Exit(0);

@@ -7,6 +7,12 @@
         mc:Ignorable="d"
         Title="Служба 067" Height="80" Width="360" Closing="Window_Closing" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
 
+    <Window.CommandBindings>
+        <CommandBinding Command="local:Main.Help_command" Executed="Some_Executed"/>
+    </Window.CommandBindings>
+    <Window.InputBindings>
+        <KeyBinding Key="F1" Command="local:Main.Help_command"/>
+    </Window.InputBindings>
     <Menu x:Name="Menu" Height="40" VerticalAlignment="Top" Background="#FFFFFF">
         <MenuItem Header="Файл" Height="40" Width="Auto" FontSize="24">
             <MenuItem Header="Поиск лекарства" Click="FindDrugsClick"/>
