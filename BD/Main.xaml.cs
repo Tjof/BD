@@ -108,11 +108,6 @@ namespace BD
             transportMode.Show();
         }
 
-        private void WorkingWithHelp(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void ClickContent(object sender, RoutedEventArgs e)
         {
             Users users = new Users();

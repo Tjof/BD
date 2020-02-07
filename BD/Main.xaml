@@ -25,7 +25,6 @@
             <MenuItem x:Name="TransportMode" Header="Виды транспорта" Click="TransportModeClick"/>
         </MenuItem>
         <MenuItem Header="Справка" Height="40" Width="Auto" FontSize="24">
-            <MenuItem Header="Как работать со справкой" Click="WorkingWithHelp"/>
             <MenuItem Header="Содержание" Click="ClickContent"/>
             <MenuItem Header="О программе" Click="AboutTheProgram"/>
         </MenuItem>
